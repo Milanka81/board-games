@@ -21,7 +21,7 @@ This repository contains a React app, an Express app, and a MySQL database. The 
   ```bash
   git clone https://github.com/Milanka81/board-games.git
   ```
-### To start the application, follow these steps:
+* To start the application, follow these steps:
 
 1. Start the React app:
    - Open a terminal.
