@@ -1,0 +1,171 @@
+.form {
+  align-self: center;
+  display: flex;
+  width: 30rem;
+  min-height: fit-content;
+  padding: 3rem 3rem;
+  gap: 2rem;
+  flex-direction: column;
+  background-color: #f5cba7;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.1);
+  border-radius: 11px;
+  margin-top: 3rem;
+  justify-content: space-around;
+}
+
+.form-title {
+  color: #450a26;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.btn-form-submit {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  background-color: #45260a;
+  color: #fdf2e9;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  transition: all 0.5s;
+}
+.btn-form-submit:hover {
+  background-color: #2e1907;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  align-items: center;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+}
+.edit-field {
+  align-items: center;
+  justify-content: center;
+  padding: 0, 1rem;
+  height: 2.6rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+}
+.form-field-name {
+  height: 3.6rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-field::placeholder {
+  color: #ccc;
+}
+
+.helper-text {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #333;
+}
+.selectField,
+.btn,
+.btn-link {
+  background-color: #f5cda7;
+  border: none;
+  color: #45260a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 2rem;
+  width: 8rem;
+  border-radius: 9px;
+  transition: all 0.5s;
+}
+
+.btn:hover,
+.btn-link:hover {
+  color: #ce6d18;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+  transition: all 0.3s;
+}
+
+.btn {
+  background-color: #fdf2e9;
+  text-transform: uppercase;
+  transition: all 0.8s;
+}
+.selectField {
+  background-color: #fdf2e9;
+  height: 2.3rem;
+  width: 9rem;
+}
+.btn-page {
+  background-color: #fff;
+  border: none;
+  color: #45260a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+.btn-page:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.125);
+  transition: all 0.3s;
+}
+.active {
+  background-color: #ce6d18;
+  color: #fff;
+}
+
+.grid-field {
+  display: grid;
+  grid-template-columns: 1.5fr 4fr;
+  align-items: baseline;
+  width: 100%;
+}
+
+.label {
+  font-size: 1rem;
+}
+.rgs:hover {
+  color: #450a26;
+}
+.nav-title {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.account {
+  margin: 0;
+}
+
+.align-self {
+  align-self: flex-end;
+}

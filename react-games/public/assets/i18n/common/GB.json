@@ -1,0 +1,19 @@
+{
+  "home": "Home",
+  "profile": "Profile",
+  "logout": "Logout",
+  "welcome": "Welcome",
+  "view": "View",
+  "back": "Back",
+  "edit": "Edit",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "save": "Save",
+  "submit": "Submit",
+  "accountinfo": "Account Info",
+  "account": "Account",
+  "preferences": "Preferences",
+  "previous": "Previous Page",
+  "next": "Next Page",
+  "apptitle": " Board Games App"
+}

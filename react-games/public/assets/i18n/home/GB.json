@@ -1,0 +1,11 @@
+{
+  "users": "Users",
+  "games": "Games",
+  "allgames": "All Games",
+  "newgames": "New Games",
+  "mostlikedgames": "Most liked Games",
+  "favouritegames": "Favourite Games",
+  "recommendedgames": "Recommended Games",
+  "searchplaceholder": "Search for game by name, artist, designer, category",
+  "loading": "Loading..."
+}

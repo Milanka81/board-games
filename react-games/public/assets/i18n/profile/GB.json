@@ -1,0 +1,16 @@
+{
+  "register": "Register",
+  "login": "Login",
+  "log-in": "Log in",
+  "firstname": "First Name",
+  "lastname": "Last Name",
+  "username": "Username",
+  "password": "Password",
+  "forgotpassword": "Forgot Password",
+  "resetpassword": "Reset Password",
+  "enternewpassword": "Enter New Password",
+  "email": "Email",
+  "enteremail": "Enter Email",
+  "role": "Role",
+  "searchuser": "Search for user by name, username, email"
+}

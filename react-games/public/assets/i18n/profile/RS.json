@@ -1,0 +1,16 @@
+{
+  "register": "Registracija",
+  "login": "Prijava",
+  "log-in": "Prijavi se",
+  "firstname": "Ime",
+  "lastname": "Prezime",
+  "username": "Korisničko ime",
+  "password": "Šifra",
+  "forgotpassword": "Zaboravljena šifra",
+  "resetpassword": "Izmeni šifru",
+  "enternewpassword": "Unesi novu šifru",
+  "email": "Adresa el. pošte",
+  "enteremail": "Unesi adresu el. pošte",
+  "role": "Uloga korisnika",
+  "searchuser": "Pretraži korisnike po imenu, korisničkom imenu, el. pošti"
+}

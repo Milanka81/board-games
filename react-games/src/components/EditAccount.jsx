@@ -1,0 +1,133 @@
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { editUser } from "../service";
+import { alertMessage } from "../utils";
+import { useTranslation } from "react-i18next";
+
+const EditAccount = ({ user, handleCancel, fetchUser }) => {
+  const { t } = useTranslation(["common", "profile"]);
+  const { first_name, last_name, username, email, role, user_id } = user;
+
+  const formik = useFormik({
+    initialValues: {
+      firstName: first_name,
+      lastName: last_name,
+      username: username,
+      email: email,
+      role: role,
+    },
+    onSubmit: (values) => {
+      editUser(values, user_id)
+        .then((res) => {
+          if (res.data.error) {
+            alertMessage(res.data.icon, res.data.message);
+          }
+          fetchUser();
+          handleCancel();
+        })
+        .catch((err) => alertMessage("error", err.message));
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(20, "Must be less than 20 chars")
+        .required("Required"), //react i18n next
+      lastName: Yup.string()
+        .max(20, "Must be less than 20 chars")
+        .required("Required"),
+      username: Yup.string()
+        .max(20, "Must be less than 20 chars")
+        .required("Required"),
+      email: Yup.string().email("Invalid email").required("Required"),
+    }),
+  });
+
+  return (
+    <form className="form account" onSubmit={formik.handleSubmit}>
+      <div className="fields">
+        <input
+          className="form-field comments-title"
+          id="firstName"
+          placeholder={t("profile:firstname")}
+          variant="outlined"
+          type="text"
+          value={formik.values.firstName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.firstName && formik.errors.firstName ? (
+          <p className="helper-text">{formik.errors.firstName}</p>
+        ) : null}
+      </div>
+      <div className="fields">
+        <input
+          className="form-field comments-title"
+          id="lastName"
+          placeholder={t("profile:lastname")}
+          variant="outlined"
+          type="text"
+          value={formik.values.lastName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.lastName && formik.errors.lastName ? (
+          <p className="helper-text">{formik.errors.lastName}</p>
+        ) : null}
+      </div>
+      <div className="fields">
+        <input
+          className="form-field comments-title field-back"
+          id="username"
+          placeholder={t("profile:username")}
+          variant="outlined"
+          type="text"
+          value={formik.values.username}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          disabled
+        />
+        {formik.touched.username && formik.errors.username ? (
+          <p className="helper-text">{formik.errors.username}</p>
+        ) : null}
+      </div>
+      <div className="fields">
+        <input
+          className="form-field comments-title"
+          id="email"
+          placeholder={t("profile:email")}
+          variant="outlined"
+          type="text"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.email && formik.errors.email ? (
+          <p className="helper-text">{formik.errors.email}</p>
+        ) : null}
+      </div>
+      <div className="fields">
+        <input
+          className="form-field comments-title field-back"
+          id="role"
+          placeholder={t("profile:role")}
+          variant="outlined"
+          type="text"
+          disabled
+          defaultValue={formik.values.role}
+        />
+      </div>
+      <div className="btns-container">
+        <button
+          className="btn-form-submit cancel"
+          type="button"
+          onClick={handleCancel}
+        >
+          {t("cancel")}
+        </button>
+        <button className="btn-form-submit save" type="submit">
+          {t("save")}
+        </button>
+      </div>
+    </form>
+  );
+};
+export default EditAccount;
