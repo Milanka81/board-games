@@ -20,7 +20,7 @@ This repository contains a React app, an Express app, and a MySQL database. The 
   Clone the repository:
   ```bash
   git clone https://github.com/Milanka81/board-games.git
-
+  ```
 To start the application, follow these steps:
 
 Start the React app:
