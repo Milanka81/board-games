@@ -35,7 +35,7 @@ npm install
 cd express-app
 npm install
 
-4. Database Setup
+## Database Setup
 
 To set up the MySQL database for this project, follow these steps:
 
@@ -48,24 +48,24 @@ To set up the MySQL database for this project, follow these steps:
 
 ## Usage
 
-### Login and Signup
+## Login and Signup
 When users land on the web app, they will be presented with a login/signup screen that offers the following options:
 
 Login (username/password)
 Sign up
 Forgot password
 
-### Admin Dashboard
+## Admin Dashboard
 Admin users have access to the following sections on the homepage:
 
 Boardgames: Admin can view, add, update, and delete board games in the system. The board games can be searched using various criteria.
 
 Users: Admin can view, update, and delete users in the system. User data can be searched using various criteria.
 
-### User Preferences
+## User Preferences
 When a new user visits the homepage for the first time, they will be greeted with a form to enter preferences for board games. Preferences include type/categories, designer(s), artist(s), number of players, and game length/time.
 
-### Homepage Sections
+## Homepage Sections
 The homepage displays multiple sections of games:
 
 Recommended
@@ -75,10 +75,10 @@ Most Liked
 All
 Games in these sections are represented with images, which expand on hover to show more information about the game. Users can search for particular board games using various criteria.
 
-### Game Details
+## Game Details
 Users can click on each game to bring up a more detailed view. In this view, users can rate the game, add it to favourites, view/add comments, and opt-in to receive emails when new games that fit their criteria are added.
 
-### Account Management
+## Account Management
 Both admin and user roles can see their own account details and update them. Users can also update their preferences about games.
 
 * Information for users 
