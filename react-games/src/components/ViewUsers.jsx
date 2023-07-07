@@ -7,8 +7,8 @@ const ViewUsers = ({ user, i, handleEdit, fetchUsers }) => {
   const { t } = useTranslation(["profile", "common"]);
   console.log(user);
   return (
-    <tr key={user.user_id}>
-      <td>{user.first_name ? i + 1 : null}</td>
+    <tr>
+      <td>{i + 1}</td>
       <td>{user.first_name}</td>
       <td>{user.last_name}</td>
       <td>{user.username}</td>

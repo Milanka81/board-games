@@ -360,7 +360,7 @@ router.get("/filteredGames", (req, res) => {
 router.get("/filteredUsers", (req, res) => {
   const { page, limit, input, sortBy } = req.query;
   const offset = (page - 1) * limit;
-  const sql = `SELECT first_name, last_name, username, email, role FROM user WHERE first_name LIKE "${input}%"
+  const sql = `SELECT user_id, first_name, last_name, username, email, role FROM user WHERE first_name LIKE "${input}%"
                OR last_name LIKE "${input}%"
                OR username LIKE "${input}%"
                OR email LIKE "${input}%"
