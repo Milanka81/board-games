@@ -178,7 +178,6 @@ const EditGame = () => {
                     className="form-field-name"
                     name="name"
                     id="name"
-                    placeholder="Name"
                     variant="outlined"
                     type="text"
                     value={formik.values.name}
@@ -196,7 +195,6 @@ const EditGame = () => {
                   <input
                     className="form-field"
                     id="minPlayers"
-                    placeholder="Minimum Players"
                     variant="outlined"
                     type="text"
                     value={formik.values.minPlayers}
@@ -214,7 +212,6 @@ const EditGame = () => {
                   <input
                     className="form-field"
                     id="maxPlayers"
-                    placeholder="Maximum Players"
                     variant="outlined"
                     type="text"
                     value={formik.values.maxPlayers}
@@ -232,7 +229,6 @@ const EditGame = () => {
                   <input
                     className="form-field"
                     id="year"
-                    placeholder="year"
                     variant="outlined"
                     type="text"
                     value={formik.values.year}
@@ -250,7 +246,6 @@ const EditGame = () => {
                   <input
                     className="form-field"
                     id="gameLength"
-                    placeholder="Game Length"
                     variant="outlined"
                     type="number"
                     min={1}
@@ -270,7 +265,6 @@ const EditGame = () => {
                     className="form-field"
                     name="artist"
                     id="artist"
-                    placeholder="Artist"
                     variant="outlined"
                     type="text"
                     value={formik.values.artist}
@@ -289,7 +283,6 @@ const EditGame = () => {
                     className="form-field"
                     name="designer"
                     id="designer"
-                    placeholder="Designer"
                     variant="outlined"
                     type="text"
                     value={formik.values.designer}
@@ -308,7 +301,6 @@ const EditGame = () => {
                     className="form-field"
                     name="category"
                     id="category"
-                    placeholder="Category"
                     variant="outlined"
                     type="text"
                     value={formik.values.category}

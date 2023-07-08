@@ -102,7 +102,7 @@ const UserHomePage = () => {
           <Preferences
             componentState="isAdding"
             className="modalAdd"
-            title="Add Game Preferences"
+            title={t("addgamepreferences")}
             fieldClassName="form-field"
           />
         </div>

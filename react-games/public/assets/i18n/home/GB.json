@@ -7,5 +7,6 @@
   "favouritegames": "Favourite Games",
   "recommendedgames": "Recommended Games",
   "searchplaceholder": "Search for game by name, artist, designer, category",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "addgamepreferences": "Add Game Preferences"
 }

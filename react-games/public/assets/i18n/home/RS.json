@@ -7,5 +7,6 @@
   "favouritegames": "Tvoje omiljene igre",
   "recommendedgames": "Preporučene za tebe",
   "searchplaceholder": "Pretraži igre po nazivu, artistu, dizajneru, kategoriji",
-  "loading": "Stranica se učitava..."
+  "loading": "Stranica se učitava...",
+  "addgamepreferences": "Preference igara"
 }
