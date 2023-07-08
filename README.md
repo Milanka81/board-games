@@ -62,7 +62,7 @@ Make sure to start both the React app and the Express app in separate terminals 
 ## Database Setup
 To set up the MySQL database for this project, follow these steps:
 1. Create a new MySQL database using your preferred MySQL management tool (e.g., MySQL Workbench).
-2. Import the database schema `boardGamesDB.sql`:
+2. Import the database schema gamesDB.sql:
    - MySQL Workbench > Server > Data Import > Import from Self-Contained File
 3. Update the database configuration in the Express app:
    - Open the file `express-app/config/database.js` and replace the placeholders with your MySQL database credentials.
