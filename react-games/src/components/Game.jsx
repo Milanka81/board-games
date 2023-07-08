@@ -35,26 +35,27 @@ const Game = () => {
     liked ? `${t("game:liked")} 👍` : `${t("game:like")} 👍🏻`;
   const btnFavName = () =>
     favourite
-      ? `${t("game:addtofavourites")} 🤍`
-      : `${t("game:favourited")} ❤️`;
+      ? `${t("game:favourited")} ❤️`
+      : `${t("game:addtofavourites")} 🤍`;
 
   useEffect(() => {
     getGame(id)
       .then((res) => {
         setGame(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
   }, [id]);
 
   useEffect(() => {
     getGameComments(id)
       .then((res) => setComments(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
   }, [id]);
+
   const refreshComments = () => {
     getGameComments(id)
       .then((res) => setComments(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
   };
 
   useEffect(() => {
@@ -63,9 +64,8 @@ const Game = () => {
         if (!res.data.length) return setLiked(false);
         setLiked(true);
       })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line
-  }, []);
+      .catch((err) => alertMessage("error", err.message));
+  }, [id]);
 
   useEffect(() => {
     getGameFavourite(id)
@@ -73,10 +73,8 @@ const Game = () => {
         if (!res.data.length) return setFavourite(false);
         setFavourite(true);
       })
-      .catch((err) => console.log(err));
-
-    // eslint-disable-next-line
-  }, []);
+      .catch((err) => alertMessage("error", err.message));
+  }, [id]);
 
   const handleChange = (e) => {
     setComment(e.target.value);

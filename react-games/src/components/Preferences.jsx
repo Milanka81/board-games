@@ -36,18 +36,8 @@ const Preferences = ({
   const loggedUser = JSON.parse(localStorage.getItem("user"));
   const user_id = loggedUser.user_id;
 
-  // const {
-  //   number_players,
-  //   game_length_from,
-  //   game_length_to,
-  //   artist,
-  //   designer,
-  //   category,
-  // } = preferences;
-
   const isViewing = componentState === "isViewing";
   const isAdding = componentState === "isAdding";
-  // const isEditing = componentState === "isEditing";
 
   const subscribeInfo = () =>
     subscribed ? `${t("game:subscribed")}` : `${t("game:unsubscribed")}`;
@@ -56,20 +46,18 @@ const Preferences = ({
     isViewing ? `${t("common:edit")}` : `${t("common:save")}`;
 
   const fetchPreferences = () => {
-    getPreferences()
-      .then((res) => {
-        if (!res.data) return;
-        const prefData = res.data[0];
-        setPreferences({
-          numberOfPlayers: handleEmpty(prefData.number_players),
-          gameLengthFrom: handleEmpty(prefData.game_length_from),
-          gameLengthTo: handleEmpty(prefData.game_length_to),
-          artist: handleEmpty(prefData.artist),
-          designer: handleEmpty(prefData.designer),
-          category: handleEmpty(prefData.category),
-        });
-      })
-      .catch((err) => console.log(err));
+    getPreferences().then((res) => {
+      if (!res.data) return;
+      const prefData = res.data[0];
+      setPreferences({
+        numberOfPlayers: handleEmpty(prefData.number_players),
+        gameLengthFrom: handleEmpty(prefData.game_length_from),
+        gameLengthTo: handleEmpty(prefData.game_length_to),
+        artist: handleEmpty(prefData.artist),
+        designer: handleEmpty(prefData.designer),
+        category: handleEmpty(prefData.category),
+      });
+    });
   };
 
   useEffect(() => {

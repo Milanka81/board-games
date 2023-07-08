@@ -8,6 +8,7 @@ import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
+import { alertMessage } from "../utils";
 
 const ListOfUsers = () => {
   const navigate = useNavigate();
@@ -23,10 +24,15 @@ const ListOfUsers = () => {
   const serialNum = (i) => (currentPage - 1) * limit + i;
 
   const fetchUsers = useCallback(() => {
-    getFilteredUsers(currentPage, limit, searchInput, sortBy).then((res) => {
-      setFilteredUsers(res.data);
-      setIsLoading(false);
-    });
+    getFilteredUsers(currentPage, limit, searchInput, sortBy)
+      .then((res) => {
+        setFilteredUsers(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        alertMessage("error", err.message);
+        setIsLoading(false);
+      });
   }, [currentPage, searchInput, sortBy]);
 
   useEffect(() => {

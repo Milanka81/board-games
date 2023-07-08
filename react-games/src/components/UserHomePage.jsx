@@ -17,6 +17,7 @@ import SearchBar from "./SearchBar";
 import Preferences from "./Preferences";
 import { useTranslation } from "react-i18next";
 import Loader from "./Loader";
+import { alertMessage } from "../utils";
 
 const UserHomePage = () => {
   const { t } = useTranslation(["home"]);
@@ -38,14 +39,14 @@ const UserHomePage = () => {
   useEffect(() => {
     getMostLiked()
       .then((res) => setMostLiked(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
   }, []);
 
   useEffect(() => {
     if (!isAdmin) {
       getRecommendedGames()
         .then((res) => setRecommended(res.data))
-        .catch((err) => console.log(err));
+        .catch((err) => alertMessage("error", err.message));
     }
   }, [isAdmin]);
 
@@ -61,16 +62,21 @@ const UserHomePage = () => {
     if (!isAdmin) {
       getUserPreferences()
         .then((res) => setPreferences(!!res.data.length))
-        .catch((err) => console.log(err));
+        .catch((err) => alertMessage("error", err.message));
     }
   }, [isAdmin]);
 
   useEffect(() => {
     const filter = setTimeout(() => {
-      getFilteredGames(currentPage, limit, searchInput, sortBy).then((res) => {
-        setFilteredGames(res.data);
-        setIsLoading(false);
-      });
+      getFilteredGames(currentPage, limit, searchInput, sortBy)
+        .then((res) => {
+          setFilteredGames(res.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          alertMessage("error", err.message);
+          setIsLoading(false);
+        });
     }, 1000);
 
     return () => clearTimeout(filter);
@@ -80,14 +86,14 @@ const UserHomePage = () => {
     if (!isAdmin) {
       getFavoriteGames()
         .then((res) => setGamesFavourite(res.data))
-        .catch((err) => console.log(err));
+        .catch((err) => alertMessage("error", err.message));
     }
   }, [isAdmin]);
 
   useEffect(() => {
     getNewGames()
       .then((res) => setNewGames(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
   }, []);
 
   const handleChange = (e) => {

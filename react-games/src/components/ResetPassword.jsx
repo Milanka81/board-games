@@ -16,11 +16,13 @@ const ResetPassword = () => {
       password: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      resetPassword(id, token, values).then((res) => {
-        res.data.error
-          ? alertMessage(res.data.icon, res.data.message)
-          : navigate("/");
-      });
+      resetPassword(id, token, values)
+        .then((res) => {
+          res.data.error
+            ? alertMessage(res.data.icon, res.data.message)
+            : navigate("/");
+        })
+        .catch((err) => alertMessage("error", err.message));
     },
   });
 

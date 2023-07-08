@@ -30,7 +30,6 @@ const Register = () => {
       email: Yup.string().email("Invalid email").required("Required"),
     }),
     onSubmit: (values) => {
-      console.log("submit");
       register(values)
         .then((res) => {
           if (res.data.error)
@@ -39,7 +38,7 @@ const Register = () => {
           alertMessage(res.data.icon, res.data.message);
           navigate("/login");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => alertMessage("error", err.message));
     },
   });
 

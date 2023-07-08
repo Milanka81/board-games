@@ -21,7 +21,7 @@ const Rating = ({ id, isAdmin }) => {
         if (!filter[0]) return setRating(0);
         setRating(filter[0].user_rate);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alertMessage("error", err.message));
 
     // eslint-disable-next-line
   }, []);

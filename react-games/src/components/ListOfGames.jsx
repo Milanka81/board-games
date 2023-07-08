@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteGame, getFilteredGames } from "../service";
 import "../css/Table.css";
-import { imgSrc, handleEmpty, alertDelete } from "../utils";
+import { imgSrc, handleEmpty, alertDelete, alertMessage } from "../utils";
 import SearchBar from "./SearchBar";
 import { useCallback } from "react";
 import Pagination from "./Pagination";
@@ -20,10 +20,15 @@ const ListOfGames = (idRow) => {
   const limit = 5;
 
   const fetchGames = useCallback(() => {
-    getFilteredGames(currentPage, limit, searchInput, sortBy).then((res) => {
-      setFilteredGames(res.data);
-      setIsLoading(false);
-    });
+    getFilteredGames(currentPage, limit, searchInput, sortBy)
+      .then((res) => {
+        setFilteredGames(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        alertMessage("error", err.message);
+        setIsLoading(false);
+      });
   }, [currentPage, searchInput, sortBy]);
 
   useEffect(() => {
