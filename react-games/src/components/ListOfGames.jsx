@@ -156,6 +156,7 @@ const ListOfGames = (idRow) => {
                       className="btn game-btn save"
                       onClick={() => {
                         navigate(`/game/${game.game_id}`);
+                        document.title = `Board Game | ${game.name}`;
                       }}
                     >
                       {t("common:view")} / {t("common:edit")}

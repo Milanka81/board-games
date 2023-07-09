@@ -36,6 +36,7 @@ const Games = ({ header, games, id }) => {
               className="game-hover"
               onClick={() => {
                 navigate(`/game/${game.game_id}`);
+                document.title = `Board Game | ${game.name}`;
               }}
               onMouseLeave={() => setGameHovering("")}
               onMouseEnter={() => setGameHovering(game.name)}
