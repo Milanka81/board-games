@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const ViewUsers = ({ user, i, handleEdit, fetchUsers }) => {
   const { t } = useTranslation(["profile", "common"]);
-  console.log(user);
+
   return (
     <tr>
       <td>{i + 1}</td>
