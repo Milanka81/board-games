@@ -1,5 +1,9 @@
 # Board Games Recommendation App
 
+The Board Games Recommendation Web Application is a full-stack project built using React on the client side, with React Router 6, Context API, and the react-i18n library for internationalization. On the server side, Express.js is used as the framework, and the application is connected to an SQL database. JWT (JSON Web Tokens) are utilized for authentication and secure user sessions.
+
+This web application provides a comprehensive platform for board game enthusiasts to discover, manage, and personalize their board game preferences. 
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Installation](#installation)
