@@ -53,9 +53,8 @@ export const alertDelete = (deleteFunction, id, refresh, logout = null) => {
       });
 
       refresh();
-      if (logout !== null) {
-        logout();
-      }
+
+      logout?.();
     })
     .catch((error) => {
       Swal.fire({
