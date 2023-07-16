@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import board from "../img/board.jpg";
-import Account from "./Account";
-import Comment from "./Comment";
+import Account from "../components/Account";
+import Comment from "../components/Comment";
 import { getLoggedUser, getUserComments } from "../service";
-import EditAccount from "./EditAccount";
+import EditAccount from "../components/EditAccount";
 import Preferences from "./Preferences";
 import { useContext } from "react";
 import { AuthContext } from "../App";

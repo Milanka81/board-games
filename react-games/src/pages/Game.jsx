@@ -3,10 +3,10 @@ import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import "../css/UserHomePage.css";
 import "../css/Game.css";
-import Rating from "./Rating";
+import Rating from "../components/Rating";
 import { useContext } from "react";
 import { AuthContext } from "../App";
-import Comment from "./Comment";
+import Comment from "../components/Comment";
 import { useTranslation } from "react-i18next";
 import { numberPlayers, handleEmpty, imgSrc, alertMessage } from "../utils";
 import {

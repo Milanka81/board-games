@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { deleteGame, getFilteredGames } from "../service";
 import "../css/Table.css";
 import { imgSrc, handleEmpty, alertDelete, alertMessage } from "../utils";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 import { useCallback } from "react";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 const ListOfGames = (idRow) => {
   const { t } = useTranslation(["game", "common", "home"]);

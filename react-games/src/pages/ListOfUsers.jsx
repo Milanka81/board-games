@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getFilteredUsers } from "../service";
 import "../css/Table.css";
-import ViewUsers from "./ViewUsers";
-import EditUser from "./EditUser";
-import SearchBar from "./SearchBar";
-import Pagination from "./Pagination";
+import ViewUsers from "../components/ViewUsers";
+import EditUser from "../components/EditUser";
+import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 import { alertMessage } from "../utils";
 
 const ListOfUsers = () => {

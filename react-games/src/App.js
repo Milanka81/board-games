@@ -1,20 +1,21 @@
 import React, { useState, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import UserHomePage from "./components/UserHomePage";
-import ListOfUsers from "./components/ListOfUsers";
-import ListOfGames from "./components/ListOfGames";
-import Game from "./components/Game";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import UserHomePage from "./pages/UserHomePage";
+import ListOfUsers from "./pages/ListOfUsers";
+import ListOfGames from "./pages/ListOfGames";
+import Game from "./pages/Game";
 import "./css/FormStyle.css";
 import "./index.css";
-import AddGame from "./components/AddGame";
-import EditGame from "./components/EditGame";
+import AddGame from "./pages/AddGame";
+import EditGame from "./pages/EditGame";
 import Header from "./components/Header";
-import Profile from "./components/Profile";
-import Preferences from "./components/Preferences";
-import ForgotPassword from "./components/ForgotPassword";
-import ResetPassword from "./components/ResetPassword";
+import Profile from "./pages/Profile";
+import Preferences from "./pages/Preferences";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import PageNotFound from "./pages/PageNotFound";
 export const AuthContext = React.createContext();
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
             element={!isAdmin && isAuth && <Preferences />}
           />
           <Route path="register" element={<Register />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </AuthContext.Provider>
     </Suspense>

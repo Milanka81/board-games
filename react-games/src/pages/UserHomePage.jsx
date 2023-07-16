@@ -12,11 +12,11 @@ import {
 } from "../service";
 import { useContext } from "react";
 import { AuthContext } from "../App";
-import Games from "./Games";
-import SearchBar from "./SearchBar";
+import Games from "../components/Games";
+import SearchBar from "../components/SearchBar";
 import Preferences from "./Preferences";
 import { useTranslation } from "react-i18next";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 import { alertMessage } from "../utils";
 
 const UserHomePage = () => {
