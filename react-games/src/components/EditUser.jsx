@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./ViewEditUsers.module.css";
+
 const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
   const { t } = useTranslation(["profile", "common"]);
   const { user_id, first_name, last_name, username, email, role } = user;
@@ -42,7 +44,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
       <td>{i + 1}</td>
       <td>
         <input
-          className="edit-field"
+          className={style.editField}
           name="firstName"
           placeholder={t("profile:firstname")}
           variant="outlined"
@@ -58,7 +60,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
 
       <td>
         <input
-          className="edit-field"
+          className={style.editField}
           id="lastName"
           placeholder={t("profile:lastname")}
           variant="outlined"
@@ -75,7 +77,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
       <td>{formik.values.email}</td>
       <td>
         <input
-          className="edit-field"
+          className={style.editField}
           id="role"
           placeholder={t("profile:role")}
           variant="outlined"
@@ -88,9 +90,9 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
           <p className="helper-text">{formik.errors.role}</p>
         ) : null}
       </td>
-      <td className="action-btns">
+      <td className={style.actionBtns}>
         <button
-          className="btn game-btn save"
+          className={`${style.btn} ${style.green}`}
           type="submit"
           onClick={formik.handleSubmit}
         >
@@ -98,7 +100,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
         </button>
 
         <button
-          className="btn game-btn cancel"
+          className={`${style.btn} ${style.red}`}
           type="button"
           onClick={handleCancel}
         >

@@ -1,0 +1,141 @@
+.gameOpinions {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 3rem;
+}
+.userComment {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.title {
+  color: #450a26;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.gameComments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.8rem;
+  padding-bottom: 2rem;
+}
+.commentUsername,
+.commentDate {
+  font-size: 1rem;
+  font-style: italic;
+  color: #cf711f;
+  text-shadow: #45260a;
+}
+.commentUsername {
+  font-weight: bold;
+}
+.marginleft {
+  margin-left: 0.5rem;
+}
+
+.inputField {
+  align-items: center;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.05);
+}
+
+.commentBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.btn {
+  color: #fff;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 9px;
+  transition: all 0.5s;
+  height: 2rem;
+  width: 8rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+  transition: all 0.3s;
+}
+
+.btn {
+  text-transform: uppercase;
+  transition: all 0.8s;
+}
+
+.red {
+  background-color: rgb(196, 0, 0);
+  transition: all 0.5s;
+}
+.red:hover {
+  background-color: rgb(156, 2, 2);
+}
+.green {
+  background-color: #1a852e;
+  transition: all 0.5s;
+}
+.green:hover {
+  background-color: rgb(6, 97, 23);
+}
+
+.commentText {
+  font-size: 1.2rem;
+  color: #45260a;
+  grid-column: 1/ -1;
+  text-align: justify;
+}
+/* .comments-title {
+  font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #000000;
+}
+
+.comment-form {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+.comment-input {
+  width: 30rem;
+  box-shadow: 0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.045);
+}
+
+.comment-text {
+  font-size: 1.2rem;
+  color: #45260a;
+  grid-column: 1/ -1;
+  text-align: justify;
+} 
+.btns-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.icon-btns-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 1fr 3fr;
+  align-items: center;
+  padding: 0 1rem;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+} */

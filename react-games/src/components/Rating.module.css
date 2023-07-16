@@ -1,11 +1,16 @@
 #rating {
   display: none;
 }
+.gameRating {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2.5rem;
+}
 
 .star {
   cursor: pointer;
   transition: color 200ms;
 }
-.avg-rating {
+.avgRating {
   font-size: 1.4rem;
 }

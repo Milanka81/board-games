@@ -1,7 +1,7 @@
-import "../css/Table.css";
 import { alertDelete } from "../utils";
 import { deleteUser } from "../service";
 import { useTranslation } from "react-i18next";
+import style from "./ViewEditUsers.module.css";
 
 const ViewUsers = ({ user, i, handleEdit, fetchUsers }) => {
   const { t } = useTranslation(["profile", "common"]);
@@ -14,9 +14,9 @@ const ViewUsers = ({ user, i, handleEdit, fetchUsers }) => {
       <td>{user.username}</td>
       <td>{user.email}</td>
       <td>{user.role}</td>
-      <td className="action-btns">
+      <td className={style.actionBtns}>
         <button
-          className="btn game-btn save"
+          className={`${style.btn} ${style.green}`}
           onClick={(e) => {
             handleEdit(e, user);
           }}
@@ -25,7 +25,7 @@ const ViewUsers = ({ user, i, handleEdit, fetchUsers }) => {
         </button>
 
         <button
-          className="btn game-btn cancel"
+          className={`${style.btn} ${style.red}`}
           onClick={(e) => {
             e.preventDefault();
             alertDelete(deleteUser, user.user_id, fetchUsers);

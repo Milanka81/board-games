@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import style from "./SearchBar.module.css";
 
 const SearchBar = ({ handleChange, placeholder }) => {
   const inputEl = useRef(null);
@@ -9,7 +10,7 @@ const SearchBar = ({ handleChange, placeholder }) => {
 
   return (
     <input
-      className="search-bar"
+      className={style.searchBar}
       type="text"
       placeholder={placeholder}
       onChange={handleChange}

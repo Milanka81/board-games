@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logout, handleEmpty } from "../utils";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import Select from "./Select";
+import style from "./Header.module.css";
 
 const Header = () => {
   const { i18n, t } = useTranslation(["common"]);
@@ -21,40 +22,42 @@ const Header = () => {
     i18n.changeLanguage(e.target.value);
   };
   return (
-    <div className="main-header">
+    <div className={style.mainHeader}>
       {loggedUser ? (
         <>
-          <p className="loggedUser">
+          <p className={style.loggedUser}>
             {" "}
             {t("welcome")} <strong> {handleEmpty(loggedUser.username)}</strong>
           </p>
-          <ul className="main-nav-list">
+          <ul className={style.mainNavList}>
             <li>
-              <button
+              {/* <button
                 className="btn"
                 onClick={() => {
                   navigate("/");
                 }}
               >
                 {t("home")}
-              </button>
+              </button> */}
+              <NavLink to="/">{t("home")}</NavLink>
             </li>
             <li>
-              <button
+              {/* <button
                 className="btn"
                 onClick={() => {
                   navigate("/profile");
                 }}
               >
                 {t("profile")}
-              </button>
+              </button> */}
+              <NavLink to="/profile">{t("profile")}</NavLink>
             </li>
 
             <Select handleLanguageChange={handleLanguageChange} />
 
             <li>
               <button
-                className="btn-nav"
+                className={style.btnLogout}
                 onClick={() => {
                   logout();
                   navigate("/login");
@@ -67,7 +70,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <p className="form-title nav-title"> 🎲 {t("apptitle")} 🎲</p>
+          <p className={style.appTitle}> 🎲 {t("apptitle")} 🎲</p>
           <Select handleLanguageChange={handleLanguageChange} />
         </>
       )}

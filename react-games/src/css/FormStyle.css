@@ -91,7 +91,7 @@
   font-size: 0.75rem;
   color: #333;
 }
-.selectField,
+
 .btn,
 .btn-link {
   background-color: #f5cda7;
@@ -118,12 +118,8 @@
   text-transform: uppercase;
   transition: all 0.8s;
 }
-.selectField {
-  background-color: #fdf2e9;
-  height: 2.3rem;
-  width: 9rem;
-}
-.btn-page {
+
+/* .btn-page {
   background-color: #fff;
   border: none;
   color: #45260a;
@@ -138,11 +134,11 @@
 .btn-page:hover {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.125);
   transition: all 0.3s;
-}
-.active {
+} */
+/* .active {
   background-color: #ce6d18;
   color: #fff;
-}
+} */
 
 .grid-field {
   display: grid;
@@ -157,14 +153,14 @@
 .rgs:hover {
   color: #450a26;
 }
-.nav-title {
+/* .nav-title {
   color: #fff;
   font-size: 2rem;
-}
+} */
 
-.account {
+/* .account {
   margin: 0;
-}
+} */
 
 .align-self {
   align-self: flex-end;

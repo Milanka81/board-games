@@ -2,6 +2,8 @@ import { editComment, deleteComment } from "../service";
 import { alertDelete, alertMessage } from "../utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import style from "./Comment.module.css";
+
 const Comment = ({ refreshComments, comments, isAdmin }) => {
   const { t } = useTranslation(["game", "common"]);
   const [myComment, setMyComment] = useState("");
@@ -19,15 +21,15 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
   };
 
   return (
-    <div className="game-opinions">
-      <div className="user-comment">
-        <h3 className="form-title">{t("game:comments")}:</h3>
+    <div className={style.gameOpinions}>
+      <div className={style.userComment}>
+        <h3 className={style.title}>{t("game:comments")}:</h3>
         {comments.map((el) => (
-          <div className="game-comments" key={el.comment_id}>
-            <p className="comment-username">{el.username || el.game}</p>
-            <span className="comment-date">
+          <div className={style.gameComments} key={el.comment_id}>
+            <p className={style.commentUsername}>{el.username || el.game}</p>
+            <span className={style.commentDate}>
               {el.comm_date.slice(0, 10)}
-              <strong className="margin-left"> </strong>
+              <strong className={style.marginLeft}> </strong>
               {el.comm_date.slice(11, 16)}
             </span>
             {commentId === el.comment_id ? (
@@ -36,21 +38,21 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
                   defaultValue={myComment}
                   maxLength={300}
                   rows="3"
-                  className="form-field"
+                  className={style.inputField}
                   name="comment"
                   onChange={(e) => setMyComment(e.target.value)}
                 ></textarea>
                 {(el.user_id === loggedUser.user_id || isAdmin) && (
-                  <div className="comment-btns">
+                  <div className={style.commentBtns}>
                     <button
-                      className="btn game-btn save"
+                      className={`${style.btn} ${style.green}`}
                       type="submit"
                       onClick={handleSubmit}
                     >
                       {t("common:save")}
                     </button>
                     <button
-                      className="btn game-btn cancel"
+                      className={`${style.btn} ${style.red}`}
                       type="submit"
                       onClick={() => setCommentId(null)}
                     >
@@ -61,12 +63,12 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
               </>
             ) : (
               <>
-                <div className="comment-text">{el.comm}</div>
+                <div className={style.commentText}>{el.comm}</div>
 
                 {(el.user_id === loggedUser.user_id || isAdmin) && (
                   <>
                     <button
-                      className="btn game-btn save"
+                      className={`${style.btn} ${style.green}`}
                       onClick={() => {
                         setCommentId(el.comment_id);
                         setMyComment(el.comm);
@@ -75,7 +77,7 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
                       {t("common:edit")}
                     </button>
                     <button
-                      className="btn game-btn cancel"
+                      className={`${style.btn} ${style.red}`}
                       type="btn"
                       onClick={() =>
                         alertDelete(

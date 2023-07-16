@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./Account.module.css";
 
 const EditAccount = ({ user, handleCancel, fetchUser }) => {
   const { t } = useTranslation(["common", "profile"]);
@@ -42,10 +43,10 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
   });
 
   return (
-    <form className="form account" onSubmit={formik.handleSubmit}>
-      <div className="fields">
+    <form className={style.form} onSubmit={formik.handleSubmit}>
+      <div className={style.fields}>
         <input
-          className="form-field comments-title"
+          className={style.editFormField}
           id="firstName"
           placeholder={t("profile:firstname")}
           variant="outlined"
@@ -58,9 +59,9 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           <p className="helper-text">{formik.errors.firstName}</p>
         ) : null}
       </div>
-      <div className="fields">
+      <div className={style.fields}>
         <input
-          className="form-field comments-title"
+          className={style.editFormField}
           id="lastName"
           placeholder={t("profile:lastname")}
           variant="outlined"
@@ -73,9 +74,9 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           <p className="helper-text">{formik.errors.lastName}</p>
         ) : null}
       </div>
-      <div className="fields">
+      <div className={style.fields}>
         <input
-          className="form-field comments-title field-back"
+          className={style.formField}
           id="username"
           placeholder={t("profile:username")}
           variant="outlined"
@@ -89,9 +90,9 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           <p className="helper-text">{formik.errors.username}</p>
         ) : null}
       </div>
-      <div className="fields">
+      <div className={style.fields}>
         <input
-          className="form-field comments-title"
+          className={style.editFormField}
           id="email"
           placeholder={t("profile:email")}
           variant="outlined"
@@ -104,9 +105,9 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           <p className="helper-text">{formik.errors.email}</p>
         ) : null}
       </div>
-      <div className="fields">
+      <div className={style.fields}>
         <input
-          className="form-field comments-title field-back"
+          className={style.formField}
           id="role"
           placeholder={t("profile:role")}
           variant="outlined"

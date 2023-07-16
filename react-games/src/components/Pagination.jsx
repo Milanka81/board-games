@@ -1,6 +1,8 @@
 import { getAllGames, getAllUsers } from "../service";
 import { useState } from "react";
+import style from "./Pagination.module.css";
 import { useTranslation } from "react-i18next";
+
 const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
   const { t } = useTranslation(["common"]);
   const [count, setCount] = useState(0);
@@ -16,11 +18,11 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
   const pageNumbers = Array.from({ length: numPages }, (_, i) => i + 1);
 
   const activePage = (el) =>
-    currentPage === el ? "btn-page active" : "btn-page";
+    currentPage === el ? `${style.btnPageActive}` : `${style.btnPage}`;
 
   const btnDots = () => (
     <button
-      className="btn-page"
+      className={style.btnPage}
       key="allPages"
       onClick={() => setShowAllPages(true)}
     >
@@ -48,8 +50,8 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
   };
 
   return (
-    <div className="pagination">
-      <button className="btn rgs" onClick={handlePrevious}>
+    <div className={style.pagination}>
+      <button className={style.btn} onClick={handlePrevious}>
         {t("previous")}
       </button>
       {pageNumbers.length <= 5 || showAllPages ? (
@@ -76,7 +78,7 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
             className={
               currentPage > 1 && currentPage < numPages - 1
                 ? activePage(currentPage)
-                : "btn-page"
+                : `${style.btnPage}`
             }
             key="current"
             onClick={secondBtn}
@@ -105,7 +107,7 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
         </>
       )}
 
-      <button className="btn rgs" onClick={handleNext}>
+      <button className={style.btn} onClick={handleNext}>
         {t("next")}
       </button>
     </div>

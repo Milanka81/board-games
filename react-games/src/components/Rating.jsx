@@ -1,4 +1,4 @@
-import "../css/Rating.css";
+import style from "./Rating.module.css";
 import { FaStar } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { getRating, getAvgRating, postRating } from "../service";
@@ -52,9 +52,9 @@ const Rating = ({ id, isAdmin }) => {
 
   return (
     <>
-      <div className="game-rating">
+      <div className={style.gameRating}>
         {!isAdmin && (
-          <div className="stars">
+          <div>
             {/* {[...Array(5)].map((_, i) => { */}
             {Array.from({ length: 5 }, (_, i) => {
               const ratingValue = i + 1;
@@ -63,12 +63,12 @@ const Rating = ({ id, isAdmin }) => {
                   <input
                     type="radio"
                     name="rating"
-                    id="rating"
+                    id={style.rating}
                     value={ratingValue}
                     onClick={() => rateGame(ratingValue)}
                   />
                   <FaStar
-                    className="star"
+                    className={style.star}
                     size={25}
                     color={
                       ratingValue <= (hover || rating) ? "#ffc107" : "#aaa"
@@ -81,7 +81,7 @@ const Rating = ({ id, isAdmin }) => {
             })}
           </div>
         )}
-        <div className="avg-rating">
+        <div className={style.avgRating}>
           {t("avgrating")}: (<strong>{avgRating}</strong>/ 5)
         </div>
       </div>
