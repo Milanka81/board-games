@@ -4,6 +4,7 @@ import { alertMessage } from "../utils";
 import { resetPassword } from "../service";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import style from "./Form.module.css";
 const ResetPassword = () => {
   const { t } = useTranslation(["profile", "common"]);
   const navigate = useNavigate();
@@ -27,12 +28,12 @@ const ResetPassword = () => {
   });
 
   return (
-    <div className=" container ">
-      <form className="form" onSubmit={formik.handleSubmit}>
-        <h5 className="form-title">{t("profile:resetpassword")}</h5>
-        <div className="fields">
+    <div className={style.container}>
+      <form className={style.form} onSubmit={formik.handleSubmit}>
+        <h5 className={style.title}>{t("profile:resetpassword")}</h5>
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="password"
             placeholder={t("profile:enternewpassword")}
             variant="outlined"
@@ -42,7 +43,7 @@ const ResetPassword = () => {
             onBlur={formik.handleBlur}
           />
         </div>
-        <button className="btn-form-submit" type="submit">
+        <button className={style.btnFormSubmit} type="submit">
           {t("common:submit")}
         </button>
       </form>

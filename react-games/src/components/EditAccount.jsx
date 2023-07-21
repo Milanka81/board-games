@@ -56,7 +56,7 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.firstName && formik.errors.firstName ? (
-          <p className="helper-text">{formik.errors.firstName}</p>
+          <p className={style.helperText}>{formik.errors.firstName}</p>
         ) : null}
       </div>
       <div className={style.fields}>
@@ -71,7 +71,7 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.lastName && formik.errors.lastName ? (
-          <p className="helper-text">{formik.errors.lastName}</p>
+          <p className={style.helperText}>{formik.errors.lastName}</p>
         ) : null}
       </div>
       <div className={style.fields}>
@@ -87,7 +87,7 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           disabled
         />
         {formik.touched.username && formik.errors.username ? (
-          <p className="helper-text">{formik.errors.username}</p>
+          <p className={style.helperText}>{formik.errors.username}</p>
         ) : null}
       </div>
       <div className={style.fields}>
@@ -102,7 +102,7 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.email && formik.errors.email ? (
-          <p className="helper-text">{formik.errors.email}</p>
+          <p className={style.helperText}>{formik.errors.email}</p>
         ) : null}
       </div>
       <div className={style.fields}>
@@ -116,16 +116,19 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           defaultValue={formik.values.role}
         />
       </div>
-      <div className="btns-container">
+      <div className={style.btnsContainer}>
         <button
-          className="btn-form-submit cancel"
+          className={`${style.btnFormSubmit} ${style.green}`}
+          type="submit"
+        >
+          {t("save")}
+        </button>
+        <button
+          className={`${style.btnFormSubmit} ${style.red}`}
           type="button"
           onClick={handleCancel}
         >
           {t("cancel")}
-        </button>
-        <button className="btn-form-submit save" type="submit">
-          {t("save")}
         </button>
       </div>
     </form>

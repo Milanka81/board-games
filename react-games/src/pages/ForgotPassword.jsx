@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { forgotPassword } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./Form.module.css";
 const ForgotPassword = () => {
   const { t } = useTranslation(["profile", "common"]);
   const formik = useFormik({
@@ -24,12 +25,12 @@ const ForgotPassword = () => {
   });
 
   return (
-    <div className=" container ">
-      <form className="form" onSubmit={formik.handleSubmit}>
-        <h5 className="form-title">{t("profile:forgotpassword")}?</h5>
-        <div className="fields">
+    <div className={style.container}>
+      <form className={style.form} onSubmit={formik.handleSubmit}>
+        <h5 className={style.title}>{t("profile:forgotpassword")}?</h5>
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="email"
             placeholder={t("profile:enternewpassword")}
             variant="outlined"
@@ -39,7 +40,7 @@ const ForgotPassword = () => {
             onBlur={formik.handleBlur}
           />
         </div>
-        <button className="btn-form-submit" type="submit">
+        <button className={style.btnFormSubmit} type="submit">
           {t("common:submit")}
         </button>
       </form>

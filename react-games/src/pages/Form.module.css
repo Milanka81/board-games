@@ -1,4 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 40px;
+  flex-direction: column;
+  word-wrap: normal;
+  background-position: center;
+  padding-top: 1rem;
+}
 .form {
+  margin-top: 3rem;
   align-self: center;
   display: flex;
   width: 30rem;
@@ -11,7 +22,17 @@
   border-radius: 11px;
   justify-content: space-around;
 }
-
+.title {
+  color: #450a26;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+}
 .formField,
 .editFormField {
   align-items: center;
@@ -27,7 +48,6 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: #000000;
 }
-
 .formField::placeholder,
 .editFormField::placeholder {
   color: #ccc;
@@ -35,14 +55,6 @@
 
 .editFormField {
   background-color: #fdf2e9;
-}
-.formField::placeholder {
-  color: #ccc;
-}
-.btnsContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
 }
 .btnFormSubmit {
   text-decoration: none;
@@ -77,10 +89,28 @@
 .green:hover {
   background-color: rgb(6, 97, 23);
 }
-
-.fields {
+.flex {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
+.btnLink {
+  background-color: #f5cda7;
+  border: none;
+  color: #45260a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 2rem;
+  width: 8rem;
+  border-radius: 9px;
+  transition: all 0.5s;
+}
+
+.btnLink:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+  transition: all 0.3s;
 }
 .helperText {
   margin-top: 0.5rem;

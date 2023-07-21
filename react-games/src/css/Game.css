@@ -55,11 +55,11 @@
   background-color: #fdf2e9;
 }
 
-/* .game-rating {
+.game-rating {
   display: flex;
   justify-content: flex-start;
   gap: 2.5rem;
-} */
+}
 .comments-title {
   font-size: 1.5rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;

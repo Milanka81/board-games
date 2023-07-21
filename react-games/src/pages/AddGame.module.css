@@ -1,3 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: 40px;
+  flex-direction: column;
+  word-wrap: normal;
+  background-position: center;
+}
 .form {
   align-self: center;
   display: flex;
@@ -11,7 +20,32 @@
   border-radius: 11px;
   justify-content: space-around;
 }
+.title {
+  color: #450a26;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.addImg {
+  width: 14rem;
+  height: auto;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+}
 
+.helperText {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #333;
+}
 .formField,
 .editFormField {
   align-items: center;
@@ -27,7 +61,6 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: #000000;
 }
-
 .formField::placeholder,
 .editFormField::placeholder {
   color: #ccc;
@@ -35,14 +68,6 @@
 
 .editFormField {
   background-color: #fdf2e9;
-}
-.formField::placeholder {
-  color: #ccc;
-}
-.btnsContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
 }
 .btnFormSubmit {
   text-decoration: none;
@@ -76,14 +101,4 @@
 }
 .green:hover {
   background-color: rgb(6, 97, 23);
-}
-
-.fields {
-  display: flex;
-  flex-direction: column;
-}
-.helperText {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  color: #333;
 }

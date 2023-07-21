@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logout, handleEmpty } from "../utils";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -31,26 +31,26 @@ const Header = () => {
           </p>
           <ul className={style.mainNavList}>
             <li>
-              {/* <button
-                className="btn"
+              <button
+                className={style.btn}
                 onClick={() => {
                   navigate("/");
                 }}
               >
                 {t("home")}
-              </button> */}
-              <NavLink to="/">{t("home")}</NavLink>
+              </button>
+              {/* <NavLink to="/">{t("home")}</NavLink> */}
             </li>
             <li>
-              {/* <button
-                className="btn"
+              <button
+                className={style.btn}
                 onClick={() => {
                   navigate("/profile");
                 }}
               >
                 {t("profile")}
-              </button> */}
-              <NavLink to="/profile">{t("profile")}</NavLink>
+              </button>
+              {/* <NavLink to="/profile">{t("profile")}</NavLink> */}
             </li>
 
             <Select handleLanguageChange={handleLanguageChange} />

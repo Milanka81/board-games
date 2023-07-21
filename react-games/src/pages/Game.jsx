@@ -1,14 +1,13 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import "../css/UserHomePage.css";
-import "../css/Game.css";
 import Rating from "../components/Rating";
 import { useContext } from "react";
 import { AuthContext } from "../App";
 import Comment from "../components/Comment";
 import { useTranslation } from "react-i18next";
 import { numberPlayers, handleEmpty, imgSrc, alertMessage } from "../utils";
+import style from "./ViewEditGame.module.css";
 import {
   getGameComments,
   getGame,
@@ -107,7 +106,7 @@ const Game = () => {
     <>
       {isAdmin ? (
         <button
-          className="icon-btn navigation-btn"
+          className={style.navBtn}
           onClick={() => {
             navigate("/games");
           }}
@@ -116,7 +115,7 @@ const Game = () => {
         </button>
       ) : (
         <button
-          className="icon-btn navigation-btn"
+          className={style.navBtn}
           onClick={() => {
             navigate(-1);
           }}
@@ -125,11 +124,15 @@ const Game = () => {
         </button>
       )}
 
-      <div className="game-container">
-        <div className="game-info">
-          <img className="game-img1" src={imgSrc(game.img)} alt={game.name} />
-          <div className="game-details">
-            <p className="game-details-name">
+      <div className={style.gameContainer}>
+        <div className={style.gameInfo}>
+          <img
+            className={style.gameImg}
+            src={imgSrc(game.img)}
+            alt={game.name}
+          />
+          <div className={style.gameDetails}>
+            <p className={style.gameDetailsName}>
               <strong>{handleEmpty(game.name)}</strong>
             </p>
             <p>
@@ -161,16 +164,16 @@ const Game = () => {
             </p>
           </div>
           {isAdmin && (
-            <div className="btns-container">
+            <div className={style.btnsContainer}>
               <button
-                className="btn-form-submit cancel"
+                className={`${style.btnFormSubmit} ${style.red}`}
                 type="button"
                 onClick={() => navigate(-1)}
               >
                 {t("common:back")}
               </button>
               <button
-                className="btn-form-submit save"
+                className={`${style.btnFormSubmit} ${style.green}`}
                 onClick={() => {
                   navigate(`/editGame/${game.game_id}`);
                 }}
@@ -180,31 +183,31 @@ const Game = () => {
             </div>
           )}
         </div>
-        <div className="game-opinions">
+        <div className={style.gameOpinions}>
           {!isAdmin && (
-            <div className="btns-like-fav">
-              <button className="like-fav" onClick={addToFavourites}>
+            <div className={style.btnsLikeFav}>
+              <button className={style.likeFav} onClick={addToFavourites}>
                 {btnFavName()}
               </button>
 
-              <button className="like-fav" onClick={like}>
+              <button className={style.likeFav} onClick={like}>
                 {btnLikeName()}
               </button>
             </div>
           )}
           <Rating id={id} isAdmin={isAdmin} />
           {!isAdmin && (
-            <form className="comment-form" onSubmit={(e) => addComment(e)}>
+            <form className={style.commentForm} onSubmit={(e) => addComment(e)}>
               <TextField
                 value={comment}
-                className="comment-input"
+                className={style.commentInput}
                 onChange={handleChange}
                 placeholder={t("game:addcomment")}
                 multiline
                 inputProps={{ maxLength: 300 }}
               />
 
-              <button className="btn game-btn save" type="submit">
+              <button className={`${style.btn1} ${style.green}`} type="submit">
                 {t("common:submit")}
               </button>
             </form>

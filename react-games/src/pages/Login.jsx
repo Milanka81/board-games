@@ -2,13 +2,13 @@ import "../css/UserHomePage.css";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
-//import Axios from "axios";
 import { login } from "../service";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../App";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./Form.module.css";
 
 const Login = () => {
   const { t } = useTranslation(["profile", "common"]);
@@ -17,8 +17,6 @@ const Login = () => {
   const [, setIsAdmin] = admin;
   const [, setIsAuth] = auth;
   const [error, setError] = useState("");
-
-  // Axios.defaults.withCredentials = true;
 
   const formik = useFormik({
     initialValues: {
@@ -51,12 +49,12 @@ const Login = () => {
   });
 
   return (
-    <div className=" container ">
-      <form className="form" onSubmit={formik.handleSubmit}>
-        <h5 className="form-title">{t("profile:login")}</h5>
-        <div className="fields">
+    <div className={style.container}>
+      <form className={style.form} onSubmit={formik.handleSubmit}>
+        <h5 className={style.title}>{t("profile:login")}</h5>
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="username"
             placeholder={t("profile:username")}
             variant="outlined"
@@ -66,12 +64,12 @@ const Login = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.username && formik.errors.username ? (
-            <p className="helper-text">{formik.errors.username}</p>
+            <p className={style.helperText}>{formik.errors.username}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="password"
             placeholder={t("profile:password")}
             variant="outlined"
@@ -81,17 +79,17 @@ const Login = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p className="helper-text">{formik.errors.password}</p>
+            <p className={style.helperText}>{formik.errors.password}</p>
           ) : null}
         </div>
-        <button className="btn-form-submit" type="submit">
+        <button className={style.btnFormSubmit} type="submit">
           {t("profile:log-in")}
         </button>
         {error && <p>{error}</p>}
-        <div className="flex">
+        <div className={style.flex}>
           <button
             type="button"
-            className="btn-link rgs"
+            className={style.btnLink}
             onClick={() => {
               navigate("/forgot-password");
             }}
@@ -100,7 +98,7 @@ const Login = () => {
           </button>
           <button
             type="button"
-            className="btn-link rgs"
+            className={style.btnLink}
             onClick={() => {
               navigate("/register");
             }}

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./AddGame.module.css";
 
 const AddGame = () => {
   const navigate = useNavigate();
@@ -44,14 +45,14 @@ const AddGame = () => {
   });
 
   return (
-    <div className=" container ">
+    <div className={style.container}>
       <form
-        className="form"
+        className={style.form}
         onSubmit={formik.handleSubmit}
         encType="multipart/form-data"
       >
-        <h5 className="form-title">{t("game:addnewgame")}</h5>
-        <div className="user-comment">
+        <h5 className={style.title}>{t("game:addnewgame")}</h5>
+        <div className={style.imgContainer}>
           <input
             name="img"
             id="img"
@@ -61,7 +62,7 @@ const AddGame = () => {
           />
           {formik.values.img && (
             <img
-              className="add-img"
+              className={style.addImg}
               src={URL.createObjectURL(formik.values.img)}
               alt="game"
             />
@@ -70,9 +71,9 @@ const AddGame = () => {
             ? alertMessage("warning", `${formik.errors.img}`)
             : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             name="name"
             id="name"
             placeholder={t("game:name")}
@@ -83,12 +84,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.name && formik.errors.name ? (
-            <p className="helper-text">{formik.errors.name}</p>
+            <p className={style.helperText}>{formik.errors.name}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="minPlayers"
             placeholder={t("game:minplayers")}
             variant="outlined"
@@ -98,12 +99,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.minPlayers && formik.errors.minPlayers ? (
-            <p className="helper-text">{formik.errors.minPlayers}</p>
+            <p className={style.helperText}>{formik.errors.minPlayers}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="maxPlayers"
             placeholder={t("game:maxplayers")}
             variant="outlined"
@@ -113,12 +114,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.maxPlayers && formik.errors.maxPlayers ? (
-            <p className="helper-text">{formik.errors.maxPlayers}</p>
+            <p className={style.helperText}>{formik.errors.maxPlayers}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="year"
             placeholder={t("game:year")}
             variant="outlined"
@@ -128,12 +129,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.year && formik.errors.year ? (
-            <p className="helper-text">{formik.errors.year}</p>
+            <p className={style.helperText}>{formik.errors.year}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             id="gameLength"
             placeholder={t("game:playingtime")}
             variant="outlined"
@@ -144,12 +145,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.gameLength && formik.errors.gameLength ? (
-            <p className="helper-text">{formik.errors.gameLength}</p>
+            <p className={style.helperText}>{formik.errors.gameLength}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             name="artist"
             id="artist"
             placeholder={t("game:artist")}
@@ -160,12 +161,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.artist && formik.errors.artist ? (
-            <p className="helper-text">{formik.errors.artist}</p>
+            <p className={style.helperText}>{formik.errors.artist}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             name="designer"
             id="designer"
             placeholder={t("game:designer")}
@@ -176,12 +177,12 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.designer && formik.errors.designer ? (
-            <p className="helper-text">{formik.errors.designer}</p>
+            <p className={style.helperText}>{formik.errors.designer}</p>
           ) : null}
         </div>
-        <div className="fields">
+        <div className={style.fields}>
           <input
-            className="form-field"
+            className={style.editFormField}
             name="category"
             id="category"
             placeholder={t("game:category")}
@@ -192,18 +193,18 @@ const AddGame = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.category && formik.errors.category ? (
-            <p className="helper-text">{formik.errors.category}</p>
+            <p className={style.helperText}>{formik.errors.category}</p>
           ) : null}
         </div>
         <button
-          className="btn-form-submit save"
+          className={`${style.btnFormSubmit} ${style.green}`}
           type="submit"
           onClick={formik.handleSubmit}
         >
           {t("common:save")}
         </button>
         <button
-          className="btn-form-submit cancel"
+          className={`${style.btnFormSubmit} ${style.red}`}
           type="button"
           onClick={() => navigate(-1)}
         >
