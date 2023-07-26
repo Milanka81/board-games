@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/UserHomePage.css";
-import "../css/Preferences.css";
 import {
   getFavoriteGames,
   getMostLiked,
@@ -18,17 +16,18 @@ import Preferences from "./Preferences";
 import { useTranslation } from "react-i18next";
 import Loader from "../components/Loader";
 import { alertMessage } from "../utils";
+import style from "./UserHomePage.module.css";
 
 const UserHomePage = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation(["home"]);
   const { admin } = useContext(AuthContext);
   const [isAdmin] = admin;
   const [mostLiked, setMostLiked] = useState([]);
   const [newGames, setNewGames] = useState([]);
   const [gamesFavourite, setGamesFavourite] = useState([]);
-  const [recommended, setRecommended] = useState([]);
-  const navigate = useNavigate();
   const [filteredGames, setFilteredGames] = useState([]);
+  const [recommended, setRecommended] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [preferences, setPreferences] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -104,10 +103,10 @@ const UserHomePage = () => {
     <div>
       {!preferences && !isAdmin && (
         <div>
-          <div className="overlay"></div>
+          <div className={style.overlay}></div>
           <Preferences
             componentState="isAdding"
-            className="modalAdd"
+            className={style.modalAdd}
             title={t("addgamepreferences")}
             fieldClassName="form-field"
           />
@@ -116,30 +115,29 @@ const UserHomePage = () => {
       {isLoading ? (
         <Loader message={t("loading")} />
       ) : (
+        // <Loader></Loader>
         <>
           {isAdmin ? (
-            <div className="flex">
-              <div className="flex">
-                <button
-                  className="icon-btn navigation-btn"
-                  onClick={() => {
-                    navigate("/users");
-                  }}
-                >
-                  👤 {t("users")}
-                </button>
-                <button
-                  className="icon-btn navigation-btn"
-                  onClick={() => {
-                    navigate("/games");
-                  }}
-                >
-                  🎲 {t("games")}
-                </button>
-              </div>
+            <div className={style.flex}>
+              <button
+                className={style.navBtn}
+                onClick={() => {
+                  navigate("/users");
+                }}
+              >
+                👤 {t("users")}
+              </button>
+              <button
+                className={style.navBtn}
+                onClick={() => {
+                  navigate("/games");
+                }}
+              >
+                🎲 {t("games")}
+              </button>
             </div>
           ) : (
-            <div className="search">
+            <div className={style.search}>
               <SearchBar
                 handleChange={handleChange}
                 placeholder={t("searchplaceholder")}

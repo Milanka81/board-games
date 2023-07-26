@@ -1,4 +1,3 @@
-import "../css/UserHomePage.css";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";

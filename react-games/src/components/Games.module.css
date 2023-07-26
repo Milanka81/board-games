@@ -1,31 +1,49 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
 .gameImg {
   transition: all 1s ease;
   width: 13rem;
   height: 11rem;
   padding: 1rem;
 }
-
+.gameHover {
+  display: flex;
+  background-color: #fdf2e9;
+  position: relative;
+  width: 15rem;
+  height: 12rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.095);
+  border-radius: 11px;
+  padding: 1rem;
+  align-content: center;
+  justify-content: center;
+}
 .details {
   position: absolute;
-  /* background-color: rgb(253, 242, 233); */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   color: #000;
-  opacity: 0;
+  opacity: 1;
   visibility: hidden;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   z-index: 1;
-  /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.095); */
   border-radius: 11px;
-  /* border: 2px solid #45260a; */
   padding: 1.5rem;
-
-  /* transition: opacity 0.2s, visibility 0.2s; */
 }
 .gameHover:hover .gameImg {
   transform: scale(115%);

@@ -207,7 +207,7 @@ const Game = () => {
                 inputProps={{ maxLength: 300 }}
               />
 
-              <button className={`${style.btn1} ${style.green}`} type="submit">
+              <button className={`${style.btn} ${style.green}`} type="submit">
                 {t("common:submit")}
               </button>
             </form>

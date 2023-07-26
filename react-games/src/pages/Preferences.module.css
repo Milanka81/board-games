@@ -1,0 +1,79 @@
+.title {
+  color: #450a26;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+.gridField {
+  display: grid;
+  grid-template-columns: 1.5fr 4fr;
+  align-items: baseline;
+  width: 100%;
+}
+
+.label {
+  font-size: 1rem;
+}
+.flexInput {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+.white {
+  background-color: #fff;
+  color: black;
+}
+.btnFormSubmit {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  background-color: #45260a;
+  color: #fdf2e9;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  transition: all 0.5s;
+}
+.btnFormSubmit:hover {
+  background-color: #2e1907;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+}
+.btnsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.red {
+  background-color: rgb(196, 0, 0);
+  transition: all 0.5s;
+}
+.red:hover {
+  background-color: rgb(156, 2, 2);
+}
+.green {
+  background-color: #1a852e;
+  transition: all 0.5s;
+}
+.green:hover {
+  background-color: rgb(6, 97, 23);
+}
+.subscriptionContainer {
+  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.checkbox {
+  width: 3rem;
+  height: 1.5rem;
+}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getFilteredUsers } from "../service";
-import "../css/Table.css";
 import ViewUsers from "../components/ViewUsers";
 import EditUser from "../components/EditUser";
 import SearchBar from "../components/SearchBar";
@@ -9,6 +8,7 @@ import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
 import Loader from "../components/Loader";
 import { alertMessage } from "../utils";
+import style from "./List.module.css";
 
 const ListOfUsers = () => {
   const navigate = useNavigate();
@@ -57,9 +57,11 @@ const ListOfUsers = () => {
       : setSortBy(`${value} asc`);
   };
   const styleClass = (value) =>
-    sortBy.includes(value) ? "pointer sort" : "pointer";
+    sortBy.includes(value)
+      ? `${`${style.pointer} ${style.sort}`}`
+      : `${style.pointer}`;
 
-  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▲" : "▼");
+  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▼" : "▲");
 
   return (
     <>
@@ -67,9 +69,9 @@ const ListOfUsers = () => {
         <Loader message={t("home:loading")} />
       ) : (
         <>
-          <div className="flex">
+          <div className={style.flex}>
             <button
-              className="icon-btn navigation-btn"
+              className={style.navBtn}
               onClick={() => {
                 navigate("/games");
               }}
@@ -82,7 +84,7 @@ const ListOfUsers = () => {
             />
           </div>
           <form>
-            <table className="table-games">
+            <table className={style.tableList}>
               <thead>
                 <tr>
                   <th></th>

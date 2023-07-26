@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../css/Preferences.css";
+
 import Multiselect from "multiselect-react-dropdown";
 import {
   addPreferences,
@@ -12,6 +12,7 @@ import {
 import { useFormik } from "formik";
 import { refreshPage, handleEmpty } from "../utils";
 import { useTranslation } from "react-i18next";
+import style from "./Preferences.module.css";
 
 const Preferences = ({
   className,
@@ -116,10 +117,10 @@ const Preferences = ({
   return (
     <>
       <form className={className} onSubmit={formik.handleSubmit}>
-        <h3 className="form-title">{title}</h3>
-        <div className="fields">
-          <p className="grid-field">
-            <label className="label">{t("game:numberofplayers")}:</label>
+        <h3 className={style.title}>{title}</h3>
+        <div className={style.fields}>
+          <p className={style.gridField}>
+            <label className={style.label}>{t("game:numberofplayers")}:</label>
             <input
               className={fieldClassName}
               name="numberOfPlayers"
@@ -134,10 +135,10 @@ const Preferences = ({
             />
           </p>
         </div>
-        <div className="fields">
-          <div className="grid-field">
-            <label className="label">{t("game:playingtime")}:</label>
-            <div className="flexInput">
+        <div className={style.fields}>
+          <div className={style.gridField}>
+            <label className={style.label}>{t("game:playingtime")}:</label>
+            <div className={style.flexInput}>
               <input
                 className={fieldClassName}
                 name="gameLengthFrom"
@@ -150,7 +151,7 @@ const Preferences = ({
                 onBlur={formik.handleBlur}
                 disabled={isViewing}
               />{" "}
-              <label className="label"> - </label>
+              <label className={style.label}> - </label>
               <input
                 className={fieldClassName}
                 name="gameLengthTo"
@@ -166,9 +167,9 @@ const Preferences = ({
             </div>
           </div>
         </div>
-        <div className="fields">
-          <p className="grid-field">
-            <label className="label">{t("game:artist")}:</label>
+        <div className={style.fields}>
+          <p className={style.gridField}>
+            <label className={style.label}>{t("game:artist")}:</label>
             <input
               className={fieldClassName}
               name="artist"
@@ -181,9 +182,9 @@ const Preferences = ({
             />
           </p>
         </div>
-        <div className="fields">
-          <p className="grid-field">
-            <label className="label">{t("game:designer")}:</label>
+        <div className={style.fields}>
+          <p className={style.gridField}>
+            <label className={style.label}>{t("game:designer")}:</label>
             <input
               className={fieldClassName}
               name="designer"
@@ -196,12 +197,12 @@ const Preferences = ({
             />
           </p>
         </div>
-        <div className="fields">
-          <div className="grid-field">
-            <label className="label">{t("game:category")}:</label>
+        <div className={style.fields}>
+          <div className={style.gridField}>
+            <label className={style.label}>{t("game:category")}:</label>
             {!isViewing && (
               <Multiselect
-                className="white"
+                className={style.white}
                 options={categories}
                 showCheckbox={true}
                 showArrow={true}
@@ -214,7 +215,9 @@ const Preferences = ({
                 }}
               />
             )}
-            {!isViewing && <p className="label">{t("game:addcategory")}:</p>}
+            {!isViewing && (
+              <p className={style.label}>{t("game:addcategory")}:</p>
+            )}
             <input
               className={fieldClassName}
               name="category"
@@ -228,29 +231,32 @@ const Preferences = ({
           </div>
         </div>
 
-        <div className="btns-container">
+        <div className={style.btnsContainer}>
           {componentState !== "isAdding" && (
             <button
-              className="btn-form-submit cancel"
+              className={`${style.btnFormSubmit} ${style.red}`}
               type="button"
               onClick={handleCancel}
             >
               {t("common:cancel")}
             </button>
           )}
-          <button className="btn-form-submit save" type="submit">
+          <button
+            className={`${style.btnFormSubmit} ${style.green}`}
+            type="submit"
+          >
             {btnSubmitName()}
           </button>
         </div>
       </form>
-      <div className="subscriptionContainer">
+      <div className={style.subscriptionContainer}>
         <em>{t("game:subscriptionmessage")}</em>
         <p>
-          <label className="label">
+          <label className={style.label}>
             <strong>{subscribeInfo()}</strong>
           </label>
           <input
-            className="checkbox"
+            className={style.checkbox}
             name="subscribed"
             id="subscribed"
             variant="outlined"

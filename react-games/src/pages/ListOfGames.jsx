@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteGame, getFilteredGames } from "../service";
-import "../css/Table.css";
+// import "../css/Table.css";
 import { imgSrc, handleEmpty, alertDelete, alertMessage } from "../utils";
 import SearchBar from "../components/SearchBar";
 import { useCallback } from "react";
 import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
 import Loader from "../components/Loader";
+import style from "./List.module.css";
 
 const ListOfGames = (idRow) => {
   const { t } = useTranslation(["game", "common", "home"]);
@@ -48,9 +49,11 @@ const ListOfGames = (idRow) => {
       : setSortBy(`${value} asc`);
   };
   const styleClass = (value) =>
-    sortBy.includes(value) ? "pointer sort" : "pointer";
+    sortBy.includes(value)
+      ? `${`${style.pointer} ${style.sort}`}`
+      : `${style.pointer}`;
 
-  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▲" : "▼");
+  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▼" : "▲");
 
   return (
     <>
@@ -58,9 +61,9 @@ const ListOfGames = (idRow) => {
         <Loader message={t("home:loading")} />
       ) : (
         <div>
-          <div className="flex">
+          <div className={style.flex}>
             <button
-              className="icon-btn navigation-btn"
+              className={style.navBtn}
               onClick={() => {
                 navigate("/users");
               }}
@@ -73,7 +76,7 @@ const ListOfGames = (idRow) => {
               placeholder={t("home:searchplaceholder")}
             />
           </div>
-          <table className="table-games">
+          <table className={style.tableList}>
             <thead>
               <tr>
                 <th></th>
@@ -114,13 +117,13 @@ const ListOfGames = (idRow) => {
                 >
                   {arrows("game_length")} {t("game:playingtime")}
                 </th>
-                <th className="artist">{t("game:artist")}</th>
-                <th className="designer">{t("game:designer")}</th>
-                <th className="category">{t("game:category")}</th>
+                <th>{t("game:artist")}</th>
+                <th>{t("game:designer")}</th>
+                <th>{t("game:category")}</th>
                 <th>
                   {" "}
                   <button
-                    className="btn-nav btn-add"
+                    className={`${style.navBtn} ${style.btnAdd}`}
                     onClick={() => {
                       navigate(`/addGame`);
                     }}
@@ -137,7 +140,7 @@ const ListOfGames = (idRow) => {
                   <td>{(currentPage - 1) * limit + i + 1}</td>
                   <td>
                     <img
-                      className="game_src_img"
+                      className={style.gameImg}
                       src={imgSrc(game.img)}
                       alt={game.name}
                     />
@@ -148,12 +151,12 @@ const ListOfGames = (idRow) => {
                   <td>{handleEmpty(game.max_players)}</td>
                   <td>{handleEmpty(game.year)}</td>
                   <td>{handleEmpty(game.game_length)}</td>
-                  <td className="artist">{game.artist}</td>
-                  <td className="designer">{game.designer}</td>
-                  <td className="category">{game.category}</td>
-                  <td className="action-btns games">
+                  <td>{game.artist}</td>
+                  <td>{game.designer}</td>
+                  <td>{game.category}</td>
+                  <td className={`${style.actionBtns} ${style.games}`}>
                     <button
-                      className="btn game-btn save"
+                      className={`${style.btn} ${style.green}`}
                       onClick={() => {
                         navigate(`/game/${game.game_id}`);
                         document.title = `Board Game | ${game.name}`;
@@ -162,7 +165,7 @@ const ListOfGames = (idRow) => {
                       {t("common:view")} / {t("common:edit")}
                     </button>
                     <button
-                      className="btn game-btn cancel"
+                      className={`${style.btn} ${style.red}`}
                       onClick={() =>
                         alertDelete(deleteGame, game.game_id, fetchGames)
                       }

@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -6,7 +6,6 @@ import UserHomePage from "./pages/UserHomePage";
 import ListOfUsers from "./pages/ListOfUsers";
 import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";
-import "./css/FormStyle.css";
 import "./index.css";
 import AddGame from "./pages/AddGame";
 import EditGame from "./pages/EditGame";
@@ -16,7 +15,7 @@ import Preferences from "./pages/Preferences";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
-export const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
 export default function App() {
   const token = localStorage.getItem("token");

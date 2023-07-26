@@ -8,6 +8,7 @@ import Preferences from "./Preferences";
 import { useContext } from "react";
 import { AuthContext } from "../App";
 import { useTranslation } from "react-i18next";
+import style from "./Profile.module.css";
 
 const Profile = () => {
   const { t } = useTranslation(["game", "common"]);
@@ -42,10 +43,10 @@ const Profile = () => {
   return (
     <div>
       {!isAdmin && (
-        <div className="flex">
-          <div className="flex margin">
+        <div className={style.flex}>
+          <div className={`${style.flex} ${style.margin}`}>
             <button
-              className="btn rgs"
+              className={style.btn}
               onClick={() => {
                 setShowAccount(() => !showAccount);
                 setShowPreferences(false);
@@ -56,7 +57,7 @@ const Profile = () => {
             </button>
 
             <button
-              className="btn rgs"
+              className={style.btn}
               onClick={() => {
                 setShowPreferences(() => !showPreferences);
                 setUserId(null);
@@ -67,30 +68,30 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <div className="game-container">
-        <div className="game-info center">
+      <div className={style.gameContainer}>
+        <div className={`${style.gameInfo} ${style.centar}`}>
           {showPreferences ? (
             <>
-              <h3 className="form-title">{t("common:preferences")}:</h3>
+              <h3 className={style.title}>{t("common:preferences")}:</h3>
               {userId ? (
                 <Preferences
                   componentState="isEditing"
-                  className="form account"
-                  fieldClassName="form-field"
+                  className={`${style.form} ${style.account}`}
+                  fieldClassName={style.editFormField}
                   handleCancel={() => setUserId(null)}
                 />
               ) : (
                 <Preferences
                   componentState="isViewing"
-                  className="form account"
-                  fieldClassName="form-field field-back"
+                  className={`${style.form} ${style.account}`}
+                  fieldClassName={style.formField}
                   handleEdit={handleEdit}
                 />
               )}
             </>
           ) : (
             <>
-              <h3 className="form-title">{t("common:accountinfo")}:</h3>
+              <h3 className={style.title}>{t("common:accountinfo")}:</h3>
               {userId ? (
                 <EditAccount
                   user={user}
@@ -111,9 +112,9 @@ const Profile = () => {
             isAdmin={isAdmin}
           />
         ) : (
-          <div className="game-opinions">
-            <div className="cover">
-              <img className="cover-img" alt="game" src={board} />
+          <div className={style.gameOpinions}>
+            <div className={style.cover}>
+              <img className={style.coverImg} alt="game" src={board} />
             </div>
           </div>
         )}

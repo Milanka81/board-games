@@ -23,7 +23,9 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
   return (
     <div className={style.gameOpinions}>
       <div className={style.userComment}>
-        <h3 className={style.title}>{t("game:comments")}:</h3>
+        {comments.length ? (
+          <h3 className={style.title}>{t("game:comments")}:</h3>
+        ) : null}
         {comments.map((el) => (
           <div className={style.gameComments} key={el.comment_id}>
             <p className={style.commentUsername}>{el.username || el.game}</p>
