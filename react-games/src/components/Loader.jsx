@@ -1,10 +1,13 @@
 import style from "./Loader.module.css";
+import { useTranslation } from "react-i18next";
 
-const Loader = ({ message }) => {
+const Loader = () => {
+  const { t } = useTranslation(["home"]);
+
   return (
     <div className={style.loader}>
       <span className={style.spinner}>🎲</span>
-      <h3>{message}</h3>
+      <h3>{t("loading")}</h3>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, Suspense, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import UserHomePage from "./pages/UserHomePage";
+// import UserHomePage from "./pages/UserHomePage";
 import ListOfUsers from "./pages/ListOfUsers";
 import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";
@@ -15,6 +15,7 @@ import Preferences from "./pages/Preferences";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
+import HomePage from "./pages/HomePage";
 export const AuthContext = createContext();
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={isAuth ? <UserHomePage /> : <Login />} />
+          <Route path="/" element={isAuth ? <HomePage /> : <Login />} />
           <Route path="/users" element={isAdmin && <ListOfUsers />} />
           <Route path="/games" element={isAdmin && <ListOfGames />} />
           <Route path="/addGame" element={isAdmin && <AddGame />} />
