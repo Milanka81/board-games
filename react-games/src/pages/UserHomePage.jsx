@@ -108,7 +108,7 @@ const UserHomePage = () => {
             componentState="isAdding"
             className={style.modalAdd}
             title={t("addgamepreferences")}
-            fieldClassName="form-field"
+            fieldClassName={style.editFormField}
           />
         </div>
       )}

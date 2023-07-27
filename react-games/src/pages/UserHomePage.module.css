@@ -59,3 +59,22 @@
   justify-content: center;
   padding-top: 3rem;
 }
+
+.editFormField {
+  align-items: center;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 9px;
+  background-color: #fdf2e9;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #000000;
+}
+
+.editFormField::placeholder {
+  color: #ccc;
+}
