@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Rating from "../components/Rating";
 import { useContext } from "react";
 import { AuthContext } from "../App";
@@ -38,41 +38,31 @@ const Game = () => {
       : `${t("game:addtofavourites")} 🤍`;
 
   useEffect(() => {
-    getGame(id)
-      .then((res) => {
-        setGame(res.data);
-      })
-      .catch((err) => alertMessage("error", err.message));
+    getGame(id).then((res) => {
+      setGame(res.data);
+    });
+  }, [id]);
+
+  const refreshComments = useCallback(() => {
+    getGameComments(id).then((res) => setComments(res.data));
   }, [id]);
 
   useEffect(() => {
-    getGameComments(id)
-      .then((res) => setComments(res.data))
-      .catch((err) => alertMessage("error", err.message));
-  }, [id]);
-
-  const refreshComments = () => {
-    getGameComments(id)
-      .then((res) => setComments(res.data))
-      .catch((err) => alertMessage("error", err.message));
-  };
+    refreshComments();
+  }, [refreshComments]);
 
   useEffect(() => {
-    getGameLike(id)
-      .then((res) => {
-        if (!res.data.length) return setLiked(false);
-        setLiked(true);
-      })
-      .catch((err) => alertMessage("error", err.message));
+    getGameLike(id).then((res) => {
+      if (!res.data.length) return setLiked(false);
+      setLiked(true);
+    });
   }, [id]);
 
   useEffect(() => {
-    getGameFavourite(id)
-      .then((res) => {
-        if (!res.data.length) return setFavourite(false);
-        setFavourite(true);
-      })
-      .catch((err) => alertMessage("error", err.message));
+    getGameFavourite(id).then((res) => {
+      if (!res.data.length) return setFavourite(false);
+      setFavourite(true);
+    });
   }, [id]);
 
   const handleChange = (e) => {
@@ -80,26 +70,20 @@ const Game = () => {
   };
 
   const like = () => {
-    postLike(id)
-      .then(() => setLiked(!liked))
-      .catch((err) => alertMessage("error", err.message));
+    postLike(id).then(() => setLiked(!liked));
   };
 
   const addToFavourites = () => {
-    postFavourite(id)
-      .then(() => setFavourite(!favourite))
-      .catch((err) => alertMessage("error", err.message));
+    postFavourite(id).then(() => setFavourite(!favourite));
   };
 
   const addComment = (e) => {
     e.preventDefault();
     if (!comment) return alertMessage("warning", "Add your comment!");
-    postComment(id, comment)
-      .then((res) => {
-        setComment("");
-        refreshComments();
-      })
-      .catch((err) => alertMessage("error", err.message));
+    postComment(id, comment).then((res) => {
+      setComment("");
+      refreshComments();
+    });
   };
 
   return (

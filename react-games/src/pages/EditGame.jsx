@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { editGame, getGame, getGameComments, editComment } from "../service";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
@@ -18,35 +18,26 @@ const EditGame = () => {
   const [comment, setComment] = useState("");
 
   useEffect(() => {
-    getGame(id)
-      .then((res) => {
-        setGame(res.data);
-      })
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line
-  }, []);
-  useEffect(() => {
-    getGameComments(id)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.log(err));
+    getGame(id).then((res) => {
+      setGame(res.data);
+    });
   }, [id]);
 
-  const refreshComments = () => {
-    getGameComments(id)
-      .then((res) => setComments(res.data))
-      .catch((err) => console.log(err));
-  };
+  const refreshComments = useCallback(() => {
+    getGameComments(id).then((res) => setComments(res.data));
+  }, [id]);
+
+  useEffect(() => {
+    refreshComments(id);
+  }, [refreshComments, id]);
+
   const handleSubmit = () => {
-    if (comment) {
-      editComment(comment, commentId)
-        .then((res) => {
-          setCommentId(null);
-          refreshComments();
-        })
-        .catch((err) => alertMessage("error", err.message));
-    } else {
-      alertMessage("warning", "Add your comment!");
-    }
+    if (!comment) return alertMessage("warning", "Add your comment!");
+
+    editComment(comment, commentId).then((res) => {
+      setCommentId(null);
+      refreshComments();
+    });
   };
 
   const {
@@ -76,26 +67,21 @@ const EditGame = () => {
       category: handleEmpty(category),
     },
     onSubmit: (values) => {
-      if (isEditingImg) {
+      if (!isEditingImg) {
+        const { img, ...dataGame } = values;
+
+        editGame({ ...dataGame, id }).then((res) => {
+          navigate("/games");
+        });
+
         const formData = new FormData();
         formData.append("values", JSON.stringify(values));
         formData.append("id", id);
         formData.append("img", values.img);
 
-        editGame(formData)
-          .then((res) => {
-            console.log(res);
-            navigate("/games");
-          })
-          .catch((err) => alertMessage("error", err.message));
-      } else {
-        const { img, ...dataGame } = values;
-
-        editGame({ ...dataGame, id })
-          .then((res) => {
-            navigate("/games");
-          })
-          .catch((err) => alertMessage("error", err.message));
+        editGame(formData).then((res) => {
+          navigate("/games");
+        });
       }
     },
     validationSchema: Yup.object().shape({

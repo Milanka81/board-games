@@ -5,7 +5,6 @@ import { login } from "../service";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../App";
-import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 import style from "./Form.module.css";
 
@@ -27,23 +26,21 @@ const Login = () => {
       password: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      login(values)
-        .then((res) => {
-          if (!res.data.result) return setError(res.data.message);
-          const { auth, token } = res.data;
-          setIsAuth(auth);
+      login(values).then((res) => {
+        if (!res.data.result) return setError(res.data.message);
+        const { auth, token } = res.data;
+        setIsAuth(auth);
 
-          const user = res.data.result[0];
+        const user = res.data.result[0];
 
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
 
-          const isAdmin = user.role === "admin";
-          setIsAdmin(isAdmin);
-          axios.defaults.headers.common = { jwt: token };
-          navigate("/");
-        })
-        .catch((err) => alertMessage("error", err.message));
+        const isAdmin = user.role === "admin";
+        setIsAdmin(isAdmin);
+        axios.defaults.headers.common = { jwt: token };
+        navigate("/");
+      });
     },
   });
 

@@ -18,15 +18,13 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
       role: role,
     },
     onSubmit: (values) => {
-      editUser(values, user_id)
-        .then((res) => {
-          if (res.data.error) {
-            alertMessage(res.data.icon, res.data.message);
-          }
-          fetchUser();
-          handleCancel();
-        })
-        .catch((err) => alertMessage("error", err.message));
+      editUser(values, user_id).then((res) => {
+        if (res.data.error) {
+          alertMessage(res.data.icon, res.data.message);
+        }
+        fetchUser();
+        handleCancel();
+      });
     },
     validationSchema: Yup.object({
       firstName: Yup.string()

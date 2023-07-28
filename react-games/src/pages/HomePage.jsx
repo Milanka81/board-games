@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getMostLiked, getFilteredGames, getNewGames } from "../service";
-import { alertMessage } from "../utils";
 import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
 import UserHomePage from "./UserHomePage";
@@ -29,10 +28,8 @@ const HomePage = () => {
       getFilteredGames(currentPage, limit, searchInput, sortBy)
         .then((res) => {
           setFilteredGames(res.data);
-          setIsLoading(false);
         })
-        .catch((err) => {
-          alertMessage("error", err.message);
+        .finally(() => {
           setIsLoading(false);
         });
     }, 1000);
@@ -45,15 +42,11 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getMostLiked()
-      .then((res) => setMostLiked(res.data))
-      .catch((err) => alertMessage("error", err.message));
+    getMostLiked().then((res) => setMostLiked(res.data));
   }, []);
 
   useEffect(() => {
-    getNewGames()
-      .then((res) => setNewGames(res.data))
-      .catch((err) => alertMessage("error", err.message));
+    getNewGames().then((res) => setNewGames(res.data));
   }, []);
 
   return (

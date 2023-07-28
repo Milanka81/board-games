@@ -22,9 +22,7 @@ const AddGame = () => {
       category: "",
     },
     onSubmit: (values) => {
-      addGame(values)
-        .then((res) => navigate("/games"))
-        .catch((err) => alertMessage("error", err.message));
+      addGame(values).then((res) => navigate("/games"));
     },
     validationSchema: Yup.object().shape({
       img: Yup.mixed().required("Image is required"),

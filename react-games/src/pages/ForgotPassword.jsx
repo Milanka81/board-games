@@ -14,13 +14,11 @@ const ForgotPassword = () => {
       email: Yup.string().email("Invalid email").required("Required"),
     }),
     onSubmit: (values) => {
-      forgotPassword(values)
-        .then((res) => {
-          res.data.error
-            ? alertMessage(res.data.icon, res.data.message)
-            : window.location.replace(`${res.data}`);
-        })
-        .catch((err) => console.log(err));
+      forgotPassword(values).then((res) => {
+        res.data.error
+          ? alertMessage(res.data.icon, res.data.message)
+          : window.location.replace(`${res.data}`);
+      });
     },
   });
 

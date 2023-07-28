@@ -2,7 +2,6 @@ import React, { useState, Suspense, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import UserHomePage from "./pages/UserHomePage";
 import ListOfUsers from "./pages/ListOfUsers";
 import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";

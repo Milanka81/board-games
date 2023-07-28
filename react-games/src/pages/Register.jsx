@@ -31,15 +31,13 @@ const Register = () => {
       email: Yup.string().email("Invalid email").required("Required"),
     }),
     onSubmit: (values) => {
-      register(values)
-        .then((res) => {
-          if (res.data.error)
-            return alertMessage(res.data.icon, res.data.message);
+      register(values).then((res) => {
+        if (res.data.error)
+          return alertMessage(res.data.icon, res.data.message);
 
-          alertMessage(res.data.icon, res.data.message);
-          navigate("/login");
-        })
-        .catch((err) => alertMessage("error", err.message));
+        alertMessage(res.data.icon, res.data.message);
+        navigate("/login");
+      });
     },
   });
 

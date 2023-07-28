@@ -12,12 +12,10 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
 
   const handleSubmit = () => {
     if (!myComment) return alertMessage("warning", `${t("game:addcomment")}`);
-    editComment(myComment, commentId)
-      .then((res) => {
-        setCommentId(null);
-        refreshComments();
-      })
-      .catch((err) => alertMessage("error", err.message));
+    editComment(myComment, commentId).then((res) => {
+      setCommentId(null);
+      refreshComments();
+    });
   };
 
   return (

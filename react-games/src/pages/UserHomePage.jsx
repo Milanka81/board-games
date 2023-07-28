@@ -4,7 +4,6 @@ import {
   getUserPreferences,
   getFavoriteGames,
 } from "../service";
-import { alertMessage } from "../utils";
 import Preferences from "./Preferences";
 import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
@@ -17,9 +16,7 @@ const UserHomePage = () => {
   const [gamesFavourite, setGamesFavourite] = useState([]);
 
   useEffect(() => {
-    getRecommendedGames()
-      .then((res) => setRecommended(res.data))
-      .catch((err) => alertMessage("error", err.message));
+    getRecommendedGames().then((res) => setRecommended(res.data));
   }, []);
 
   useEffect(() => {
@@ -31,15 +28,11 @@ const UserHomePage = () => {
   }, [preferences]);
 
   useEffect(() => {
-    getUserPreferences()
-      .then((res) => setPreferences(!!res.data.length))
-      .catch((err) => alertMessage("error", err.message));
+    getUserPreferences().then((res) => setPreferences(!!res.data.length));
   }, []);
 
   useEffect(() => {
-    getFavoriteGames()
-      .then((res) => setGamesFavourite(res.data))
-      .catch((err) => alertMessage("error", err.message));
+    getFavoriteGames().then((res) => setGamesFavourite(res.data));
   }, []);
 
   return (

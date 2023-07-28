@@ -1,8 +1,7 @@
 import style from "./Rating.module.css";
 import { FaStar } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getRating, getAvgRating, postRating } from "../service";
-import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 
 const Rating = ({ id, isAdmin }) => {
@@ -13,41 +12,30 @@ const Rating = ({ id, isAdmin }) => {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    getRating(id)
-      .then((res) => {
-        const filter = res.data.filter(
-          (el) => el.user_id === loggedUser.user_id
-        );
-        if (!filter[0]) return setRating(0);
-        setRating(filter[0].user_rate);
-      })
-      .catch((err) => alertMessage("error", err.message));
+    getRating(id).then((res) => {
+      const filter = res.data.filter((el) => el.user_id === loggedUser.user_id);
+      if (!filter[0]) return setRating(0);
+      setRating(filter[0].user_rate);
+    });
+  }, [loggedUser.user_id, id]);
 
-    // eslint-disable-next-line
-  }, []);
-
-  const fetchAvg = () => {
-    getAvgRating(id)
-      .then((res) => {
-        if (!res.data[0].avg) return setAvgRating(0);
-        const rate = res.data[0].avg;
-        setAvgRating(rate.slice(0, 4));
-      })
-      .catch((err) => console.log(err));
-  };
+  const fetchAvg = useCallback(() => {
+    getAvgRating(id).then((res) => {
+      if (!res.data[0].avg) return setAvgRating(0);
+      const rate = res.data[0].avg;
+      setAvgRating(rate.slice(0, 4));
+    });
+  }, [id]);
 
   useEffect(() => {
     fetchAvg();
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchAvg]);
 
   const rateGame = (rating) => {
     setRating(rating);
-    postRating(id, rating)
-      .then(() => {
-        fetchAvg();
-      })
-      .catch((err) => alertMessage("error", err.message));
+    postRating(id, rating).then(() => {
+      fetchAvg();
+    });
   };
 
   return (

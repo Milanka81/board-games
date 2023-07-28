@@ -80,12 +80,10 @@ const Preferences = ({
   };
 
   useEffect(() => {
-    getGameCategories()
-      .then((res) => {
-        const category = res.data.map((el) => el.category_name);
-        setCategories(category);
-      })
-      .catch((err) => console.log(err));
+    getGameCategories().then((res) => {
+      const category = res.data.map((el) => el.category_name);
+      setCategories(category);
+    });
   }, []);
 
   const formik = useFormik({

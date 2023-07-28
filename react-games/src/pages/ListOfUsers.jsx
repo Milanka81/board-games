@@ -7,7 +7,6 @@ import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
 import Loader from "../components/Loader";
-import { alertMessage } from "../utils";
 import style from "./List.module.css";
 
 const ListOfUsers = () => {
@@ -27,10 +26,8 @@ const ListOfUsers = () => {
     getFilteredUsers(currentPage, limit, searchInput, sortBy)
       .then((res) => {
         setFilteredUsers(res.data);
-        setIsLoading(false);
       })
-      .catch((err) => {
-        alertMessage("error", err.message);
+      .finally(() => {
         setIsLoading(false);
       });
   }, [currentPage, searchInput, sortBy]);
