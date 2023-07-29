@@ -15,6 +15,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
 import HomePage from "./pages/HomePage";
+import ProtectedRoute from "./pages/ProtectedRoute";
 export const AuthContext = createContext();
 
 export default function App() {
@@ -29,25 +30,26 @@ export default function App() {
         value={{ auth: [isAuth, setIsAuth], admin: [isAdmin, setIsAdmin] }}
       >
         <Header />
-
-        <Routes>
-          <Route path="/" element={isAuth ? <HomePage /> : <Login />} />
-          <Route path="/users" element={isAdmin && <ListOfUsers />} />
-          <Route path="/games" element={isAdmin && <ListOfGames />} />
-          <Route path="/addGame" element={isAdmin && <AddGame />} />
-          <Route path="/editGame/:id" element={isAdmin && <EditGame />} />
-          <Route path="/game/:id" element={isAuth ? <Game /> : <Login />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password/:id/:token" element={<ResetPassword />} />
-          <Route path="/profile" element={isAuth ? <Profile /> : <Login />} />
-          <Route
-            path="/preferences"
-            element={!isAdmin && isAuth && <Preferences />}
-          />
-          <Route path="register" element={<Register />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+        <ProtectedRoute>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/users" element={isAdmin && <ListOfUsers />} />
+            <Route path="/games" element={isAdmin && <ListOfGames />} />
+            <Route path="/addGame" element={isAdmin && <AddGame />} />
+            <Route path="/editGame/:id" element={isAdmin && <EditGame />} />
+            <Route path="/game/:id" element={<Game />} />
+            <Route path="login" element={<Login />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route
+              path="reset-password/:id/:token"
+              element={<ResetPassword />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/preferences" element={!isAdmin && <Preferences />} />
+            <Route path="register" element={<Register />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </ProtectedRoute>
       </AuthContext.Provider>
     </Suspense>
   );

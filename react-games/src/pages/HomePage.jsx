@@ -50,31 +50,21 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      {isLoading ? (
-        <Loader />
+    <Loader isLoading={isLoading}>
+      {isAdmin ? (
+        <AdminHomePage />
       ) : (
-        <>
-          {isAdmin ? (
-            <AdminHomePage />
-          ) : (
-            <SearchBar
-              handleChange={handleChange}
-              placeholder={t("searchplaceholder")}
-              className={style.search}
-            />
-          )}
-          <Games header={t("allgames")} games={filteredGames} id="allGames" />
-          <Games header={t("newgames")} games={newGames} id="newGames" />
-          <Games
-            header={t("mostlikedgames")}
-            games={mostLiked}
-            id="likedGames"
-          />
-          {!isAdmin && <UserHomePage />}
-        </>
+        <SearchBar
+          handleChange={handleChange}
+          placeholder={t("searchplaceholder")}
+          className={style.search}
+        />
       )}
-    </div>
+      <Games header={t("allgames")} games={filteredGames} id="allGames" />
+      <Games header={t("newgames")} games={newGames} id="newGames" />
+      <Games header={t("mostlikedgames")} games={mostLiked} id="likedGames" />
+      {!isAdmin && <UserHomePage />}
+    </Loader>
   );
 };
 

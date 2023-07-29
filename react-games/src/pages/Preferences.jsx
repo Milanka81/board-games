@@ -118,7 +118,9 @@ const Preferences = ({
         <h3 className={style.title}>{title}</h3>
         <div className={style.fields}>
           <p className={style.gridField}>
-            <label className={style.label}>{t("game:numberofplayers")}:</label>
+            <label htmlFor="numberOfPlayers" className={style.label}>
+              {t("game:numberofplayers")}:
+            </label>
             <input
               className={fieldClassName}
               name="numberOfPlayers"
@@ -135,7 +137,9 @@ const Preferences = ({
         </div>
         <div className={style.fields}>
           <div className={style.gridField}>
-            <label className={style.label}>{t("game:playingtime")}:</label>
+            <label htmlFor="gameLengthFrom" className={style.label}>
+              {t("game:playingtime")}:
+            </label>
             <div className={style.flexInput}>
               <input
                 className={fieldClassName}
@@ -149,7 +153,10 @@ const Preferences = ({
                 onBlur={formik.handleBlur}
                 disabled={isViewing}
               />{" "}
-              <label className={style.label}> - </label>
+              <label htmlFor="gameLengthTo" className={style.label}>
+                {" "}
+                -{" "}
+              </label>
               <input
                 className={fieldClassName}
                 name="gameLengthTo"
@@ -167,7 +174,9 @@ const Preferences = ({
         </div>
         <div className={style.fields}>
           <p className={style.gridField}>
-            <label className={style.label}>{t("game:artist")}:</label>
+            <label htmlFor="artist" className={style.label}>
+              {t("game:artist")}:
+            </label>
             <input
               className={fieldClassName}
               name="artist"
@@ -182,7 +191,9 @@ const Preferences = ({
         </div>
         <div className={style.fields}>
           <p className={style.gridField}>
-            <label className={style.label}>{t("game:designer")}:</label>
+            <label htmlFor="designer" className={style.label}>
+              {t("game:designer")}:
+            </label>
             <input
               className={fieldClassName}
               name="designer"
@@ -197,9 +208,12 @@ const Preferences = ({
         </div>
         <div className={style.fields}>
           <div className={style.gridField}>
-            <label className={style.label}>{t("game:category")}:</label>
+            <label htmlFor="category" className={style.label}>
+              {t("game:category")}:
+            </label>
             {!isViewing && (
               <Multiselect
+                id="category"
                 className={style.white}
                 options={categories}
                 showCheckbox={true}
@@ -214,12 +228,14 @@ const Preferences = ({
               />
             )}
             {!isViewing && (
-              <p className={style.label}>{t("game:addcategory")}:</p>
+              <label htmlFor="addCategory" className={style.label}>
+                {t("game:addcategory")}:
+              </label>
             )}
             <input
               className={fieldClassName}
               name="category"
-              id="category"
+              id="addCategory"
               variant="outlined"
               type="text"
               value={formik.values.category}
@@ -250,7 +266,7 @@ const Preferences = ({
       <div className={style.subscriptionContainer}>
         <em>{t("game:subscriptionmessage")}</em>
         <p>
-          <label className={style.label}>
+          <label htmlFor="subscribed" className={style.label}>
             <strong>{subscribeInfo()}</strong>
           </label>
           <input

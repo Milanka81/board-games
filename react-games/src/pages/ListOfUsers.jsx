@@ -61,91 +61,85 @@ const ListOfUsers = () => {
   const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▼" : "▲");
 
   return (
-    <>
-      {isLoading ? (
-        <Loader message={t("home:loading")} />
-      ) : (
-        <>
-          <div className={style.flex}>
-            <button
-              className={style.navBtn}
-              onClick={() => {
-                navigate("/games");
-              }}
-            >
-              🎲 {t("home:games")}
-            </button>
-            <SearchBar
-              handleChange={handleChange}
-              placeholder={t("profile:searchuser")}
-            />
-          </div>
-          <form>
-            <table className={style.tableList}>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th
-                    className={styleClass("first_name")}
-                    onClick={(e) => handleClick(e, "first_name")}
-                  >
-                    {arrows("first_name")} {t("profile:firstname")}
-                  </th>
-                  <th
-                    className={styleClass("last_name")}
-                    onClick={(e) => handleClick(e, "last_name")}
-                  >
-                    {arrows("last_name")} {t("profile:lastname")}
-                  </th>
-                  <th
-                    className={styleClass("username")}
-                    onClick={(e) => handleClick(e, "username")}
-                  >
-                    {arrows("username")} {t("profile:username")}
-                  </th>
-                  <th
-                    className={styleClass("email")}
-                    onClick={(e) => handleClick(e, "email")}
-                  >
-                    {arrows("email")} {t("profile:email")}
-                  </th>
-                  <th>{t("profile:role")}</th>
-                  <th></th>
-                </tr>
-              </thead>
+    <Loader isLoading={isLoading}>
+      <div className={style.flex}>
+        <button
+          className={style.navBtn}
+          onClick={() => {
+            navigate("/games");
+          }}
+        >
+          🎲 {t("home:games")}
+        </button>
+        <SearchBar
+          handleChange={handleChange}
+          placeholder={t("profile:searchuser")}
+        />
+      </div>
+      <form>
+        <table className={style.tableList}>
+          <thead>
+            <tr>
+              <th></th>
+              <th
+                className={styleClass("first_name")}
+                onClick={(e) => handleClick(e, "first_name")}
+              >
+                {arrows("first_name")} {t("profile:firstname")}
+              </th>
+              <th
+                className={styleClass("last_name")}
+                onClick={(e) => handleClick(e, "last_name")}
+              >
+                {arrows("last_name")} {t("profile:lastname")}
+              </th>
+              <th
+                className={styleClass("username")}
+                onClick={(e) => handleClick(e, "username")}
+              >
+                {arrows("username")} {t("profile:username")}
+              </th>
+              <th
+                className={styleClass("email")}
+                onClick={(e) => handleClick(e, "email")}
+              >
+                {arrows("email")} {t("profile:email")}
+              </th>
+              <th>{t("profile:role")}</th>
+              <th></th>
+            </tr>
+          </thead>
 
-              <tbody>
-                {filteredUsers.map((user, i) => (
-                  <React.Fragment key={user.user_id}>
-                    {userId === user.user_id ? (
-                      <EditUser
-                        user={user}
-                        i={serialNum(i)}
-                        handleCancel={() => setUserId(null)}
-                        fetchUsers={fetchUsers}
-                      />
-                    ) : (
-                      <ViewUsers
-                        user={user}
-                        i={serialNum(i)}
-                        handleEdit={handleEdit}
-                        fetchUsers={fetchUsers}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
-          </form>
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            limit={limit}
-            list="usersList"
-          />
-        </>
-      )}
-    </>
+          <tbody>
+            {filteredUsers.map((user, i) => (
+              <React.Fragment key={user.user_id}>
+                {userId === user.user_id ? (
+                  <EditUser
+                    user={user}
+                    i={serialNum(i)}
+                    handleCancel={() => setUserId(null)}
+                    fetchUsers={fetchUsers}
+                  />
+                ) : (
+                  <ViewUsers
+                    user={user}
+                    i={serialNum(i)}
+                    handleEdit={handleEdit}
+                    fetchUsers={fetchUsers}
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </form>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        limit={limit}
+        list="usersList"
+      />
+    </Loader>
   );
 };
 export default ListOfUsers;

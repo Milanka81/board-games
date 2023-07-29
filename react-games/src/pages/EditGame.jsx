@@ -160,7 +160,9 @@ const EditGame = () => {
           <div className={style.gameDetails}>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:name")}:</label>
+                <label htmlFor="name" className={style.label}>
+                  {t("game:name")}:
+                </label>
                 <input
                   className={style.formFieldName}
                   name="name"
@@ -178,7 +180,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:minplayers")}:</label>
+                <label htmlFor="minPlayers" className={style.label}>
+                  {t("game:minplayers")}:
+                </label>
                 <input
                   className={style.formField}
                   id="minPlayers"
@@ -195,7 +199,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:maxplayers")}:</label>
+                <label htmlFor="maxPlayers" className={style.label}>
+                  {t("game:maxplayers")}:
+                </label>
                 <input
                   className={style.formField}
                   id="maxPlayers"
@@ -212,7 +218,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:year")}:</label>
+                <label htmlFor="year" className={style.label}>
+                  {t("game:year")}:
+                </label>
                 <input
                   className={style.formField}
                   id="year"
@@ -229,7 +237,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:playingtime")}:</label>
+                <label htmlFor="gameLength" className={style.label}>
+                  {t("game:playingtime")}:
+                </label>
                 <input
                   className={style.formField}
                   id="gameLength"
@@ -247,7 +257,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:artist")}:</label>
+                <label htmlFor="artist" className={style.label}>
+                  {t("game:artist")}:
+                </label>
                 <input
                   className={style.formField}
                   name="artist"
@@ -265,7 +277,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:designer")}:</label>
+                <label htmlFor="designer" className={style.label}>
+                  {t("game:designer")}:
+                </label>
                 <input
                   className={style.formField}
                   name="designer"
@@ -283,7 +297,9 @@ const EditGame = () => {
             </div>
             <div className={style.fields}>
               <p className={style.gridField}>
-                <label className={style.label}>{t("game:category")}:</label>
+                <label htmlFor="category" className={style.label}>
+                  {t("game:category")}:
+                </label>
                 <input
                   className={style.formField}
                   name="category"
