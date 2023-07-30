@@ -2,8 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { useEffect, useState, useCallback } from "react";
 import Rating from "../components/Rating";
-import { useContext } from "react";
-import { AuthContext } from "../App";
 import Comment from "../components/Comment";
 import { useTranslation } from "react-i18next";
 import { numberPlayers, handleEmpty, imgSrc, alertMessage } from "../utils";
@@ -17,11 +15,12 @@ import {
   postFavourite,
   postComment,
 } from "../service";
+import { useAuth } from "../components/AuthContext";
 
 const Game = () => {
   let { id } = useParams();
   const { t } = useTranslation(["game", "common", "home"]);
-  const { admin } = useContext(AuthContext);
+  const { admin } = useAuth();
   const [isAdmin] = admin;
   const [game, setGame] = useState({});
   const navigate = useNavigate();

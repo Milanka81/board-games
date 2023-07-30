@@ -3,15 +3,15 @@ import axios from "axios";
 import * as Yup from "yup";
 import { login } from "../service";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { AuthContext } from "../App";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./Form.module.css";
+import { useAuth } from "../components/AuthContext";
 
 const Login = () => {
   const { t } = useTranslation(["profile", "common"]);
   const navigate = useNavigate();
-  const { auth, admin } = useContext(AuthContext);
+  const { auth, admin } = useAuth();
   const [, setIsAdmin] = admin;
   const [, setIsAuth] = auth;
   const [error, setError] = useState("");

@@ -1,4 +1,4 @@
-import React, { useState, Suspense, createContext } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -10,47 +10,80 @@ import AddGame from "./pages/AddGame";
 import EditGame from "./pages/EditGame";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
-import Preferences from "./pages/Preferences";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import PageNotFound from "./pages/PageNotFound";
 import HomePage from "./pages/HomePage";
-import ProtectedRoute from "./pages/ProtectedRoute";
-export const AuthContext = createContext();
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+import AdminRoutes from "./pages/AdminRoutes";
 
 export default function App() {
-  const token = localStorage.getItem("token");
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
-  const [isAdmin, setIsAdmin] = useState(loggedUser?.role === "admin");
-  const [isAuth, setIsAuth] = useState(!!token);
-
   return (
     <Suspense fallback={null}>
-      <AuthContext.Provider
-        value={{ auth: [isAuth, setIsAuth], admin: [isAdmin, setIsAdmin] }}
-      >
-        <Header />
-        <ProtectedRoute>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/users" element={isAdmin && <ListOfUsers />} />
-            <Route path="/games" element={isAdmin && <ListOfGames />} />
-            <Route path="/addGame" element={isAdmin && <AddGame />} />
-            <Route path="/editGame/:id" element={isAdmin && <EditGame />} />
-            <Route path="/game/:id" element={<Game />} />
-            <Route path="login" element={<Login />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route
-              path="reset-password/:id/:token"
-              element={<ResetPassword />}
-            />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/preferences" element={!isAdmin && <Preferences />} />
-            <Route path="register" element={<Register />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </ProtectedRoute>
-      </AuthContext.Provider>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoutes>
+              <HomePage />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <AdminRoutes>
+              <ListOfUsers />
+            </AdminRoutes>
+          }
+        />
+        <Route
+          path="/games"
+          element={
+            <AdminRoutes>
+              <ListOfGames />
+            </AdminRoutes>
+          }
+        />
+        <Route
+          path="/addGame"
+          element={
+            <AdminRoutes>
+              <AddGame />
+            </AdminRoutes>
+          }
+        />
+        <Route
+          path="/editGame/:id"
+          element={
+            <AdminRoutes>
+              <EditGame />
+            </AdminRoutes>
+          }
+        />
+        <Route
+          path="/game/:id"
+          element={
+            <ProtectedRoutes>
+              <Game />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <Profile />
+            </ProtectedRoutes>
+          }
+        />
+        <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="reset-password/:id/:token" element={<ResetPassword />} />
+        <Route path="register" element={<Register />} />
+        <Route path="*" element={<PageNotFound />} />{" "}
+      </Routes>
     </Suspense>
   );
 }

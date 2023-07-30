@@ -5,14 +5,13 @@ import Comment from "../components/Comment";
 import { getLoggedUser, getUserComments } from "../service";
 import EditAccount from "../components/EditAccount";
 import Preferences from "./Preferences";
-import { useContext } from "react";
-import { AuthContext } from "../App";
 import { useTranslation } from "react-i18next";
 import style from "./Profile.module.css";
+import { useAuth } from "../components/AuthContext";
 
 const Profile = () => {
   const { t } = useTranslation(["game", "common"]);
-  const { admin } = useContext(AuthContext);
+  const { admin } = useAuth();
   const [isAdmin] = admin;
   const [userId, setUserId] = useState(null);
   const [user, setUser] = useState("");

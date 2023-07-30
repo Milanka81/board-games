@@ -4,15 +4,14 @@ import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
 import UserHomePage from "./UserHomePage";
 import Loader from "../components/Loader";
-import { useContext } from "react";
-import { AuthContext } from "../App";
 import AdminHomePage from "./AdminHomePage";
 import SearchBar from "../components/SearchBar";
 import style from "./HomePage.module.css";
+import { useAuth } from "../components/AuthContext";
 
 const HomePage = () => {
   const { t } = useTranslation(["home"]);
-  const { admin } = useContext(AuthContext);
+  const { admin } = useAuth();
   const [isAdmin] = admin;
   const [isLoading, setIsLoading] = useState(true);
   const [filteredGames, setFilteredGames] = useState([]);
