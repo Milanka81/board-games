@@ -3,8 +3,12 @@ import { alertDelete, alertMessage } from "../utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./Comment.module.css";
+import ListBtns from "./ListBtns";
+import { useAuth } from "./AuthContext";
 
-const Comment = ({ refreshComments, comments, isAdmin }) => {
+const Comment = ({ refreshComments, comments }) => {
+  const { admin } = useAuth();
+  const [isAdmin] = admin;
   const { t } = useTranslation(["game", "common"]);
   const [myComment, setMyComment] = useState("");
   const [commentId, setCommentId] = useState(null);
@@ -43,22 +47,28 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
                   onChange={(e) => setMyComment(e.target.value)}
                 ></textarea>
                 {(el.user_id === loggedUser.user_id || isAdmin) && (
-                  <div className={style.commentBtns}>
-                    <button
-                      className={`${style.btn} ${style.green}`}
-                      type="submit"
-                      onClick={handleSubmit}
-                    >
-                      {t("common:save")}
-                    </button>
-                    <button
-                      className={`${style.btn} ${style.red}`}
-                      type="submit"
-                      onClick={() => setCommentId(null)}
-                    >
-                      {t("common:cancel")}
-                    </button>
-                  </div>
+                  <ListBtns
+                    denyBtnName={t("common:cancel")}
+                    denyBtnOnClick={() => setCommentId(null)}
+                    confirmBtnName={t("common:save")}
+                    confirmBtnOnClick={handleSubmit}
+                  />
+                  // <div className={style.commentBtns}>
+                  //   <button
+                  //     className={`${style.btn} ${style.green}`}
+                  //     type="submit"
+                  //     onClick={handleSubmit}
+                  //   >
+                  //     {t("common:save")}
+                  //   </button>
+                  //   <button
+                  //     className={`${style.btn} ${style.red}`}
+                  //     type="submit"
+                  //     onClick={() => setCommentId(null)}
+                  //   >
+                  //     {t("common:cancel")}
+                  //   </button>
+                  // </div>
                 )}
               </>
             ) : (
@@ -66,8 +76,20 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
                 <div className={style.commentText}>{el.comm}</div>
 
                 {(el.user_id === loggedUser.user_id || isAdmin) && (
-                  <>
-                    <button
+                  <ListBtns
+                    denyBtnName={t("common:delete")}
+                    denyBtnOnClick={() =>
+                      alertDelete(deleteComment, el.comment_id, refreshComments)
+                    }
+                    confirmBtnName={t("common:edit")}
+                    confirmBtnOnClick={() => {
+                      setCommentId(el.comment_id);
+                      setMyComment(el.comm);
+                    }}
+                    containerClassName={style.flex}
+                  />
+                  /* <>
+                  <button
                       className={`${style.btn} ${style.green}`}
                       onClick={() => {
                         setCommentId(el.comment_id);
@@ -89,7 +111,7 @@ const Comment = ({ refreshComments, comments, isAdmin }) => {
                     >
                       {t("common:delete")}
                     </button>{" "}
-                  </>
+                  </> */
                 )}
               </>
             )}

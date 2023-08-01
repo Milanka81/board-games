@@ -105,11 +105,7 @@ const Profile = () => {
         </div>
 
         {myComments[0] ? (
-          <Comment
-            refreshComments={fetchComments}
-            comments={myComments}
-            isAdmin={isAdmin}
-          />
+          <Comment refreshComments={fetchComments} comments={myComments} />
         ) : (
           <div className={style.gameOpinions}>
             <div className={style.cover}>

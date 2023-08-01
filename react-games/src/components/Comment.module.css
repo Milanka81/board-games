@@ -133,9 +133,10 @@
   grid-template-columns: 2fr 1fr 3fr;
   align-items: center;
   padding: 0 1rem;
-}
+}*/
 .flex {
   display: flex;
   justify-content: space-between;
   padding-right: 1rem;
-} */
+  gap: 2rem;
+}

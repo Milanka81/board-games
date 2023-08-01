@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
 import Loader from "../components/Loader";
 import style from "./List.module.css";
+import ListBtns from "../components/ListBtns";
 
 const ListOfGames = (idRow) => {
   const { t } = useTranslation(["game", "common", "home"]);
@@ -147,24 +148,18 @@ const ListOfGames = (idRow) => {
               <td>{game.artist}</td>
               <td>{game.designer}</td>
               <td>{game.category}</td>
-              <td className={`${style.actionBtns} ${style.games}`}>
-                <button
-                  className={`${style.btn} ${style.green}`}
-                  onClick={() => {
+              <td>
+                <ListBtns
+                  denyBtnName={t("common:cancel")}
+                  denyBtnOnClick={() =>
+                    alertDelete(deleteGame, game.game_id, fetchGames)
+                  }
+                  confirmBtnName={`${t("common:view")} / ${t("common:edit")}`}
+                  confirmBtnOnClick={() => {
                     navigate(`/game/${game.game_id}`);
                     document.title = `Board Game | ${game.name}`;
                   }}
-                >
-                  {t("common:view")} / {t("common:edit")}
-                </button>
-                <button
-                  className={`${style.btn} ${style.red}`}
-                  onClick={() =>
-                    alertDelete(deleteGame, game.game_id, fetchGames)
-                  }
-                >
-                  {t("common:delete")}
-                </button>
+                />
               </td>
             </tr>
           ))}

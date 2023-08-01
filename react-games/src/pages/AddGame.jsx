@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 import style from "./AddGame.module.css";
-
+import FormBtns from "../components/FormBtns";
 const AddGame = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(["game", "common"]);
@@ -194,20 +194,12 @@ const AddGame = () => {
             <p className={style.helperText}>{formik.errors.category}</p>
           ) : null}
         </div>
-        <button
-          className={`${style.btnFormSubmit} ${style.green}`}
-          type="submit"
-          onClick={formik.handleSubmit}
-        >
-          {t("common:save")}
-        </button>
-        <button
-          className={`${style.btnFormSubmit} ${style.red}`}
-          type="button"
-          onClick={() => navigate(-1)}
-        >
-          {t("common:cancel")}
-        </button>
+        <FormBtns
+          denyBtnName={t("common:cancel")}
+          denyBtnOnClick={() => navigate(-1)}
+          confirmBtnName={t("common:save")}
+          confirmBtnOnClick={formik.handleSubmit}
+        />
       </form>
     </div>
   );

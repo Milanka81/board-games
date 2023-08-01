@@ -7,7 +7,6 @@ import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";
 import "./index.css";
 import AddGame from "./pages/AddGame";
-import EditGame from "./pages/EditGame";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -51,14 +50,6 @@ export default function App() {
           element={
             <AdminRoutes>
               <AddGame />
-            </AdminRoutes>
-          }
-        />
-        <Route
-          path="/editGame/:id"
-          element={
-            <AdminRoutes>
-              <EditGame />
             </AdminRoutes>
           }
         />

@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import { refreshPage, handleEmpty } from "../utils";
 import { useTranslation } from "react-i18next";
 import style from "./Preferences.module.css";
-
+import FormBtns from "../components/FormBtns";
 const Preferences = ({
   className,
   componentState,
@@ -244,8 +244,13 @@ const Preferences = ({
             />
           </div>
         </div>
-
-        <div className={style.btnsContainer}>
+        <FormBtns
+          denyBtnName={t("common:cancel")}
+          denyBtnOnClick={handleCancel}
+          confirmBtnName={btnSubmitName()}
+          confirmBtnOnClick={formik.handleSubmit}
+        />
+        {/* <div className={style.btnsContainer}>
           {componentState !== "isAdding" && (
             <button
               className={`${style.btnFormSubmit} ${style.red}`}
@@ -261,7 +266,7 @@ const Preferences = ({
           >
             {btnSubmitName()}
           </button>
-        </div>
+        </div> */}
       </form>
       <div className={style.subscriptionContainer}>
         <em>{t("game:subscriptionmessage")}</em>

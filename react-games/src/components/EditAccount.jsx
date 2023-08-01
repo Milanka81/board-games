@@ -4,7 +4,7 @@ import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 import style from "./Account.module.css";
-
+import FormBtns from "./FormBtns";
 const EditAccount = ({ user, handleCancel, fetchUser }) => {
   const { t } = useTranslation(["common", "profile"]);
   const { first_name, last_name, username, email, role, user_id } = user;
@@ -114,21 +114,13 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           defaultValue={formik.values.role}
         />
       </div>
-      <div className={style.btnsContainer}>
-        <button
-          className={`${style.btnFormSubmit} ${style.green}`}
-          type="submit"
-        >
-          {t("save")}
-        </button>
-        <button
-          className={`${style.btnFormSubmit} ${style.red}`}
-          type="button"
-          onClick={handleCancel}
-        >
-          {t("cancel")}
-        </button>
-      </div>
+      <FormBtns
+        denyBtnName={t("cancel")}
+        denyBtnOnClick={handleCancel}
+        confirmBtnName={t("save")}
+        confirmBtnOnClick={formik.handleSubmit}
+        type="submit"
+      />
     </form>
   );
 };

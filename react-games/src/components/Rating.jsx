@@ -3,8 +3,11 @@ import { FaStar } from "react-icons/fa";
 import { useState, useEffect, useCallback } from "react";
 import { getRating, getAvgRating, postRating } from "../service";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "./AuthContext";
 
-const Rating = ({ id, isAdmin }) => {
+const Rating = ({ id }) => {
+  const { admin } = useAuth();
+  const [isAdmin] = admin;
   const { t } = useTranslation(["game"]);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);

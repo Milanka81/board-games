@@ -1,9 +1,9 @@
 import ReactFlagsSelect from "react-flags-select";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./Select.module.css";
 
-const Select = ({ handleLanguageChange }) => {
+const Select = memo(function Select({ handleLanguageChange }) {
   const [selected, setSelected] = useState(
     localStorage.getItem("i18nextLng") || ""
   );
@@ -26,6 +26,6 @@ const Select = ({ handleLanguageChange }) => {
       placeholder="Language"
     />
   );
-};
+});
 
 export default Select;

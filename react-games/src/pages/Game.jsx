@@ -16,18 +16,22 @@ import {
   postComment,
 } from "../service";
 import { useAuth } from "../components/AuthContext";
+import NavBtns from "../components/NavBtns";
+import FormBtns from "../components/FormBtns";
+import EditGame from "./EditGame";
 
 const Game = () => {
   let { id } = useParams();
   const { t } = useTranslation(["game", "common", "home"]);
+  const navigate = useNavigate();
   const { admin } = useAuth();
   const [isAdmin] = admin;
   const [game, setGame] = useState({});
-  const navigate = useNavigate();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [liked, setLiked] = useState(false);
   const [favourite, setFavourite] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const btnLikeName = () =>
     liked ? `${t("game:liked")} 👍` : `${t("game:like")} 👍🏻`;
@@ -36,11 +40,13 @@ const Game = () => {
       ? `${t("game:favourited")} ❤️`
       : `${t("game:addtofavourites")} 🤍`;
 
-  useEffect(() => {
-    getGame(id).then((res) => {
-      setGame(res.data);
-    });
+  const refreshGame = useCallback(() => {
+    getGame(id).then((res) => setGame(res.data));
   }, [id]);
+
+  useEffect(() => {
+    refreshGame();
+  }, [refreshGame]);
 
   const refreshComments = useCallback(() => {
     getGameComments(id).then((res) => setComments(res.data));
@@ -87,85 +93,63 @@ const Game = () => {
 
   return (
     <>
-      {isAdmin ? (
-        <button
-          className={style.navBtn}
-          onClick={() => {
-            navigate("/games");
-          }}
-        >
-          🎲 {t("home:games")}
-        </button>
-      ) : (
-        <button
-          className={style.navBtn}
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          ⬅️ {t("common:back")}
-        </button>
-      )}
-
+      <NavBtns />
       <div className={style.gameContainer}>
-        <div className={style.gameInfo}>
-          <img
-            className={style.gameImg}
-            src={imgSrc(game.img)}
-            alt={game.name}
+        {isEdit ? (
+          <EditGame
+            game={game}
+            refreshGame={refreshGame}
+            setIsEdit={setIsEdit}
           />
-          <div className={style.gameDetails}>
-            <p className={style.gameDetailsName}>
-              <strong>{handleEmpty(game.name)}</strong>
-            </p>
-            <p>
-              {t("game:year")}: <strong>{handleEmpty(game.year)}</strong>
-            </p>
-            <p>
-              {t("game:numberofplayers")}:
-              <strong>
-                {numberPlayers(
-                  handleEmpty(game.min_players),
-                  handleEmpty(game.max_players)
-                )}
-              </strong>
-            </p>
-            <p>
-              {t("game:playingtime")}:
-              <strong>{handleEmpty(game.game_length)}</strong>
-            </p>
-            <p>
-              {t("game:designer")}:{" "}
-              <strong>{handleEmpty(game.designer)}</strong>
-            </p>
-            <p>
-              {t("game:artist")}: <strong>{handleEmpty(game.artist)}</strong>
-            </p>
-            <p>
-              {t("game:category")}:{" "}
-              <strong>{handleEmpty(game.category)}</strong>
-            </p>
-          </div>
-          {isAdmin && (
-            <div className={style.btnsContainer}>
-              <button
-                className={`${style.btnFormSubmit} ${style.red}`}
-                type="button"
-                onClick={() => navigate(-1)}
-              >
-                {t("common:back")}
-              </button>
-              <button
-                className={`${style.btnFormSubmit} ${style.green}`}
-                onClick={() => {
-                  navigate(`/editGame/${game.game_id}`);
-                }}
-              >
-                {t("common:edit")}
-              </button>
+        ) : (
+          <div className={style.gameInfo}>
+            <img
+              className={style.gameImg}
+              src={imgSrc(game.img)}
+              alt={game.name}
+            />
+            <div className={style.gameDetails}>
+              <p className={style.gameDetailsName}>
+                <strong>{handleEmpty(game.name)}</strong>
+              </p>
+              <p>
+                {t("game:year")}: <strong>{handleEmpty(game.year)}</strong>
+              </p>
+              <p>
+                {t("game:numberofplayers")}:
+                <strong>
+                  {numberPlayers(
+                    handleEmpty(game.min_players),
+                    handleEmpty(game.max_players)
+                  )}
+                </strong>
+              </p>
+              <p>
+                {t("game:playingtime")}:
+                <strong>{handleEmpty(game.game_length)}</strong>
+              </p>
+              <p>
+                {t("game:designer")}:{" "}
+                <strong>{handleEmpty(game.designer)}</strong>
+              </p>
+              <p>
+                {t("game:artist")}: <strong>{handleEmpty(game.artist)}</strong>
+              </p>
+              <p>
+                {t("game:category")}:{" "}
+                <strong>{handleEmpty(game.category)}</strong>
+              </p>
             </div>
-          )}
-        </div>
+            {isAdmin && (
+              <FormBtns
+                denyBtnName={t("common:back")}
+                denyBtnOnClick={() => navigate(-1)}
+                confirmBtnName={t("common:edit")}
+                confirmBtnOnClick={() => setIsEdit(true)}
+              />
+            )}
+          </div>
+        )}
         <div className={style.gameOpinions}>
           {!isAdmin && (
             <div className={style.btnsLikeFav}>
@@ -178,7 +162,7 @@ const Game = () => {
               </button>
             </div>
           )}
-          <Rating id={id} isAdmin={isAdmin} />
+          <Rating id={id} />
           {!isAdmin && (
             <form className={style.commentForm} onSubmit={(e) => addComment(e)}>
               <TextField
@@ -196,11 +180,7 @@ const Game = () => {
             </form>
           )}
 
-          <Comment
-            refreshComments={refreshComments}
-            comments={comments}
-            isAdmin={isAdmin}
-          />
+          <Comment refreshComments={refreshComments} comments={comments} />
         </div>
       </div>
     </>

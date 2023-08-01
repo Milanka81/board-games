@@ -1,0 +1,38 @@
+.btnsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.btnFormSubmit {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 11px;
+  border: none;
+  cursor: pointer;
+  background-color: #45260a;
+  color: #fdf2e9;
+  height: 3.6rem;
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  transition: all 0.5s;
+}
+.btnFormSubmit:hover {
+  background-color: #2e1907;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+}
+.red {
+  background-color: rgb(196, 0, 0);
+  transition: all 0.5s;
+}
+.red:hover {
+  background-color: rgb(156, 2, 2);
+}
+.green {
+  background-color: #1a852e;
+  transition: all 0.5s;
+}
+.green:hover {
+  background-color: rgb(6, 97, 23);
+}

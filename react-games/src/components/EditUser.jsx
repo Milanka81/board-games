@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
+import ListBtns from "./ListBtns";
 import style from "./ViewEditUsers.module.css";
 
 const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
@@ -88,22 +89,13 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
           <p className="helper-text">{formik.errors.role}</p>
         ) : null}
       </td>
-      <td className={style.actionBtns}>
-        <button
-          className={`${style.btn} ${style.green}`}
-          type="submit"
-          onClick={formik.handleSubmit}
-        >
-          {t("common:save")}
-        </button>
-
-        <button
-          className={`${style.btn} ${style.red}`}
-          type="button"
-          onClick={handleCancel}
-        >
-          {t("common:cancel")}
-        </button>
+      <td>
+        <ListBtns
+          denyBtnName={t("common:cancel")}
+          denyBtnOnClick={handleCancel}
+          confirmBtnName={t("common:save")}
+          confirmBtnOnClick={formik.handleSubmit}
+        />
       </td>
     </tr>
   );
