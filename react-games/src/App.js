@@ -6,7 +6,6 @@ import ListOfUsers from "./pages/ListOfUsers";
 import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";
 import "./index.css";
-import AddGame from "./pages/AddGame";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -42,14 +41,6 @@ export default function App() {
           element={
             <AdminRoutes>
               <ListOfGames />
-            </AdminRoutes>
-          }
-        />
-        <Route
-          path="/addGame"
-          element={
-            <AdminRoutes>
-              <AddGame />
             </AdminRoutes>
           }
         />

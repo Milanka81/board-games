@@ -244,29 +244,22 @@ const Preferences = ({
             />
           </div>
         </div>
-        <FormBtns
-          denyBtnName={t("common:cancel")}
-          denyBtnOnClick={handleCancel}
-          confirmBtnName={btnSubmitName()}
-          confirmBtnOnClick={formik.handleSubmit}
-        />
-        {/* <div className={style.btnsContainer}>
-          {componentState !== "isAdding" && (
-            <button
-              className={`${style.btnFormSubmit} ${style.red}`}
-              type="button"
-              onClick={handleCancel}
-            >
-              {t("common:cancel")}
-            </button>
-          )}
-          <button
-            className={`${style.btnFormSubmit} ${style.green}`}
-            type="submit"
-          >
-            {btnSubmitName()}
-          </button>
-        </div> */}
+        {isAdding ? (
+          <FormBtns
+            denyBtnName={t("common:cancel")}
+            denyBtnOnClick={handleCancel}
+            disabled={true}
+            confirmBtnName={btnSubmitName()}
+            confirmBtnOnClick={formik.handleSubmit}
+          />
+        ) : (
+          <FormBtns
+            denyBtnName={t("common:cancel")}
+            denyBtnOnClick={handleCancel}
+            confirmBtnName={btnSubmitName()}
+            confirmBtnOnClick={formik.handleSubmit}
+          />
+        )}
       </form>
       <div className={style.subscriptionContainer}>
         <em>{t("game:subscriptionmessage")}</em>

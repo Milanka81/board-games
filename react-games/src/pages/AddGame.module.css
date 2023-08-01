@@ -33,8 +33,12 @@
   gap: 2rem;
 }
 .addImg {
-  width: 14rem;
-  height: auto;
+  width: 12rem;
+  max-height: 12rem;
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  padding: 1rem;
 }
 .fields {
   display: flex;

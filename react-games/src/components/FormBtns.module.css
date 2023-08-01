@@ -29,6 +29,7 @@
 .red:hover {
   background-color: rgb(156, 2, 2);
 }
+
 .green {
   background-color: #1a852e;
   transition: all 0.5s;

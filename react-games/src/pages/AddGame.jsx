@@ -6,7 +6,7 @@ import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 import style from "./AddGame.module.css";
 import FormBtns from "../components/FormBtns";
-const AddGame = () => {
+const AddGame = ({ className, setOpenModal }) => {
   const navigate = useNavigate();
   const { t } = useTranslation(["game", "common"]);
   const formik = useFormik({
@@ -43,9 +43,9 @@ const AddGame = () => {
   });
 
   return (
-    <div className={style.container}>
+    <>
       <form
-        className={style.form}
+        className={className}
         onSubmit={formik.handleSubmit}
         encType="multipart/form-data"
       >
@@ -196,12 +196,12 @@ const AddGame = () => {
         </div>
         <FormBtns
           denyBtnName={t("common:cancel")}
-          denyBtnOnClick={() => navigate(-1)}
+          denyBtnOnClick={() => setOpenModal(false)}
           confirmBtnName={t("common:save")}
           confirmBtnOnClick={formik.handleSubmit}
         />
       </form>
-    </div>
+    </>
   );
 };
 export default AddGame;

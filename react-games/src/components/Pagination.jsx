@@ -2,8 +2,14 @@ import { getAllGames, getAllUsers } from "../service";
 import { useState } from "react";
 import style from "./Pagination.module.css";
 import { useTranslation } from "react-i18next";
+import { memo } from "react";
 
-const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
+const Pagination = memo(function Pagination({
+  currentPage,
+  setCurrentPage,
+  limit,
+  list,
+}) {
   const { t } = useTranslation(["common"]);
   const [count, setCount] = useState(0);
   const numPages = Math.ceil(count / limit);
@@ -112,6 +118,6 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
       </button>
     </div>
   );
-};
+});
 
 export default Pagination;

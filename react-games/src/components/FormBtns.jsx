@@ -5,16 +5,19 @@ const FormBtns = ({
   confirmBtnName,
   confirmBtnOnClick,
   type = "button",
+  disabled,
 }) => {
   return (
     <div className={style.btnsContainer}>
-      <button
-        className={`${style.btnFormSubmit} ${style.red}`}
-        type="button"
-        onClick={denyBtnOnClick}
-      >
-        {denyBtnName}
-      </button>
+      {!disabled && (
+        <button
+          className={`${style.btnFormSubmit} ${style.red}`}
+          type="button"
+          onClick={denyBtnOnClick}
+        >
+          {denyBtnName}
+        </button>
+      )}
       <button
         className={`${style.btnFormSubmit} ${style.green}`}
         type={type}
