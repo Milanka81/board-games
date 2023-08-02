@@ -84,16 +84,19 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
     >
       <div className={style.form}>
         <div className={style.flex}>
-          <input
-            name="img"
-            id="img"
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              setIsEditingImg(true);
-              formik.setFieldValue("img", e.target.files[0]);
-            }}
-          />
+          <label className={style.customFileUpload}>
+            <input
+              name="img"
+              id="img"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setIsEditingImg(true);
+                formik.setFieldValue("img", e.target.files[0]);
+              }}
+            />
+            {t("common:editimage")}
+          </label>
           {!isEditingImg ? (
             <div className={style.editContainer}>
               <img
@@ -127,7 +130,7 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               {t("game:name")}:
             </label>
             <input
-              className={style.formFieldName}
+              className={style.editFormField}
               name="name"
               id="name"
               variant="outlined"

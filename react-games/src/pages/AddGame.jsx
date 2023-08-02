@@ -51,6 +51,9 @@ const AddGame = ({ className, setOpenModal }) => {
       >
         <h5 className={style.title}>{t("game:addnewgame")}</h5>
         <div className={style.imgContainer}>
+          <label htmlFor="img" className={style.customFileUpload}>
+            {t("common:uploadimage")}{" "}
+          </label>
           <input
             name="img"
             id="img"
@@ -58,6 +61,7 @@ const AddGame = ({ className, setOpenModal }) => {
             accept="image/*"
             onChange={(e) => formik.setFieldValue("img", e.target.files[0])}
           />
+
           {formik.values.img && (
             <img
               className={style.addImg}

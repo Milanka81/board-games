@@ -106,3 +106,24 @@
 .green:hover {
   background-color: rgb(6, 97, 23);
 }
+input[type="file"] {
+  display: none;
+}
+.customFileUpload {
+  display: grid;
+  font-weight: 600;
+  justify-content: center;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #45260a;
+  background-color: rgb(250, 243, 221);
+  height: auto;
+  width: fit-content;
+  transition: all 0.5s;
+  padding: 0 0.5rem;
+  border: 2px solid rgb(196, 0, 0);
+}
+.customFileUpload:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+}

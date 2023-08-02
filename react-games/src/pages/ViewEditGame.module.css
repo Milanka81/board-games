@@ -285,3 +285,23 @@
   padding-right: 1rem;
   align-items: flex-end;
 }
+input[type="file"] {
+  display: none;
+}
+.customFileUpload {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 12px;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #f5cda7;
+  color: #45260a;
+  height: auto;
+  width: 8rem;
+  transition: all 0.5s;
+  border: 2px solid #45260a;
+}
+.customFileUpload:hover {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.195);
+}

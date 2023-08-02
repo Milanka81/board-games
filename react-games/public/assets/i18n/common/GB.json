@@ -17,5 +17,7 @@
   "next": "Next Page",
   "apptitle": " Board Games App",
   "pagenotfound": "Page Not Found",
-  "dropimage": "Drop Image"
+  "dropimage": "Drop Image",
+  "editimage": "Edit Image",
+  "uploadimage": "Upload Image"
 }
