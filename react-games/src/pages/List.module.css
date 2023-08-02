@@ -129,7 +129,7 @@ tbody tr:nth-child(even) {
   top: 35rem;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 40em;
   color: #a40b0b;
   background-color: rgb(250, 243, 221);
   padding: 4rem;

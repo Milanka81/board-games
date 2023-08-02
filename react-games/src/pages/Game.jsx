@@ -103,51 +103,67 @@ const Game = () => {
           />
         ) : (
           <div className={style.gameInfo}>
-            <img
-              className={style.gameImg}
-              src={imgSrc(game.img)}
-              alt={game.name}
-            />
-            <div className={style.gameDetails}>
-              <p className={style.gameDetailsName}>
-                <strong>{handleEmpty(game.name)}</strong>
-              </p>
-              <p>
-                {t("game:year")}: <strong>{handleEmpty(game.year)}</strong>
-              </p>
-              <p>
-                {t("game:numberofplayers")}:
-                <strong>
-                  {numberPlayers(
-                    handleEmpty(game.min_players),
-                    handleEmpty(game.max_players)
-                  )}
-                </strong>
-              </p>
-              <p>
-                {t("game:playingtime")}:
-                <strong>{handleEmpty(game.game_length)}</strong>
-              </p>
-              <p>
-                {t("game:designer")}:{" "}
-                <strong>{handleEmpty(game.designer)}</strong>
-              </p>
-              <p>
-                {t("game:artist")}: <strong>{handleEmpty(game.artist)}</strong>
-              </p>
-              <p>
-                {t("game:category")}:{" "}
-                <strong>{handleEmpty(game.category)}</strong>
-              </p>
+            <div className={style.form}>
+              <div className={style.container}>
+                <img
+                  className={style.gameImg}
+                  src={imgSrc(game.img)}
+                  alt={game.name}
+                />
+              </div>
+              <div className={style.gameDetails}>
+                <p className={style.gameDetailsName}>
+                  <strong>{handleEmpty(game.name)}</strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:year")}:{" "}
+                  <strong className={style.formField}>
+                    {handleEmpty(game.year)}
+                  </strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:numberofplayers")}:
+                  <strong className={style.formField}>
+                    {numberPlayers(
+                      handleEmpty(game.min_players),
+                      handleEmpty(game.max_players)
+                    )}
+                  </strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:playingtime")}:
+                  <strong className={style.formField}>
+                    {handleEmpty(game.game_length)}
+                  </strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:designer")}:{" "}
+                  <strong className={style.formField}>
+                    {handleEmpty(game.designer)}
+                  </strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:artist")}:{" "}
+                  <strong className={style.formField}>
+                    {handleEmpty(game.artist)}
+                  </strong>
+                </p>
+                <p className={style.gridField}>
+                  {t("game:category")}:{" "}
+                  <strong className={style.formField}>
+                    {handleEmpty(game.category)}
+                  </strong>
+                </p>
+              </div>
+              {isAdmin && (
+                <FormBtns
+                  denyBtnName={t("common:back")}
+                  denyBtnOnClick={() => navigate(-1)}
+                  confirmBtnName={t("common:edit")}
+                  confirmBtnOnClick={() => setIsEdit(true)}
+                />
+              )}
             </div>
-            {isAdmin && (
-              <FormBtns
-                denyBtnName={t("common:back")}
-                denyBtnOnClick={() => navigate(-1)}
-                confirmBtnName={t("common:edit")}
-                confirmBtnOnClick={() => setIsEdit(true)}
-              />
-            )}
           </div>
         )}
         <div className={style.gameOpinions}>

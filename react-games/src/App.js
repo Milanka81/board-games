@@ -5,7 +5,6 @@ import Register from "./pages/Register";
 import ListOfUsers from "./pages/ListOfUsers";
 import ListOfGames from "./pages/ListOfGames";
 import Game from "./pages/Game";
-import "./index.css";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -14,6 +13,20 @@ import PageNotFound from "./pages/PageNotFound";
 import HomePage from "./pages/HomePage";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import AdminRoutes from "./pages/AdminRoutes";
+import "./index.css";
+
+// const HomePage = lazy(() => import("./pages/HomePage"));
+// const Login = lazy(() => import("./pages/Login"));
+// const Register = lazy(() => import("./pages/Register"));
+// const ListOfGames = lazy(() => import("./pages/ListOfGames"));
+// const ListOfUsers = lazy(() => import("./pages/ListOfUsers"));
+// const Profile = lazy(() => import("./pages/Profile"));
+// const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+// const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+// const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+// const Game = lazy(() => import("./pages/Game"));
+// const ProtectedRoutes = lazy(() => import("./pages/ProtectedRoutes"));
+// const AdminRoutes = lazy(() => import("./pages/AdminRoutes"));
 
 export default function App() {
   return (

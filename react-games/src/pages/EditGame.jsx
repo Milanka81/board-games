@@ -82,45 +82,58 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
       onSubmit={formik.handleSubmit}
       encType="multipart/form-data"
     >
-      <div>
-        <input
-          name="img"
-          id="img"
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            setIsEditingImg(true);
-            formik.setFieldValue("img", e.target.files[0]);
-          }}
-        />
-        {!isEditingImg ? (
-          <img
-            className={style.gameImg}
-            src={handleEmpty(imgSrc(formik.values.img))}
-            alt={handleEmpty(formik.values.name)}
-          />
-        ) : (
-          <img
-            className={style.gameImg}
-            src={handleEmpty(URL.createObjectURL(formik.values.img))}
-            alt={handleEmpty(formik.values.name)}
-          />
-        )}
-
-        {isEditingImg && (
-          <button
-            className={style.navBtn}
-            onClick={() => {
-              setIsEditingImg(false);
-              formik.setFieldValue("img", game.img);
+      <div className={style.form}>
+        <div className={style.flex}>
+          <input
+            name="img"
+            id="img"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              setIsEditingImg(true);
+              formik.setFieldValue("img", e.target.files[0]);
             }}
-          >
-            {t("common:cancel")}
-          </button>
-        )}
-      </div>
-      <div className={style.gameDetails}>
-        <div className={style.fields}>
+          />
+          {!isEditingImg ? (
+            <div className={style.editContainer}>
+              <img
+                className={style.editGameImg}
+                src={handleEmpty(imgSrc(formik.values.img))}
+                alt={handleEmpty(formik.values.name)}
+              />
+            </div>
+          ) : (
+            <div className={style.editContainer}>
+              <img
+                className={style.editGameImg}
+                src={handleEmpty(URL.createObjectURL(formik.values.img))}
+                alt={handleEmpty(formik.values.name)}
+              />
+              <button
+                className={style.btnLink}
+                onClick={() => {
+                  setIsEditingImg(false);
+                  formik.setFieldValue("img", game.img);
+                }}
+              >
+                {t("common:dropimage")}
+              </button>
+            </div>
+          )}
+
+          {/* {isEditingImg && (
+            <button
+              className={style.btnLink}
+              onClick={() => {
+                setIsEditingImg(false);
+                formik.setFieldValue("img", game.img);
+              }}
+            >
+              {t("common:dropimage")}
+            </button>
+          )} */}
+        </div>
+        <div className={style.gameDetails}>
           <p className={style.gridField}>
             <label htmlFor="name" className={style.label}>
               {t("game:name")}:
@@ -139,14 +152,13 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.name}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
+
           <p className={style.gridField}>
             <label htmlFor="minPlayers" className={style.label}>
               {t("game:minplayers")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               id="minPlayers"
               variant="outlined"
               type="text"
@@ -158,14 +170,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.minPlayers}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="maxPlayers" className={style.label}>
               {t("game:maxplayers")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               id="maxPlayers"
               variant="outlined"
               type="text"
@@ -177,14 +187,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.maxPlayers}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="year" className={style.label}>
               {t("game:year")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               id="year"
               variant="outlined"
               type="text"
@@ -196,14 +204,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.year}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="gameLength" className={style.label}>
               {t("game:playingtime")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               id="gameLength"
               variant="outlined"
               type="number"
@@ -216,14 +222,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.gameLength}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="artist" className={style.label}>
               {t("game:artist")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               name="artist"
               id="artist"
               variant="outlined"
@@ -236,14 +240,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.artist}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="designer" className={style.label}>
               {t("game:designer")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               name="designer"
               id="designer"
               variant="outlined"
@@ -256,14 +258,12 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.designer}</p>
             ) : null}
           </p>
-        </div>
-        <div className={style.fields}>
           <p className={style.gridField}>
             <label htmlFor="category" className={style.label}>
               {t("game:category")}:
             </label>
             <input
-              className={style.formField}
+              className={style.editFormField}
               name="category"
               id="category"
               variant="outlined"
@@ -276,14 +276,14 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               <p className={style.helperText}>{formik.errors.category}</p>
             ) : null}
           </p>
+          <FormBtns
+            denyBtnName={t("common:cancel")}
+            denyBtnOnClick={() => setIsEdit(false)}
+            confirmBtnName={t("common:save")}
+            confirmBtnOnClick={formik.handleSubmit}
+            type="submit"
+          />
         </div>
-        <FormBtns
-          denyBtnName={t("common:cancel")}
-          denyBtnOnClick={() => setIsEdit(false)}
-          confirmBtnName={t("common:save")}
-          confirmBtnOnClick={formik.handleSubmit}
-          type="submit"
-        />
       </div>
     </form>
   );
