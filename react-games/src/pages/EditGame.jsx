@@ -120,18 +120,6 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
               </button>
             </div>
           )}
-
-          {/* {isEditingImg && (
-            <button
-              className={style.btnLink}
-              onClick={() => {
-                setIsEditingImg(false);
-                formik.setFieldValue("img", game.img);
-              }}
-            >
-              {t("common:dropimage")}
-            </button>
-          )} */}
         </div>
         <div className={style.gameDetails}>
           <p className={style.gridField}>

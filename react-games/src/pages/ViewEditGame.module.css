@@ -136,9 +136,9 @@
 .editFormField::placeholder {
   color: #ccc;
 }
-
 .editFormField {
   background-color: #fdf2e9;
+  font-size: 1.2rem;
 }
 .helperText {
   margin-top: 0.5rem;
