@@ -84,7 +84,7 @@ const EditGame = ({ game, refreshGame, setIsEdit }) => {
     >
       <div className={style.form}>
         <div className={style.flex}>
-          <label className={style.customFileUpload}>
+          <label htmlFor="img" className={style.customFileUpload}>
             <input
               name="img"
               id="img"

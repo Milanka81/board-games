@@ -42,58 +42,56 @@ const Rating = ({ id }) => {
   };
 
   return (
-    <>
-      <div className={style.gameRating}>
-        <div>
-          {/* {[...Array(5)].map((_, i) => { */}
-          {Array.from({ length: 5 }, (_, i) => {
-            const ratingValue = i + 1;
-            return (
-              <>
-                {!isAdmin ? (
-                  <label key={i}>
-                    <input
-                      type="radio"
-                      name="rating"
-                      id={style.rating}
-                      value={ratingValue}
-                      onClick={() => rateGame(ratingValue)}
-                    />
-                    <FaStar
-                      className={style.star}
-                      size={25}
-                      color={
-                        ratingValue <= (hover || rating) ? "#ffc107" : "#aaa"
-                      }
-                      onMouseEnter={() => setHover(ratingValue)}
-                      onMouseLeave={() => setHover(null)}
-                    />
-                  </label>
-                ) : (
-                  <label key={i}>
-                    <input
-                      type="radio"
-                      name="rating"
-                      id={style.rating}
-                      value={avgRating}
-                    />
-                    <FaStar
-                      className={style.star}
-                      size={25}
-                      color={avgRating + 1 <= ratingValue ? "#aaa" : "#ffc107"}
-                    />
-                  </label>
-                )}
-              </>
-            );
-          })}
-        </div>
-
-        <div className={style.avgRating}>
-          {t("avgrating")}: (<strong>{avgRating}</strong>/ 5)
-        </div>
+    <div className={style.gameRating}>
+      <div>
+        {/* {[...Array(5)].map((_, i) => { */}
+        {Array.from({ length: 5 }, (_, i) => {
+          const ratingValue = i + 1;
+          return (
+            <label key={i}>
+              {!isAdmin ? (
+                <>
+                  <input
+                    type="radio"
+                    name="rating"
+                    id={style.rating}
+                    value={ratingValue}
+                    onClick={() => rateGame(ratingValue)}
+                  />
+                  <FaStar
+                    className={style.star}
+                    size={25}
+                    color={
+                      ratingValue <= (hover || rating) ? "#ffc107" : "#aaa"
+                    }
+                    onMouseEnter={() => setHover(ratingValue)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                </>
+              ) : (
+                <>
+                  <input
+                    type="radio"
+                    name="rating"
+                    id={style.rating}
+                    value={avgRating}
+                  />
+                  <FaStar
+                    className={style.star}
+                    size={25}
+                    color={avgRating + 1 <= ratingValue ? "#aaa" : "#ffc107"}
+                  />
+                </>
+              )}
+            </label>
+          );
+        })}
       </div>
-    </>
+
+      <div className={style.avgRating}>
+        {t("avgrating")}: (<strong>{avgRating}</strong>/ 5)
+      </div>
+    </div>
   );
 };
 
