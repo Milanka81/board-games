@@ -75,7 +75,14 @@ To set up the MySQL database for this project, follow these steps:
 
 ### Login and Signup
 
-You can login as admin with credentials: username: admin, password: admin and as a user with username: user, password: user
+You can login as an admin with credentials: 
+```bash 
+username: admin, password: admin
+```
+and as a user with 
+```bash 
+username: user, password: user
+```
 or register as a new user with your own credentials. 
 
 When users land on the web app, they will be presented with a login/signup screen that offers the following options:
