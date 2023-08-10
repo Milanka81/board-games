@@ -1,11 +1,10 @@
 .container,
 .editContainer {
   display: flex;
-  background-color: #f9e3ce;
   position: relative;
   width: 25rem;
   height: auto;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.095);
+
   border-radius: 11px;
   padding: 1rem;
   align-content: center;
@@ -16,6 +15,7 @@
   background-color: #fdf2e9;
   align-self: flex-end;
   gap: 0.5rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.095);
 }
 .form {
   align-self: center;
