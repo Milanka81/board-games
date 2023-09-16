@@ -16,7 +16,7 @@ const catchError = (fn) => {
       const data = await fn(...values);
       return data;
     } catch (err) {
-      alertMessage("error", err.message);
+      return alertMessage("error", err.message);
     }
   };
 };
@@ -46,10 +46,6 @@ export const getFilteredGames = catchError((page, limit, input, sortBy) =>
     `${BASE_URL}/filteredGames?page=${page}&limit=${limit}&input=${input}&sortBy=${sortBy}`
   )
 );
-
-// export const getListOfGames = catchError(() =>
-//   axios.get(`${BASE_URL}/listOfGames`)
-// );
 
 export const getMostLiked = catchError(() =>
   axios.get(`${BASE_URL}/${GAMES}/mostLiked`)
@@ -179,7 +175,7 @@ export const editPreferences = catchError((values) =>
 export const getPreferences = catchError(() =>
   axios.get(`${BASE_URL}/${GAMES}/preferences`)
 );
-export const getUserPreferences = catchError(() =>
+export const getIsPreferences = catchError(() =>
   axios.get(`${BASE_URL}/${GAMES}/userPreferences`)
 );
 

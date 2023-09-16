@@ -5,7 +5,6 @@ import { login } from "../service";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import style from "./Form.module.css";
 import { useAuth } from "../components/AuthContext";
 
 const Login = () => {
@@ -45,12 +44,12 @@ const Login = () => {
   });
 
   return (
-    <div className={style.container}>
-      <form className={style.form} onSubmit={formik.handleSubmit}>
-        <h5 className={style.title}>{t("profile:login")}</h5>
-        <div className={style.fields}>
+    <div className="container">
+      <form className="form u-mt-m" onSubmit={formik.handleSubmit}>
+        <h5 className="title u-mb-s">{t("profile:login")}</h5>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="username"
             placeholder={t("profile:username")}
             variant="outlined"
@@ -60,12 +59,12 @@ const Login = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.username && formik.errors.username ? (
-            <p className={style.helperText}>{formik.errors.username}</p>
+            <p className="helperText">{formik.errors.username}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="password"
             placeholder={t("profile:password")}
             variant="outlined"
@@ -75,17 +74,17 @@ const Login = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p className={style.helperText}>{formik.errors.password}</p>
+            <p className="helperText">{formik.errors.password}</p>
           ) : null}
         </div>
-        <button className={style.btnFormSubmit} type="submit">
+        <button className="btn__submit" type="submit">
           {t("profile:log-in")}
         </button>
         {error && <p>{error}</p>}
-        <div className={style.flex}>
+        <div className="u-flex u-space-between">
           <button
             type="button"
-            className={style.btnLink}
+            className="btn__link"
             onClick={() => {
               navigate("/forgot-password");
             }}
@@ -94,7 +93,7 @@ const Login = () => {
           </button>
           <button
             type="button"
-            className={style.btnLink}
+            className="btn__link"
             onClick={() => {
               navigate("/register");
             }}

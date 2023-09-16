@@ -1,55 +1,39 @@
 import { useEffect, useState } from "react";
-import {
-  getRecommendedGames,
-  getUserPreferences,
-  getFavoriteGames,
-} from "../service";
 import Preferences from "./Preferences";
 import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
-import style from "./HomePage.module.css";
+import { useFavouriteGames, useRecommendedGames } from "../hooks/games";
+import Modal from "../components/Modal";
 
 const UserHomePage = () => {
   const { t } = useTranslation(["home"]);
-  const [recommended, setRecommended] = useState([]);
-  const [preferences, setPreferences] = useState(true);
-  const [gamesFavourite, setGamesFavourite] = useState([]);
-
-  useEffect(() => {
-    getRecommendedGames().then((res) => setRecommended(res.data));
-  }, []);
+  const [isPreferences, setIsPreferences] = useState(true);
+  const { data: recommended } = useRecommendedGames();
+  const { data: gamesFavourite, isSuccess: fetchedFav } = useFavouriteGames();
+  const { data: preferences, isSuccess: fetchedPreferences } =
+    useFavouriteGames();
 
   useEffect(() => {
     setInterval(() => {
-      if (!preferences) {
-        setPreferences(false);
+      if (!preferences?.at[0]) {
+        setIsPreferences(false);
       }
     }, 9000);
-  }, [preferences]);
-
-  useEffect(() => {
-    getUserPreferences().then((res) => setPreferences(!!res.data.length));
-  }, []);
-
-  useEffect(() => {
-    getFavoriteGames().then((res) => setGamesFavourite(res.data));
-  }, []);
+  }, [fetchedPreferences, preferences]);
 
   return (
     <div>
-      {!preferences && (
-        <div>
-          <div className={style.overlay}></div>
+      {!isPreferences && (
+        <Modal>
           <Preferences
+            className="form__preferencesContainer"
             componentState="isAdding"
-            className={style.modalAdd}
             title={t("addgamepreferences")}
-            fieldClassName={style.editFormField}
           />
-        </div>
+        </Modal>
       )}
 
-      {gamesFavourite.length ? (
+      {fetchedFav && gamesFavourite ? (
         <Games
           header={t("favouritegames")}
           games={gamesFavourite}

@@ -301,8 +301,9 @@ router.get("/games/comments", authController.tokenVerify, (req, res) => {
 router.put("/games/comment", (req, res) => {
   const { comment: comm, comment_id } = req.body;
 
-  const sql = `UPDATE comment SET comm = '${comm}' WHERE comment_id = ${comment_id} `;
-  executeQuery(res, sql);
+  const sql = `UPDATE comment SET comm = ? WHERE comment_id = ? `;
+  const values = [[comm.slice(0, 299)], [comment_id]];
+  executeQuery(res, sql, values);
 });
 
 router.get("/games/:id/like", authController.tokenVerify, (req, res) => {
@@ -524,7 +525,8 @@ router.post("/games/:id/comment", authController.tokenVerify, (req, res) => {
   executeQuery(res, sql, values);
 });
 router.get("/games/:id", (req, res) => {
-  const sql = `SELECT * FROM gameInfo WHERE game_id = ${req.params.id}`;
+  const game_id = req.params.id;
+  const sql = `SELECT * FROM gameInfo WHERE game_id = ${game_id}`;
 
   queryImgBase64(res, sql);
 

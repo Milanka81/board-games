@@ -1,0 +1,16 @@
+.rating {
+  &__gameRating {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2.5rem;
+  }
+
+  &__star {
+    cursor: pointer;
+    transition: color 200ms;
+  }
+  &__avgRating {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}

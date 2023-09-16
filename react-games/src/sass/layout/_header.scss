@@ -1,0 +1,21 @@
+.header {
+  background-color: $color-grey-dark;
+  width: 64em;
+  height: 4rem;
+  color: $color-white;
+  font-size: $font-size-l;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $gap-l;
+  padding: 0.5rem 1.5rem 1rem 1rem;
+  border-bottom: 0.6rem solid #1a1a1a;
+  border-top: 0.6rem solid $color-grey-dark;
+
+  &__mainNavList {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: $gap-l;
+  }
+}

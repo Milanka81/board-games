@@ -1,0 +1,23 @@
+.image {
+  @include absCenter;
+  display: flex;
+  background-color: $color-primary;
+  height: 70%;
+  width: 100%;
+  box-shadow: $box-shadow-m;
+  border-radius: $border-radius-l;
+  padding: $padding-s;
+  align-content: center;
+  justify-content: center;
+
+  &__coverImg {
+    width: 90%;
+    align-self: center;
+  }
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+    // padding-right: 1rem;
+    align-items: flex-end;
+  }
+}

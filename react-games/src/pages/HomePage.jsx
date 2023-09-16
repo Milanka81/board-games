@@ -1,69 +1,60 @@
-import { useEffect, useState } from "react";
-import { getMostLiked, getFilteredGames, getNewGames } from "../service";
+import { useState } from "react";
 import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
 import UserHomePage from "./UserHomePage";
 import Loader from "../components/Loader";
-import AdminHomePage from "./AdminHomePage";
 import SearchBar from "../components/SearchBar";
-import style from "./HomePage.module.css";
 import { useAuth } from "../components/AuthContext";
+import { useMostLikedGames, useNewGames } from "../hooks/games";
+import { useDebounce } from "../hooks/utilsHooks";
+import { useFilteredGames } from "../hooks/useFilteredGames";
+import NavBtn from "../components/NavBtn";
 
 const HomePage = () => {
   const { t } = useTranslation(["home"]);
   const { admin } = useAuth();
   const [isAdmin] = admin;
-  const [isLoading, setIsLoading] = useState(true);
-  const [filteredGames, setFilteredGames] = useState([]);
-  const [mostLiked, setMostLiked] = useState([]);
-  const [newGames, setNewGames] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const currentPage = 1;
   const limit = "";
   const sortBy = "game_id";
 
-  useEffect(() => {
-    const filter = setTimeout(() => {
-      getFilteredGames(currentPage, limit, searchInput, sortBy)
-        .then((res) => {
-          setFilteredGames(res.data);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }, 1000);
+  const search = useDebounce(searchInput);
+  const { filteredGames, isLoading } = useFilteredGames(
+    currentPage,
+    limit,
+    search,
+    sortBy
+  );
 
-    return () => clearTimeout(filter);
-  }, [currentPage, searchInput]);
+  const { data: newGames } = useNewGames();
+  const { data: mostLiked } = useMostLikedGames();
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
 
-  useEffect(() => {
-    getMostLiked().then((res) => setMostLiked(res.data));
-  }, []);
-
-  useEffect(() => {
-    getNewGames().then((res) => setNewGames(res.data));
-  }, []);
-
   return (
-    <Loader isLoading={isLoading}>
+    <>
       {isAdmin ? (
-        <AdminHomePage />
+        <>
+          <NavBtn path="/users" />
+          <NavBtn path="/games" />
+        </>
       ) : (
         <SearchBar
           handleChange={handleChange}
           placeholder={t("searchplaceholder")}
-          className={style.search}
+          className="search"
         />
       )}
-      <Games header={t("allgames")} games={filteredGames} id="allGames" />
-      <Games header={t("newgames")} games={newGames} id="newGames" />
-      <Games header={t("mostlikedgames")} games={mostLiked} id="likedGames" />
-      {!isAdmin && <UserHomePage />}
-    </Loader>
+      <Loader isLoading={isLoading}>
+        <Games header={t("allgames")} games={filteredGames} id="allGames" />
+        <Games header={t("newgames")} games={newGames} id="newGames" />
+        <Games header={t("mostlikedgames")} games={mostLiked} id="likedGames" />
+        {!isAdmin && <UserHomePage />}
+      </Loader>
+    </>
   );
 };
 

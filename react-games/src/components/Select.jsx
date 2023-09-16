@@ -1,7 +1,6 @@
 import ReactFlagsSelect from "react-flags-select";
 import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import style from "./Select.module.css";
 
 const Select = memo(function Select({ handleLanguageChange }) {
   const [selected, setSelected] = useState(
@@ -16,7 +15,7 @@ const Select = memo(function Select({ handleLanguageChange }) {
 
   return (
     <ReactFlagsSelect
-      className={style.selectField}
+      className="select"
       value={localStorage.getItem("i18nextLng")}
       onChange={handleLanguageChange}
       selected={selected}

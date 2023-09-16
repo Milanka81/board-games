@@ -1,0 +1,36 @@
+.comment {
+  &__info {
+    display: inline;
+    font-size: $font-size-s;
+    font-style: italic;
+    color: $color-text;
+    text-shadow: $color-primary-dark;
+  }
+  &__input {
+    align-items: center;
+    height: 3.6rem;
+    width: 100%;
+    padding: $padding-s;
+    font-size: $default-font-size;
+    font-weight: 600;
+    border: none;
+    background-color: $color-primary-light;
+    border-radius: $border-radius-m;
+    box-shadow: $box-shadow-s;
+
+    &-edit {
+      @extend .comment__input;
+      box-shadow: none;
+      background-color: $color-white;
+    }
+  }
+
+  &__text {
+    font-size: $default-font-size;
+    color: $color-primary-dark-hover;
+    grid-column: 1/ -1;
+    text-align: justify;
+    padding: 0.5rem 0;
+    width: 100%;
+  }
+}

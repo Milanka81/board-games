@@ -2,9 +2,7 @@ import { useFormik } from "formik";
 import { addGame } from "../service";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
-import style from "./AddGame.module.css";
 import FormBtns from "../components/FormBtns";
 const AddGame = ({ className, setOpenModal }) => {
   const navigate = useNavigate();
@@ -49,9 +47,9 @@ const AddGame = ({ className, setOpenModal }) => {
         onSubmit={formik.handleSubmit}
         encType="multipart/form-data"
       >
-        <h5 className={style.title}>{t("game:addnewgame")}</h5>
-        <div className={style.imgContainer}>
-          <label htmlFor="img" className={style.customFileUpload}>
+        <h5 className="title">{t("game:addnewgame")}</h5>
+        <div className="u-flex u-column u-gap-m">
+          <label htmlFor="img" className="game__customFileUpload">
             {t("common:uploadimage")}{" "}
           </label>
           <input
@@ -64,18 +62,18 @@ const AddGame = ({ className, setOpenModal }) => {
 
           {formik.values.img && (
             <img
-              className={style.addImg}
+              className="game__addImg"
               src={URL.createObjectURL(formik.values.img)}
               alt="game"
             />
           )}
-          {formik.touched.img && formik.errors.img
-            ? alertMessage("warning", `${formik.errors.img}`)
-            : null}
+          {formik.touched.img && formik.errors.img ? (
+            <p className="helperText">{formik.errors.img}</p>
+          ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             name="name"
             id="name"
             placeholder={t("game:name")}
@@ -86,12 +84,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.name && formik.errors.name ? (
-            <p className={style.helperText}>{formik.errors.name}</p>
+            <p className="helperText">{formik.errors.name}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             id="minPlayers"
             placeholder={t("game:minplayers")}
             variant="outlined"
@@ -101,12 +99,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.minPlayers && formik.errors.minPlayers ? (
-            <p className={style.helperText}>{formik.errors.minPlayers}</p>
+            <p className="helperText">{formik.errors.minPlayers}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             id="maxPlayers"
             placeholder={t("game:maxplayers")}
             variant="outlined"
@@ -116,12 +114,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.maxPlayers && formik.errors.maxPlayers ? (
-            <p className={style.helperText}>{formik.errors.maxPlayers}</p>
+            <p className="helperText">{formik.errors.maxPlayers}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             id="year"
             placeholder={t("game:year")}
             variant="outlined"
@@ -131,12 +129,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.year && formik.errors.year ? (
-            <p className={style.helperText}>{formik.errors.year}</p>
+            <p className="helperText">{formik.errors.year}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             id="gameLength"
             placeholder={t("game:playingtime")}
             variant="outlined"
@@ -147,12 +145,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.gameLength && formik.errors.gameLength ? (
-            <p className={style.helperText}>{formik.errors.gameLength}</p>
+            <p className="helperText">{formik.errors.gameLength}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             name="artist"
             id="artist"
             placeholder={t("game:artist")}
@@ -163,12 +161,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.artist && formik.errors.artist ? (
-            <p className={style.helperText}>{formik.errors.artist}</p>
+            <p className="helperText">{formik.errors.artist}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             name="designer"
             id="designer"
             placeholder={t("game:designer")}
@@ -179,12 +177,12 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.designer && formik.errors.designer ? (
-            <p className={style.helperText}>{formik.errors.designer}</p>
+            <p className="helperText">{formik.errors.designer}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="u-flex u-column">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit u-height-s"
             name="category"
             id="category"
             placeholder={t("game:category")}
@@ -195,7 +193,7 @@ const AddGame = ({ className, setOpenModal }) => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.category && formik.errors.category ? (
-            <p className={style.helperText}>{formik.errors.category}</p>
+            <p className="helperText">{formik.errors.category}</p>
           ) : null}
         </div>
         <FormBtns

@@ -4,7 +4,6 @@ import { register } from "../service";
 import { useNavigate } from "react-router-dom";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
-import style from "./Form.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -42,12 +41,12 @@ const Register = () => {
   });
 
   return (
-    <div className={style.container}>
-      <form className={style.form} onSubmit={formik.handleSubmit}>
-        <h5 className={style.title}>{t("profile:register")}</h5>
-        <div className={style.fields}>
+    <div className="container">
+      <form className="form u-mt-m" onSubmit={formik.handleSubmit}>
+        <h5 className="title u-mb-s">{t("profile:register")}</h5>
+        <div className="fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField-edit"
             id="firstName"
             placeholder={t("profile:firstname")}
             variant="outlined"
@@ -57,12 +56,12 @@ const Register = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.firstName && formik.errors.firstName ? (
-            <p className={style.helperText}>{formik.errors.firstName}</p>
+            <p className="helperText">{formik.errors.firstName}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="lastName"
             placeholder={t("profile:lastname")}
             variant="outlined"
@@ -72,12 +71,12 @@ const Register = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.lastName && formik.errors.lastName ? (
-            <p className={style.helperText}>{formik.errors.lastName}</p>
+            <p className="helperText">{formik.errors.lastName}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="username"
             placeholder={t("profile:username")}
             variant="outlined"
@@ -87,12 +86,12 @@ const Register = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.username && formik.errors.username ? (
-            <p className={style.helperText}>{formik.errors.username}</p>
+            <p className="helperText">{formik.errors.username}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="password"
             placeholder={t("profile:password")}
             variant="outlined"
@@ -102,12 +101,12 @@ const Register = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p className={style.helperText}>{formik.errors.password}</p>
+            <p cclassName="helperText">{formik.errors.password}</p>
           ) : null}
         </div>
-        <div className={style.fields}>
+        <div className="form__fieldsContainer">
           <input
-            className={style.editFormField}
+            className="form__inputField form__inputField-edit"
             id="email"
             placeholder={t("profile:email")}
             variant="outlined"
@@ -117,15 +116,15 @@ const Register = () => {
             onBlur={formik.handleBlur}
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className={style.helperText}>{formik.errors.email}</p>
+            <p className="helperText">{formik.errors.email}</p>
           ) : null}
         </div>
-        <button className={style.btnFormSubmit} type="submit">
+        <button className="btn__submit" type="submit">
           {t("common:submit")}
         </button>
         <button
           type="button"
-          className={style.btnLink}
+          className="btn__link"
           onClick={() => {
             navigate("/login");
           }}

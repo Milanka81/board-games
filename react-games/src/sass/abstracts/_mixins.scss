@@ -1,0 +1,16 @@
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flexColAlignC {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

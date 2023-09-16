@@ -1,0 +1,63 @@
+.games {
+  &__grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 0 2rem;
+    row-gap: 2rem;
+    column-gap: 3rem;
+  }
+  &__container {
+    @include flexColumn;
+    position: relative;
+    width: 95em;
+    height: auto;
+    justify-content: center;
+    padding-top: $padding-s;
+    padding-bottom: $padding-l;
+  }
+  &__gameImg {
+    transition: all 1s ease;
+    width: 13rem;
+    height: 11rem;
+    padding: $padding-s;
+  }
+  &__gameHover {
+    display: flex;
+    background-color: $color-primary-light;
+    position: relative;
+    width: 15rem;
+    height: 12rem;
+    box-shadow: $box-shadow-m;
+    border-radius: $border-radius-l;
+    padding: $padding-s;
+    align-content: center;
+    justify-content: center;
+
+    &:hover .games__gameImg {
+      transform: scale(115%);
+      opacity: 0;
+    }
+    &:hover .games__details {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__details {
+    @include flexColumn;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $color-black;
+    opacity: 1;
+    visibility: hidden;
+    font-size: $font-size-s;
+    gap: $gap-s;
+    z-index: 1;
+    border-radius: $border-radius-l;
+    padding: $padding-s;
+  }
+}

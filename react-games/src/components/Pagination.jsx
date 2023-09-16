@@ -1,15 +1,10 @@
-import { getAllGames, getAllUsers } from "../service";
 import { useState } from "react";
-import style from "./Pagination.module.css";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
 
-const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
+const Pagination = ({ currentPage, setCurrentPage, count: numPages }) => {
   const { t } = useTranslation(["common"]);
-  const [count, setCount] = useState(0);
-  const numPages = Math.ceil(count / limit);
   const [showAllPages, setShowAllPages] = useState(false);
-
   const handlePrevious = () =>
     currentPage > 1 ? setCurrentPage(currentPage - 1) : currentPage;
 
@@ -19,11 +14,11 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
   const pageNumbers = Array.from({ length: numPages }, (_, i) => i + 1);
 
   const activePage = (el) =>
-    currentPage === el ? `${style.btnPageActive}` : `${style.btnPage}`;
+    currentPage === el ? "pagination__btnPage-active" : "pagination__btnPage";
 
   const btnDots = () => (
     <button
-      className={style.btnPage}
+      className="pagination__btnPage"
       key="allPages"
       onClick={() => setShowAllPages(true)}
     >
@@ -31,17 +26,6 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
     </button>
   );
 
-  switch (list) {
-    case "usersList":
-      getAllUsers().then((res) => setCount(res.data[0].count));
-      break;
-    case "gamesList":
-      getAllGames().then((res) => setCount(res.data[0].count));
-      break;
-    default:
-      console.log("unexpected list");
-      break;
-  }
   const secondBtn = () => {
     currentPage > 1 && currentPage <= numPages - 2
       ? setCurrentPage(currentPage)
@@ -50,9 +34,11 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
       : setCurrentPage(2);
   };
 
+  if (numPages <= 1) return null;
+
   return (
-    <div className={style.pagination}>
-      <button className={style.btn} onClick={handlePrevious}>
+    <div className="pagination">
+      <button className="btn__navBtn-small" onClick={handlePrevious}>
         {t("previous")}
       </button>
       {pageNumbers.length <= 5 || showAllPages ? (
@@ -79,7 +65,7 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
             className={
               currentPage > 1 && currentPage < numPages - 1
                 ? activePage(currentPage)
-                : `${style.btnPage}`
+                : "pagination__btnPage"
             }
             key="current"
             onClick={secondBtn}
@@ -108,7 +94,7 @@ const Pagination = ({ currentPage, setCurrentPage, limit, list }) => {
         </>
       )}
 
-      <button className={style.btn} onClick={handleNext}>
+      <button className="btn__navBtn-small" onClick={handleNext}>
         {t("next")}
       </button>
     </div>

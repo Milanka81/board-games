@@ -1,4 +1,3 @@
-import style from "./FormBtns.module.css";
 const FormBtns = ({
   denyBtnName,
   denyBtnOnClick,
@@ -8,10 +7,10 @@ const FormBtns = ({
   disabled,
 }) => {
   return (
-    <div className={style.btnsContainer}>
+    <div className="grid-2-cols">
       {!disabled && (
         <button
-          className={`${style.btnFormSubmit} ${style.red}`}
+          className="btn__submit btn--red"
           type="button"
           onClick={denyBtnOnClick}
         >
@@ -19,7 +18,7 @@ const FormBtns = ({
         </button>
       )}
       <button
-        className={`${style.btnFormSubmit} ${style.green}`}
+        className="btn__submit btn--green"
         type={type}
         onClick={confirmBtnOnClick}
       >

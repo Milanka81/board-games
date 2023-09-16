@@ -37,14 +37,18 @@ const executeQuery = (res, sql, values) => {
 };
 
 const queryImgBase64 = (res, sql) => {
-  connection.query(sql, (err, data) => {
-    if (err) {
-      throw err;
-    }
+  try {
+    connection.query(sql, (err, data) => {
+      if (err) {
+        throw err;
+      }
 
-    data[0].img ? (data[0].img = data[0].img.toString("base64")) : "";
-    res.send(data[0]);
-  });
+      data[0].img ? (data[0].img = data[0].img.toString("base64")) : "";
+      res.send(data[0]);
+    });
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 const executeQueryImgBase64Array = (res, sql) => {

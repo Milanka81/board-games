@@ -1,24 +1,22 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { TextField } from "@mui/material";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Rating from "../components/Rating";
 import Comment from "../components/Comment";
 import { useTranslation } from "react-i18next";
-import { numberPlayers, handleEmpty, imgSrc, alertMessage } from "../utils";
-import style from "./ViewEditGame.module.css";
+import { numberPlayers, handleEmpty, imgSrc } from "../utils";
 import {
-  getGameComments,
-  getGame,
   getGameLike,
   getGameFavourite,
   postLike,
   postFavourite,
-  postComment,
 } from "../service";
 import { useAuth } from "../components/AuthContext";
-import NavBtns from "../components/NavBtns";
+import NavBtn from "../components/NavBtn";
 import FormBtns from "../components/FormBtns";
 import EditGame from "./EditGame";
+import { useGetGame } from "../hooks/game";
+import Loader from "../components/Loader";
+import { useGetGameComments } from "../hooks/comment";
 
 const Game = () => {
   let { id } = useParams();
@@ -26,9 +24,6 @@ const Game = () => {
   const navigate = useNavigate();
   const { admin } = useAuth();
   const [isAdmin] = admin;
-  const [game, setGame] = useState({});
-  const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
   const [liked, setLiked] = useState(false);
   const [favourite, setFavourite] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -40,21 +35,10 @@ const Game = () => {
       ? `${t("game:favourited")} ❤️`
       : `${t("game:addtofavourites")} 🤍`;
 
-  const refreshGame = useCallback(() => {
-    getGame(id).then((res) => setGame(res.data));
-  }, [id]);
+  const { data: game, isSuccess, isLoading, refetch } = useGetGame(id);
 
-  useEffect(() => {
-    refreshGame();
-  }, [refreshGame]);
-
-  const refreshComments = useCallback(() => {
-    getGameComments(id).then((res) => setComments(res.data));
-  }, [id]);
-
-  useEffect(() => {
-    refreshComments();
-  }, [refreshComments]);
+  const { data: gameComments, refetch: refetchComments } =
+    useGetGameComments(id);
 
   useEffect(() => {
     getGameLike(id).then((res) => {
@@ -70,10 +54,6 @@ const Game = () => {
     });
   }, [id]);
 
-  const handleChange = (e) => {
-    setComment(e.target.value);
-  };
-
   const like = () => {
     postLike(id).then(() => setLiked(!liked));
   };
@@ -82,121 +62,105 @@ const Game = () => {
     postFavourite(id).then(() => setFavourite(!favourite));
   };
 
-  const addComment = (e) => {
-    e.preventDefault();
-    if (!comment) return alertMessage("warning", "Add your comment!");
-    postComment(id, comment).then((res) => {
-      setComment("");
-      refreshComments();
-    });
-  };
-
   return (
     <>
-      <NavBtns />
-      <div className={style.gameContainer}>
+      <NavBtn path={-1} />
+      <div className="gridContainer">
         {isEdit ? (
           <EditGame
             game={game}
-            refreshGame={refreshGame}
+            isSuccess={isSuccess}
+            refreshGame={refetch}
             setIsEdit={setIsEdit}
           />
         ) : (
-          <div className={style.gameInfo}>
-            <div className={style.form}>
-              <div className={style.container}>
-                <img
-                  className={style.gameImg}
-                  src={imgSrc(game.img)}
-                  alt={game.name}
-                />
-              </div>
-              <div className={style.gameDetails}>
-                <p className={style.gameDetailsName}>
-                  <strong>{handleEmpty(game.name)}</strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:year")}:{" "}
-                  <strong className={style.formField}>
-                    {handleEmpty(game.year)}
-                  </strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:numberofplayers")}:
-                  <strong className={style.formField}>
-                    {numberPlayers(
-                      handleEmpty(game.min_players),
-                      handleEmpty(game.max_players)
-                    )}
-                  </strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:playingtime")}:
-                  <strong className={style.formField}>
-                    {handleEmpty(game.game_length)}
-                  </strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:designer")}:{" "}
-                  <strong className={style.formField}>
-                    {handleEmpty(game.designer)}
-                  </strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:artist")}:{" "}
-                  <strong className={style.formField}>
-                    {handleEmpty(game.artist)}
-                  </strong>
-                </p>
-                <p className={style.gridField}>
-                  {t("game:category")}:{" "}
-                  <strong className={style.formField}>
-                    {handleEmpty(game.category)}
-                  </strong>
-                </p>
-              </div>
-              {isAdmin && (
-                <FormBtns
-                  denyBtnName={t("common:back")}
-                  denyBtnOnClick={() => navigate(-1)}
-                  confirmBtnName={t("common:edit")}
-                  confirmBtnOnClick={() => setIsEdit(true)}
-                />
+          <Loader isLoading={isLoading}>
+            <div className="flexContainer">
+              {isSuccess && (
+                <div className="form u-width">
+                  <div className="game__imgContainer">
+                    <img
+                      className="game__img"
+                      src={imgSrc(game.img)}
+                      alt={game.name}
+                    />
+                  </div>
+                  <div className="u-flex u-column u-gap-s">
+                    <p className="title u-mb-s">
+                      <strong>{handleEmpty(game.name)}</strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:year")}:{" "}
+                      <strong className="form__inputField">
+                        {handleEmpty(game.year)}
+                      </strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:numberofplayers")}:
+                      <strong className="form__inputField">
+                        {numberPlayers(
+                          handleEmpty(game.min_players),
+                          handleEmpty(game.max_players)
+                        )}
+                      </strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:playingtime")}:
+                      <strong className="form__inputField">
+                        {handleEmpty(game.game_length)}
+                      </strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:designer")}:{" "}
+                      <strong className="form__inputField">
+                        {handleEmpty(game.designer)}
+                      </strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:artist")}:{" "}
+                      <strong className="form__inputField">
+                        {handleEmpty(game.artist)}
+                      </strong>
+                    </p>
+                    <p className="form__gridField">
+                      {t("game:category")}:{" "}
+                      <strong className="form__inputField">
+                        {handleEmpty(game.category)}
+                      </strong>
+                    </p>
+                  </div>
+                  {isAdmin && (
+                    <FormBtns
+                      denyBtnName={t("common:back")}
+                      denyBtnOnClick={() => navigate(-1)}
+                      confirmBtnName={t("common:edit")}
+                      confirmBtnOnClick={() => setIsEdit(true)}
+                    />
+                  )}
+                </div>
               )}
             </div>
-          </div>
+          </Loader>
         )}
-        <div className={style.gameOpinions}>
+        <div className="flexContainer">
           {!isAdmin && (
-            <div className={style.btnsLikeFav}>
-              <button className={style.likeFav} onClick={addToFavourites}>
+            <div className="u-flex u-justify-start u-gap-m">
+              <button className="btn__reaction" onClick={addToFavourites}>
                 {btnFavName()}
               </button>
 
-              <button className={style.likeFav} onClick={like}>
+              <button className="btn__reaction" onClick={like}>
                 {btnLikeName()}
               </button>
             </div>
           )}
           <Rating id={id} />
-          {!isAdmin && (
-            <form className={style.commentForm} onSubmit={(e) => addComment(e)}>
-              <TextField
-                value={comment}
-                className={style.commentInput}
-                onChange={handleChange}
-                placeholder={t("game:addcomment")}
-                multiline
-                inputProps={{ maxLength: 300 }}
-              />
 
-              <button className={`${style.btn} ${style.green}`} type="submit">
-                {t("common:submit")}
-              </button>
-            </form>
-          )}
-
-          <Comment refreshComments={refreshComments} comments={comments} />
+          <Comment
+            gameId={id}
+            comments={gameComments}
+            refetch={refetchComments}
+          />
         </div>
       </div>
     </>

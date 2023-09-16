@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { numberPlayers, imgSrc } from "../utils";
 import { useTranslation } from "react-i18next";
-import style from "./Games.module.css";
 
 const Games = ({ header, games, id }) => {
   const navigate = useNavigate();
@@ -11,8 +10,8 @@ const Games = ({ header, games, id }) => {
 
   const HoverText = ({ game }) => {
     return (
-      <div className={style.details}>
-        <h3>{game.name}</h3>
+      <div className="games__details">
+        <h3 className="u-m-xs">{game.name}</h3>
         <p>
           {t("year")}: <strong>{game.year}</strong>
         </p>
@@ -28,13 +27,13 @@ const Games = ({ header, games, id }) => {
   };
 
   return (
-    <div className={style.container}>
-      <h2 className={style.title}>{header}</h2>
-      <div className={style.grid}>
+    <div className="games__container">
+      <h2 className="title u-m-m">{header}</h2>
+      <div className="games__grid">
         {games &&
           games.map((game) => (
             <div
-              className={style.gameHover}
+              className="games__gameHover"
               onClick={() => {
                 navigate(`/game/${game.game_id}`);
                 document.title = `Board Game | ${game.name}`;
@@ -44,7 +43,7 @@ const Games = ({ header, games, id }) => {
               key={`${id}-${game.game_id}`}
             >
               <img
-                className={style.gameImg}
+                className="games__gameImg"
                 src={imgSrc(game.img)}
                 alt={game.name}
               />

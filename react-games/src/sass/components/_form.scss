@@ -1,0 +1,72 @@
+.form {
+  @include flexColumn;
+  width: 30rem;
+  min-height: fit-content;
+  padding: $padding-l;
+  gap: $gap-m;
+  background-color: $color-primary;
+  box-shadow: $box-shadow-l;
+  border-radius: $border-radius-l;
+  justify-content: space-around;
+
+  &__fieldsContainer {
+    @include flexColumn;
+  }
+
+  &__flexInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $gap-s;
+  }
+
+  &__gridField {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr;
+    align-items: baseline;
+    justify-items: start;
+    width: 100%;
+    font-size: $font-size-s;
+  }
+
+  &__inputField {
+    align-items: center;
+    height: 3.6rem;
+    width: 100%;
+    padding: $padding-s;
+    font-weight: 600;
+    border: none;
+    border-radius: $border-radius-l;
+    background-color: $color-primary-medium;
+    box-shadow: $box-shadow-s;
+    font-size: $default-font-size;
+    color: $color-black;
+
+    &::placeholder {
+      color: $color-grey-light;
+    }
+
+    &-edit {
+      @extend .form__inputField;
+      background-color: $color-primary-light;
+    }
+  }
+  &__select {
+    background-color: $color-white;
+    color: $color-black;
+  }
+  &__preferencesContainer {
+    @include flexColumn;
+    word-wrap: normal;
+    gap: $gap-xs;
+  }
+  &__subscriptionContainer {
+    @include flexColAlignC;
+    gap: $gap-xs;
+  }
+
+  &__checkbox {
+    width: 3rem;
+    height: 1.5rem;
+  }
+}

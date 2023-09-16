@@ -1,0 +1,14 @@
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes error {
+  from {
+    transform: scale(0%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}

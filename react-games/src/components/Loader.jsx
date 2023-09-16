@@ -1,4 +1,3 @@
-import style from "./Loader.module.css";
 import { useTranslation } from "react-i18next";
 
 const Loader = ({ isLoading, children }) => {
@@ -6,8 +5,8 @@ const Loader = ({ isLoading, children }) => {
 
   if (isLoading) {
     return (
-      <div className={style.loader}>
-        <span className={style.spinner}>🎲</span>
+      <div className="loader">
+        <span className="loader__spinner">🎲</span>
         <h3>{t("loading")}</h3>
       </div>
     );

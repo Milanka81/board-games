@@ -1,0 +1,25 @@
+.grid-2-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  row-gap: 1rem;
+  border-radius: $border-radius-m;
+
+  &__row {
+    grid-column-start: span 2;
+    gap: 1rem;
+  }
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  width: 95em;
+  // justify-items: center;
+}
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 3rem;
+}

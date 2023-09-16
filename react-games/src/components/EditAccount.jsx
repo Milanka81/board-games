@@ -3,9 +3,9 @@ import * as Yup from "yup";
 import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
-import style from "./Account.module.css";
 import FormBtns from "./FormBtns";
-const EditAccount = ({ user, handleCancel, fetchUser }) => {
+
+const EditAccount = ({ user = {}, handleCancel, fetchUser }) => {
   const { t } = useTranslation(["common", "profile"]);
   const { first_name, last_name, username, email, role, user_id } = user;
 
@@ -41,10 +41,10 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
   });
 
   return (
-    <form className={style.form} onSubmit={formik.handleSubmit}>
-      <div className={style.fields}>
+    <form className="form" onSubmit={formik.handleSubmit}>
+      <div className="fieldsContainer">
         <input
-          className={style.editFormField}
+          className="form__inputField form__inputField-edit"
           id="firstName"
           placeholder={t("profile:firstname")}
           variant="outlined"
@@ -54,12 +54,12 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.firstName && formik.errors.firstName ? (
-          <p className={style.helperText}>{formik.errors.firstName}</p>
+          <p className="helperText">{formik.errors.firstName}</p>
         ) : null}
       </div>
-      <div className={style.fields}>
+      <div className="fieldsContainer">
         <input
-          className={style.editFormField}
+          className="form__inputField form__inputField-edit"
           id="lastName"
           placeholder={t("profile:lastname")}
           variant="outlined"
@@ -69,12 +69,12 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.lastName && formik.errors.lastName ? (
-          <p className={style.helperText}>{formik.errors.lastName}</p>
+          <p className="helperText">{formik.errors.lastName}</p>
         ) : null}
       </div>
-      <div className={style.fields}>
+      <div className="fieldsContainer">
         <input
-          className={style.formField}
+          className="form__inputField"
           id="username"
           placeholder={t("profile:username")}
           variant="outlined"
@@ -85,12 +85,12 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           disabled
         />
         {formik.touched.username && formik.errors.username ? (
-          <p className={style.helperText}>{formik.errors.username}</p>
+          <p className="helperText">{formik.errors.username}</p>
         ) : null}
       </div>
-      <div className={style.fields}>
+      <div className="fieldsContainer">
         <input
-          className={style.editFormField}
+          className="form__inputField form__inputField-edit"
           id="email"
           placeholder={t("profile:email")}
           variant="outlined"
@@ -100,12 +100,12 @@ const EditAccount = ({ user, handleCancel, fetchUser }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.email && formik.errors.email ? (
-          <p className={style.helperText}>{formik.errors.email}</p>
+          <p className="helperText">{formik.errors.email}</p>
         ) : null}
       </div>
-      <div className={style.fields}>
+      <div className="fieldsContainer">
         <input
-          className={style.formField}
+          className="form__inputField"
           id="role"
           placeholder={t("profile:role")}
           variant="outlined"

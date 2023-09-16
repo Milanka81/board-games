@@ -1,0 +1,12 @@
+.select {
+  border: none;
+  color: $color-primary-dark;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: $border-radius-l;
+  transition: all 0.5s;
+  background-color: $color-primary-light;
+  height: 2.3rem;
+  width: 9rem;
+}

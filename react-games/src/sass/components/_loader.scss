@@ -1,0 +1,14 @@
+.loader {
+  @include flexColAlignC;
+  justify-content: center;
+  gap: $gap-m;
+  width: 100%;
+  height: 100%;
+
+  &__spinner {
+    font-size: 5rem;
+    animation: loading 1s linear infinite;
+    align-self: center;
+    margin-top: 10rem;
+  }
+}

@@ -1,0 +1,30 @@
+.pagination {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+
+  &__btnPage {
+    background-color: $color-white;
+    border: none;
+    color: $color-primary-dark;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    transition: all 0.5s;
+
+    &:hover {
+      box-shadow: $box-shadow-m;
+    }
+    &-active {
+      @extend .pagination__btnPage;
+      background-color: #ce6d18;
+      color: $color-white;
+    }
+  }
+}

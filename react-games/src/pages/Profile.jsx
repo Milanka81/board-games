@@ -1,96 +1,76 @@
-import { useState, useEffect } from "react";
-import board from "../img/board.jpg";
+import { useState } from "react";
 import Account from "../components/Account";
 import Comment from "../components/Comment";
-import { getLoggedUser, getUserComments } from "../service";
 import EditAccount from "../components/EditAccount";
 import Preferences from "./Preferences";
 import { useTranslation } from "react-i18next";
-import style from "./Profile.module.css";
 import { useAuth } from "../components/AuthContext";
+import { useGetUserComments } from "../hooks/comment";
+import { useGetLoggedUser } from "../hooks/loggedUser";
 
 const Profile = () => {
   const { t } = useTranslation(["game", "common"]);
   const { admin } = useAuth();
   const [isAdmin] = admin;
   const [userId, setUserId] = useState(null);
-  const [user, setUser] = useState("");
-  const [myComments, setMyComments] = useState("");
   const [showAccount, setShowAccount] = useState(true);
   const [showPreferences, setShowPreferences] = useState(false);
 
-  const fetchComments = () => {
-    getUserComments().then((res) => setMyComments(res.data));
-  };
+  const { data: user, refetch: fetchUser } = useGetLoggedUser();
 
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const fetchUser = () => {
-    getLoggedUser().then((res) => setUser(res.data[0]));
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const { data: myComments, refetch } = useGetUserComments(user?.user_id);
 
   const handleEdit = () => {
-    setUserId(user.user_id);
+    setUserId(user?.user_id);
   };
 
   return (
     <div>
       {!isAdmin && (
-        <div className={style.flex}>
-          <div className={`${style.flex} ${style.margin}`}>
-            <button
-              className={style.btn}
-              onClick={() => {
-                setShowAccount(() => !showAccount);
-                setShowPreferences(false);
-                setUserId(null);
-              }}
-            >
-              {t("common:account")}
-            </button>
+        <div className="flex u-justify-start u-mt-s">
+          <button
+            className="btn__navBtn-small u-m-xs"
+            onClick={() => {
+              setShowAccount(() => !showAccount);
+              setShowPreferences(false);
+              setUserId(null);
+            }}
+          >
+            {t("common:account")}
+          </button>
 
-            <button
-              className={style.btn}
-              onClick={() => {
-                setShowPreferences(() => !showPreferences);
-                setUserId(null);
-              }}
-            >
-              {t("common:preferences")}
-            </button>
-          </div>
+          <button
+            className="btn__navBtn-small u-m-xs"
+            onClick={() => {
+              setShowPreferences(() => !showPreferences);
+              setUserId(null);
+            }}
+          >
+            {t("common:preferences")}
+          </button>
         </div>
       )}
-      <div className={style.gameContainer}>
-        <div className={`${style.gameInfo} ${style.centar}`}>
+      <div className="gridContainer">
+        <div className="flexContainer u-ml-m ">
           {showPreferences ? (
             <>
-              <h3 className={style.title}>{t("common:preferences")}:</h3>
+              <h3 className="title">{t("common:preferences")}:</h3>
               {userId ? (
                 <Preferences
                   componentState="isEditing"
-                  className={`${style.form} ${style.account}`}
-                  fieldClassName={style.editFormField}
                   handleCancel={() => setUserId(null)}
                 />
               ) : (
                 <Preferences
                   componentState="isViewing"
-                  className={`${style.form} ${style.account}`}
-                  fieldClassName={style.formField}
+                  fieldClassName="form__inputField"
                   handleEdit={handleEdit}
                 />
               )}
             </>
           ) : (
             <>
-              <h3 className={style.title}>{t("common:accountinfo")}:</h3>
+              <h3 className="title">{t("common:accountinfo")}:</h3>
               {userId ? (
                 <EditAccount
                   user={user}
@@ -103,16 +83,9 @@ const Profile = () => {
             </>
           )}
         </div>
-
-        {myComments[0] ? (
-          <Comment refreshComments={fetchComments} comments={myComments} />
-        ) : (
-          <div className={style.gameOpinions}>
-            <div className={style.cover}>
-              <img className={style.coverImg} alt="game" src={board} />
-            </div>
-          </div>
-        )}
+        <div className="flexContainer">
+          <Comment comments={myComments} refetch={refetch} />
+        </div>
       </div>
     </div>
   );

@@ -1,21 +1,21 @@
-import style from "./ListBtns.module.css";
-
 const ListBtns = ({
   denyBtnName,
   denyBtnOnClick,
   confirmBtnName,
   confirmBtnOnClick,
-  containerClassName = `${style.actionBtns} ${style.games}`,
+  type,
+  containerClassName = "u-flex u-gap-xs u-column u-align-center ",
 }) => {
   return (
     <div className={containerClassName}>
       <button
-        className={`${style.btn} ${style.green}`}
+        type={type}
+        className="btn__navBtn-small btn--green"
         onClick={confirmBtnOnClick}
       >
         {confirmBtnName}
       </button>
-      <button className={`${style.btn} ${style.red}`} onClick={denyBtnOnClick}>
+      <button className="btn__navBtn-small btn--red" onClick={denyBtnOnClick}>
         {denyBtnName}
       </button>
     </div>

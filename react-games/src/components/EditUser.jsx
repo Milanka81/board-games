@@ -4,7 +4,6 @@ import { editUser } from "../service";
 import { alertMessage } from "../utils";
 import { useTranslation } from "react-i18next";
 import ListBtns from "./ListBtns";
-import style from "./ViewEditUsers.module.css";
 
 const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
   const { t } = useTranslation(["profile", "common"]);
@@ -43,7 +42,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
       <td>{i + 1}</td>
       <td>
         <input
-          className={style.editField}
+          className="user__editField"
           name="firstName"
           placeholder={t("profile:firstname")}
           variant="outlined"
@@ -53,13 +52,13 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.firstName && formik.errors.firstName ? (
-          <p className="helper-text">{formik.errors.firstName}</p>
+          <p className="helperText">{formik.errors.firstName}</p>
         ) : null}
       </td>
 
       <td>
         <input
-          className={style.editField}
+          className="user__editField"
           id="lastName"
           placeholder={t("profile:lastname")}
           variant="outlined"
@@ -69,14 +68,14 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.lastName && formik.errors.lastName ? (
-          <p className="helper-text">{formik.errors.lastName}</p>
+          <p className="helperText">{formik.errors.lastName}</p>
         ) : null}
       </td>
       <td>{formik.values.username}</td>
       <td>{formik.values.email}</td>
       <td>
         <input
-          className={style.editField}
+          className="user__editField"
           id="role"
           placeholder={t("profile:role")}
           variant="outlined"
@@ -86,7 +85,7 @@ const EditUser = ({ i, user, handleCancel, fetchUsers }) => {
           onBlur={formik.handleBlur}
         />
         {formik.touched.role && formik.errors.role ? (
-          <p className="helper-text">{formik.errors.role}</p>
+          <p className="helperText">{formik.errors.role}</p>
         ) : null}
       </td>
       <td>

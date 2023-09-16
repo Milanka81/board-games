@@ -1,0 +1,23 @@
+.modal {
+  @include absCenter;
+  color: $color-grey-dark;
+  padding: 3.2rem 4rem;
+  width: 40em;
+  align-self: center;
+  background-color: $color-primary;
+  box-shadow: $box-shadow-l;
+  justify-content: space-around;
+  border-radius: $border-radius-l;
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color-black, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    transition: all 0.5s;
+  }
+}

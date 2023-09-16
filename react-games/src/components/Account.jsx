@@ -1,9 +1,8 @@
 import { handleEmpty, refreshPage, alertDelete, logout } from "../utils";
 import { deleteUser } from "../service";
 import { useTranslation } from "react-i18next";
-import style from "./Account.module.css";
 import FormBtns from "./FormBtns";
-const Account = ({ user, handleEdit }) => {
+const Account = ({ user = {}, handleEdit }) => {
   const { t } = useTranslation(["common"]);
   const { first_name, last_name, username, email, role, user_id } = user;
 
@@ -13,12 +12,12 @@ const Account = ({ user, handleEdit }) => {
   };
 
   return (
-    <form className={style.form}>
-      <div className={style.formField}>{handleEmpty(first_name)}</div>
-      <div className={style.formField}>{handleEmpty(last_name)}</div>
-      <div className={style.formField}>{handleEmpty(username)}</div>
-      <div className={style.formField}>{handleEmpty(email)}</div>
-      <div className={style.formField}>{handleEmpty(role)}</div>
+    <form className="form">
+      <div className="form__inputField">{handleEmpty(first_name)}</div>
+      <div className="form__inputField">{handleEmpty(last_name)}</div>
+      <div className="form__inputField">{handleEmpty(username)}</div>
+      <div className="form__inputField">{handleEmpty(email)}</div>
+      <div className="form__inputField">{handleEmpty(role)}</div>
       <FormBtns
         denyBtnName={t("delete")}
         denyBtnOnClick={handleDelete}
