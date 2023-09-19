@@ -1,5 +1,5 @@
 .user {
-  &__editField {
+  &__field {
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
@@ -8,8 +8,12 @@
     font-size: 1rem;
     font-weight: 600;
     border: none;
-    background-color: $color-primary-light;
-    border-radius: $border-radius-m;
-    box-shadow: $box-shadow-xs;
+    background-color: inherit;
+    text-align: left;
+
+    &-edit {
+      border-radius: $border-radius-m;
+      box-shadow: $box-shadow-s;
+    }
   }
 }

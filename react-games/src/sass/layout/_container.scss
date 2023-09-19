@@ -23,3 +23,13 @@
   gap: 2rem;
   padding: 0 3rem;
 }
+
+.itemsContainer {
+  display: flex;
+  padding: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -45,3 +45,6 @@ export function useFilteredGames(page, limit, input, sortBy, enabled) {
     pageCount,
   };
 }
+
+//const [searchParams, setSearchParams] = useDebounce([category_id, sortPrice, minPrice, maxPrice, page, categoryFilters], 1000)
+//const productsQuery = useQuery({ queryKey: ['products', ...searchParams], queryFn: fetchProducts, keepPreviousData: true, staleTime: 1000 });

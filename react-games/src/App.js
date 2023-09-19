@@ -22,7 +22,7 @@ import AdminRoutes from "./pages/AdminRoutes";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000,
+      staleTime: 5000,
     },
   },
 });

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteGame } from "../service";
 import { imgSrc, handleEmpty, alertDelete } from "../utils";
+import { handleClickSort, arrows, styleClass } from "../sortFunctions";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
@@ -34,16 +35,6 @@ const ListOfGames = (idRow) => {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
   };
-  const handleClick = (e, value) => {
-    e.preventDefault();
-    sortBy.endsWith("asc")
-      ? setSortBy(`${value} desc`)
-      : setSortBy(`${value} asc`);
-  };
-  const styleClass = (value) =>
-    sortBy.includes(value) ? "u-pointer u-color-primary" : "u-pointer";
-
-  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▼" : "▲");
 
   return (
     <>
@@ -64,55 +55,66 @@ const ListOfGames = (idRow) => {
           />
         </div>
         <Loader isLoading={isLoading}>
-          <table className="table__list">
+          <table>
             <thead>
               <tr>
                 <th></th>
                 <th>{t("game:image")}</th>
                 <th
-                  className={styleClass("name")}
-                  onClick={(e) => handleClick(e, "name")}
+                  className={styleClass("name", sortBy)}
+                  onClick={(e) => handleClickSort(e, "name", sortBy, setSortBy)}
                 >
-                  {arrows("name")} {t("game:name")}
+                  {arrows("name", sortBy)} {t("game:name")}
                 </th>
                 <th
-                  className={styleClass("added_date")}
-                  onClick={(e) => handleClick(e, "added_date")}
+                  className={styleClass("added_date", sortBy)}
+                  onClick={(e) =>
+                    handleClickSort(e, "added_date", sortBy, setSortBy)
+                  }
                 >
-                  {arrows("added_date")} {t("game:dateadded")}
+                  {arrows("added_date", sortBy)} {t("game:dateadded")}
                 </th>
                 <th
-                  className={styleClass("min_players")}
-                  onClick={(e) => handleClick(e, "min_players")}
+                  className={styleClass("min_players", sortBy)}
+                  onClick={(e) =>
+                    handleClickSort(e, "min_players", sortBy, setSortBy)
+                  }
                 >
-                  {arrows("min_players")} {t("game:minplayers")}
+                  {arrows("min_players", sortBy)} {t("game:minplayers")}
                 </th>
                 <th
-                  className={styleClass("max_players")}
-                  onClick={(e) => handleClick(e, "max_players")}
+                  className={styleClass("max_players", sortBy)}
+                  onClick={(e) =>
+                    handleClickSort(e, "max_players", sortBy, setSortBy)
+                  }
                 >
-                  <span>{arrows("max_players")}</span>{" "}
+                  <span>{arrows("max_players", sortBy)}</span>{" "}
                   <span>{t("game:maxplayers")}</span>
                 </th>
                 <th
-                  className={styleClass("year")}
-                  onClick={(e) => handleClick(e, "year")}
+                  className={`${styleClass("year", sortBy)} u-text-center`}
+                  onClick={(e) => handleClickSort(e, "year", sortBy, setSortBy)}
                 >
-                  {arrows("year")} {t("game:year")}
+                  {arrows("year", sortBy)} {t("game:year")}
                 </th>
                 <th
-                  className={styleClass("game_length")}
-                  onClick={(e) => handleClick(e, "game_length")}
+                  className={`${styleClass(
+                    "game_length",
+                    sortBy
+                  )} u-text-center`}
+                  onClick={(e) =>
+                    handleClickSort(e, "game_length", sortBy, setSortBy)
+                  }
                 >
-                  {arrows("game_length")} {t("game:playingtime")}
+                  {arrows("game_length", sortBy)} {t("game:playingtime")}
                 </th>
                 <th>{t("game:artist")}</th>
                 <th>{t("game:designer")}</th>
                 <th>{t("game:category")}</th>
-                <th>
+                <th className="u-relative">
                   {" "}
                   <button
-                    className="btn__navBtn"
+                    className="btn__navBtn btn__add"
                     onClick={() => setOpenModal(true)}
                   >
                     {t("game:addnewgame")}
@@ -135,10 +137,16 @@ const ListOfGames = (idRow) => {
                     </td>
                     <td>{game.name}</td>
                     <td>{handleEmpty(game.added_date).slice(0, 10)}</td>
-                    <td>{handleEmpty(game.min_players)}</td>
-                    <td>{handleEmpty(game.max_players)}</td>
-                    <td>{handleEmpty(game.year)}</td>
-                    <td>{handleEmpty(game.game_length)}</td>
+                    <td className="u-text-center">
+                      {handleEmpty(game.min_players)}
+                    </td>
+                    <td className="u-text-center">
+                      {handleEmpty(game.max_players)}
+                    </td>
+                    <td className="u-text-center">{handleEmpty(game.year)}</td>
+                    <td className="u-text-center">
+                      {handleEmpty(game.game_length)}
+                    </td>
                     <td>{game.artist}</td>
                     <td>{game.designer}</td>
                     <td>{game.category}</td>
@@ -148,9 +156,7 @@ const ListOfGames = (idRow) => {
                         denyBtnOnClick={() =>
                           alertDelete(deleteGame, game.game_id, refetch)
                         }
-                        confirmBtnName={`${t("common:view")} / ${t(
-                          "common:edit"
-                        )}`}
+                        confirmBtnName={t("common:view")}
                         confirmBtnOnClick={() => {
                           navigate(`/game/${game.game_id}`);
                           document.title = `Board Game | ${game.name}`;

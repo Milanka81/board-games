@@ -64,7 +64,9 @@ const Game = () => {
 
   return (
     <>
-      <NavBtn path={-1} />
+      <div className="itemsContainer">
+        <NavBtn path={-1} />
+      </div>
       <div className="gridContainer">
         {isEdit ? (
           <EditGame

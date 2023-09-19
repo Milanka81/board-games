@@ -12,7 +12,7 @@ const NavBtn = ({ path }) => {
 
   return (
     <button
-      className="btn__navBtn u-ml-s u-mt-s"
+      className="btn__navBtn"
       onClick={() => {
         navigate(path);
       }}

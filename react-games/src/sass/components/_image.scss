@@ -1,9 +1,10 @@
 .image {
-  @include absCenter;
   display: flex;
+  position: absolute;
+  top: 6rem;
   background-color: $color-primary;
-  height: 70%;
-  width: 100%;
+  height: 28rem;
+  width: 40rem;
   box-shadow: $box-shadow-m;
   border-radius: $border-radius-l;
   padding: $padding-s;

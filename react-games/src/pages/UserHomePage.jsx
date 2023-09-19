@@ -1,29 +1,19 @@
-import { useEffect, useState } from "react";
 import Preferences from "./Preferences";
 import Games from "../components/Games";
 import { useTranslation } from "react-i18next";
 import { useFavouriteGames, useRecommendedGames } from "../hooks/games";
 import Modal from "../components/Modal";
+import { useIsPreferences } from "../hooks/preferences";
 
 const UserHomePage = () => {
   const { t } = useTranslation(["home"]);
-  const [isPreferences, setIsPreferences] = useState(true);
   const { data: recommended } = useRecommendedGames();
-  const { data: gamesFavourite, isSuccess: fetchedFav } = useFavouriteGames();
-  const { data: preferences, isSuccess: fetchedPreferences } =
-    useFavouriteGames();
-
-  useEffect(() => {
-    setInterval(() => {
-      if (!preferences?.at[0]) {
-        setIsPreferences(false);
-      }
-    }, 9000);
-  }, [fetchedPreferences, preferences]);
+  const { data: gamesFavourite } = useFavouriteGames();
+  const { data: preferences } = useIsPreferences();
 
   return (
     <div>
-      {!isPreferences && (
+      {!preferences?.length && (
         <Modal>
           <Preferences
             className="form__preferencesContainer"
@@ -33,18 +23,20 @@ const UserHomePage = () => {
         </Modal>
       )}
 
-      {fetchedFav && gamesFavourite ? (
+      {gamesFavourite?.length ? (
         <Games
           header={t("favouritegames")}
           games={gamesFavourite}
           id="favouriteGames"
         />
       ) : null}
-      <Games
-        header={t("recommendedgames")}
-        games={recommended}
-        id="recommendedGames"
-      />
+      {recommended?.length ? (
+        <Games
+          header={t("recommendedgames")}
+          games={recommended}
+          id="recommendedGames"
+        />
+      ) : null}
     </div>
   );
 };

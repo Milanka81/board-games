@@ -87,9 +87,7 @@
 .u-bold {
   font-weight: bold !important;
 }
-.u-bgcolor {
-  background-color: $color-white;
-}
+
 .u-height-s {
   height: 2.5rem !important;
 }
@@ -97,7 +95,7 @@
   color: $color-white !important;
 }
 .u-border {
-  border: 2px solid red !important;
+  border: 2px solid $color-red !important;
 }
 .u-padding {
   padding: 1rem !important;
@@ -109,9 +107,18 @@
 .u-relative {
   position: relative !important;
 }
+.u-absolute {
+  position: absolute !important;
+}
 
 .u-width {
   width: 100% !important;
+}
+.u-field-width {
+  width: 10rem !important;
+}
+.u-field-width-s {
+  width: 4rem !important;
 }
 .u-font-label {
   font-size: 1rem !important;
@@ -124,4 +131,8 @@
 }
 .u-color-primary {
   color: $color-primary !important;
+}
+
+.u-text-center {
+  text-align: center !important;
 }

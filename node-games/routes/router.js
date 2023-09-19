@@ -404,6 +404,7 @@ router.get("/games/recommended", authController.tokenVerify, (req, res) => {
       if (err) {
         throw err;
       }
+
       if (data[0]) {
         const numberOfPlayers = data[0].number_players;
         const gameLengthFrom = data[0].game_length_from;

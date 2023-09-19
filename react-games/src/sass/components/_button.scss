@@ -107,4 +107,9 @@
     border: none;
     background-color: #fdf2e9;
   }
+  &__add {
+    @include absCenter;
+    left: 43%;
+    width: 11rem;
+  }
 }

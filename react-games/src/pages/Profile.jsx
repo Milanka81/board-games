@@ -51,7 +51,7 @@ const Profile = () => {
         </div>
       )}
       <div className="gridContainer">
-        <div className="flexContainer u-ml-m ">
+        <div className="flexContainer u-ml-m u-align-center ">
           {showPreferences ? (
             <>
               <h3 className="title">{t("common:preferences")}:</h3>
@@ -83,7 +83,7 @@ const Profile = () => {
             </>
           )}
         </div>
-        <div className="flexContainer">
+        <div className="flexContainer u-relative">
           <Comment comments={myComments} refetch={refetch} />
         </div>
       </div>

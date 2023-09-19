@@ -48,7 +48,7 @@ const Preferences = ({
 
   const fetchPreferences = () => {
     getPreferences().then((res) => {
-      if (!res.data) return;
+      if (!res.data[0]) return;
       const prefData = res.data[0];
       setPreferences({
         numberOfPlayers: handleEmpty(prefData.number_players),

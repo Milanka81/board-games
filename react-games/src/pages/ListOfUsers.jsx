@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ViewUsers from "../components/ViewUsers";
-import EditUser from "../components/EditUser";
+import User from "../components/User";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
 import { useTranslation } from "react-i18next";
@@ -8,7 +7,7 @@ import Loader from "../components/Loader";
 import { useDebounce } from "../hooks/utilsHooks";
 import { useFilteredUsers } from "../hooks/users";
 import NavBtn from "../components/NavBtn";
-
+import { handleClickSort, arrows, styleClass } from "../sortFunctions";
 const ListOfUsers = () => {
   const { t } = useTranslation(["profile", "common", "home"]);
   const [userId, setUserId] = useState(null);
@@ -30,17 +29,7 @@ const ListOfUsers = () => {
     e.preventDefault();
     setUserId(user.user_id);
   };
-  const handleClick = (e, value) => {
-    e.preventDefault();
-    sortBy.endsWith("asc")
-      ? setSortBy(`${value} desc`)
-      : setSortBy(`${value} asc`);
-  };
-  const styleClass = (value) =>
-    sortBy.includes(value) ? "u-pointer u-color-primary" : "u-pointer";
-
-  const arrows = (value) => (sortBy.endsWith(`${value} desc`) ? "▼" : "▲");
-
+  console.log(userId);
   return (
     <>
       <div className="table__flex">
@@ -51,64 +40,70 @@ const ListOfUsers = () => {
         />
       </div>
       <Loader isLoading={isLoading}>
-        <form>
-          <table className="table__list">
-            <thead>
-              <tr>
-                <th></th>
-                <th
-                  className={styleClass("first_name")}
-                  onClick={(e) => handleClick(e, "first_name")}
-                >
-                  {arrows("first_name")} {t("profile:firstname")}
-                </th>
-                <th
-                  className={styleClass("last_name")}
-                  onClick={(e) => handleClick(e, "last_name")}
-                >
-                  {arrows("last_name")} {t("profile:lastname")}
-                </th>
-                <th
-                  className={styleClass("username")}
-                  onClick={(e) => handleClick(e, "username")}
-                >
-                  {arrows("username")} {t("profile:username")}
-                </th>
-                <th
-                  className={styleClass("email")}
-                  onClick={(e) => handleClick(e, "email")}
-                >
-                  {arrows("email")} {t("profile:email")}
-                </th>
-                <th>{t("profile:role")}</th>
-                <th></th>
-              </tr>
-            </thead>
+        <table>
+          <thead>
+            <tr>
+              <th className="u-field-width-s"></th>
+              <th
+                className={styleClass("first_name", sortBy)}
+                onClick={(e) =>
+                  handleClickSort(e, "first_name", sortBy, setSortBy)
+                }
+              >
+                {arrows("first_name", sortBy)} {t("profile:firstname")}
+              </th>
+              <th
+                className={styleClass("last_name", sortBy)}
+                onClick={(e) =>
+                  handleClickSort(e, "last_name", sortBy, setSortBy)
+                }
+              >
+                {arrows("last_name", sortBy)} {t("profile:lastname")}
+              </th>
+              <th
+                className={styleClass("username", sortBy)}
+                onClick={(e) =>
+                  handleClickSort(e, "username", sortBy, setSortBy)
+                }
+              >
+                {arrows("username", sortBy)} {t("profile:username")}
+              </th>
+              <th
+                className={styleClass("email", sortBy)}
+                onClick={(e) => handleClickSort(e, "email", sortBy, setSortBy)}
+              >
+                {arrows("email", sortBy)} {t("profile:email")}
+              </th>
+              <th>{t("profile:role")}</th>
+              <th></th>
+            </tr>
+          </thead>
 
-            <tbody>
-              {isSuccess &&
-                filteredUsers.map((user, i) => (
-                  <React.Fragment key={user.user_id}>
-                    {userId === user.user_id ? (
-                      <EditUser
-                        user={user}
-                        i={serialNum(i)}
-                        handleCancel={() => setUserId(null)}
-                        fetchUsers={refetch}
-                      />
-                    ) : (
-                      <ViewUsers
-                        user={user}
-                        i={serialNum(i)}
-                        handleEdit={handleEdit}
-                        fetchUsers={refetch}
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-            </tbody>
-          </table>
-        </form>
+          <tbody>
+            {isSuccess &&
+              filteredUsers.map((user, i) => (
+                <React.Fragment key={user.user_id}>
+                  {userId === user.user_id ? (
+                    <User
+                      user={user}
+                      i={serialNum(i)}
+                      handleCancel={() => setUserId(null)}
+                      fetchUsers={refetch}
+                      isEditing={true}
+                    />
+                  ) : (
+                    <User
+                      user={user}
+                      i={serialNum(i)}
+                      handleEdit={handleEdit}
+                      fetchUsers={refetch}
+                      isViewing={true}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+          </tbody>
+        </table>
         <Pagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}

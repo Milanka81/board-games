@@ -60,6 +60,7 @@ const executeQueryImgBase64Array = (res, sql) => {
     data.forEach((el) =>
       el.img ? (el.img = el.img.toString("base64")) : el.img
     );
+
     res.send(data);
   });
 };

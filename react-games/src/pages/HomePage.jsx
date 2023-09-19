@@ -37,10 +37,10 @@ const HomePage = () => {
   return (
     <>
       {isAdmin ? (
-        <>
+        <div className="itemsContainer">
           <NavBtn path="/users" />
           <NavBtn path="/games" />
-        </>
+        </div>
       ) : (
         <SearchBar
           handleChange={handleChange}

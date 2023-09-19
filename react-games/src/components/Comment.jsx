@@ -37,10 +37,8 @@ const Comment = ({ comments, refetch, gameId }) => {
 
   if ((isAdmin && !gameId) || (!gameId && !comments?.length))
     return (
-      <div className="u-flex u-column u-gap-m u-relative">
-        <div className="image">
-          <img className="image__coverImg" alt="game" src={board} />
-        </div>
+      <div className="image">
+        <img className="image__coverImg" alt="game" src={board} />
       </div>
     );
 
