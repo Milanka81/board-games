@@ -49,6 +49,22 @@ const Games = ({ header, games, id }) => {
               />
 
               {game.name === gameHovering && <HoverText game={game} />}
+
+              <div className="games__small">
+                <h3 className="u-m-xs">{game.name}</h3>
+                <p>
+                  {t("year")}: <strong>{game.year}</strong>
+                </p>
+                <p>
+                  {t("numberofplayers")}:{" "}
+                  <strong>
+                    {numberPlayers(game.min_players, game.max_players)}
+                  </strong>
+                </p>
+                <p>
+                  {t("playingtime")}: <strong>{game.game_length}</strong>
+                </p>
+              </div>
             </div>
           ))}
       </div>

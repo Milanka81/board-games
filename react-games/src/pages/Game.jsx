@@ -77,7 +77,7 @@ const Game = () => {
           />
         ) : (
           <Loader isLoading={isLoading}>
-            <div className="flexContainer">
+            <div className="flexContainer ">
               {isSuccess && (
                 <div className="form u-width">
                   <div className="game__imgContainer">
@@ -88,7 +88,7 @@ const Game = () => {
                     />
                   </div>
                   <div className="u-flex u-column u-gap-s">
-                    <p className="title u-mb-s">
+                    <p className="title u-mb-s u-mt-none">
                       <strong>{handleEmpty(game.name)}</strong>
                     </p>
                     <p className="form__gridField">

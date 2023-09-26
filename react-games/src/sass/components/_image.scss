@@ -11,6 +11,10 @@
   align-content: center;
   justify-content: center;
 
+  @include responsive(tab-port) {
+    visibility: hidden;
+  }
+
   &__coverImg {
     width: 90%;
     align-self: center;

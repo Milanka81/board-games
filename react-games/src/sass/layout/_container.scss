@@ -1,35 +1,55 @@
 .grid-2-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  row-gap: 1rem;
+  gap: $gap-s;
+  row-gap: $gap-s;
   border-radius: $border-radius-m;
 
   &__row {
     grid-column-start: span 2;
-    gap: 1rem;
+    gap: $gap-s;
   }
 }
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 1rem;
+  padding: $padding-s;
   width: 95em;
+  margin: 0 auto;
   // justify-items: center;
 }
+
+@include responsive(tab-port) {
+  .gridContainer {
+    @include flexColumn;
+    padding: $padding-s;
+    width: 80%;
+    gap: $gap-h;
+  }
+}
+
 .flexContainer {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: $gap-m;
   padding: 0 3rem;
+
+  @include responsive(tab-port) {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 .itemsContainer {
   display: flex;
-  padding: 1rem;
+  padding: $padding-s;
   padding-top: 1.5rem;
   padding-bottom: 0;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
+  gap: $gap-xs;
+
+  @include responsive(tab-port) {
+    gap: $gap-m;
+  }
 }

@@ -17,6 +17,15 @@
     padding: 0.5rem 1rem;
     justify-self: start;
 
+    @include responsive(tab-port) {
+      width: 18rem;
+      height: 3.5rem;
+    }
+    @include responsive(phone) {
+      width: 20rem;
+      height: 4rem;
+    }
+
     &:hover {
       font-size: $default-font-size;
     }
@@ -29,6 +38,11 @@
       width: 8rem;
       background-color: $color-primary-light;
       text-transform: uppercase;
+
+      @include responsive(tab-port) {
+        width: 10rem;
+        height: 3rem;
+      }
 
       &:hover {
         box-shadow: $box-shadow-m;
@@ -95,6 +109,12 @@
     font-weight: 600;
     background-color: $color-red;
     transition: font-size 0.5s ease;
+
+    @include responsive(tab-port) {
+      width: 11rem;
+      height: 3rem;
+      font-size: $default-font-size;
+    }
 
     &:hover {
       font-size: $default-font-size;

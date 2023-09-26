@@ -37,6 +37,20 @@ export function useFilteredGames(page, limit, input, sortBy, enabled) {
       queryFn: () => getFilteredGames(page - 1, limit, input, sortBy),
     });
 
+  if (sortBy.endsWith("asc"))
+    queryClient.prefetchQuery({
+      queryKey: ["games", page, limit, input, sortBy.replace("asc", "desc")],
+      queryFn: () =>
+        getFilteredGames(page, limit, input, sortBy.replace("asc", "desc")),
+    });
+
+  if (sortBy.endsWith("desc"))
+    queryClient.prefetchQuery({
+      queryKey: ["games", page, limit, input, sortBy.replace("desc", "asc")],
+      queryFn: () =>
+        getFilteredGames(page, limit, input, sortBy.replace("desc", "asc")),
+    });
+
   return {
     isLoading,
     isSuccess,
@@ -45,6 +59,3 @@ export function useFilteredGames(page, limit, input, sortBy, enabled) {
     pageCount,
   };
 }
-
-//const [searchParams, setSearchParams] = useDebounce([category_id, sortPrice, minPrice, maxPrice, page, categoryFilters], 1000)
-//const productsQuery = useQuery({ queryKey: ['products', ...searchParams], queryFn: fetchProducts, keepPreviousData: true, staleTime: 1000 });

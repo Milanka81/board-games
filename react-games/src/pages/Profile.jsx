@@ -51,7 +51,7 @@ const Profile = () => {
         </div>
       )}
       <div className="gridContainer">
-        <div className="flexContainer u-ml-m u-align-center ">
+        <div className="flexContainer u-align-center">
           {showPreferences ? (
             <>
               <h3 className="title">{t("common:preferences")}:</h3>

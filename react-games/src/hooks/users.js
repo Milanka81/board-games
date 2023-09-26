@@ -36,6 +36,20 @@ export function useFilteredUsers(page, limit, input, sortBy) {
       queryFn: () => getFilteredUsers(page - 1, limit, input, sortBy),
     });
 
+  if (sortBy.endsWith("asc"))
+    queryClient.prefetchQuery({
+      queryKey: ["users", page, limit, input, sortBy.replace("asc", "desc")],
+      queryFn: () =>
+        getFilteredUsers(page, limit, input, sortBy.replace("asc", "desc")),
+    });
+
+  if (sortBy.endsWith("desc"))
+    queryClient.prefetchQuery({
+      queryKey: ["users", page, limit, input, sortBy.replace("desc", "asc")],
+      queryFn: () =>
+        getFilteredUsers(page, limit, input, sortBy.replace("desc", "asc")),
+    });
+
   return {
     isLoading,
     isSuccess,

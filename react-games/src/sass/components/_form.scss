@@ -8,6 +8,15 @@
   box-shadow: $box-shadow-l;
   border-radius: $border-radius-l;
   justify-content: space-around;
+  margin: 0 auto;
+
+  @include responsive(tab-port) {
+    width: 70%;
+
+    &__responsive {
+      width: 50%;
+    }
+  }
 
   &__fieldsContainer {
     @include flexColumn;
@@ -63,6 +72,11 @@
   &__subscriptionContainer {
     @include flexColAlignC;
     gap: $gap-xs;
+    margin-top: 2rem;
+
+    @include responsive(tab-port) {
+      font-size: $font-size-l;
+    }
   }
 
   &__checkbox {

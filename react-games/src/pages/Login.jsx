@@ -45,7 +45,10 @@ const Login = () => {
 
   return (
     <div className="container">
-      <form className="form u-mt-m" onSubmit={formik.handleSubmit}>
+      <form
+        className="form u-mt-m form__responsive"
+        onSubmit={formik.handleSubmit}
+      >
         <h5 className="title u-mb-s">{t("profile:login")}</h5>
         <div className="form__fieldsContainer">
           <input

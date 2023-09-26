@@ -1,5 +1,6 @@
 .game {
   &__addContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     word-wrap: normal;

@@ -5,9 +5,10 @@
     padding-right: 1rem;
     padding-left: 1rem;
     align-items: center;
+    width: 97rem;
   }
   &__list {
-    width: 95em;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
     border: none;
@@ -20,6 +21,6 @@
   &__row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    width: 95em;
+    width: 100%;
   }
 }

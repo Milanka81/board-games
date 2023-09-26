@@ -8,11 +8,16 @@
     padding: 0 2rem;
     row-gap: 2rem;
     column-gap: 3rem;
+
+    @include responsive(tab-land) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
+
   &__container {
     @include flexColumn;
     position: relative;
-    width: 95em;
+    width: 100%;
     height: auto;
     justify-content: center;
     padding-top: $padding-s;
@@ -23,6 +28,12 @@
     width: 13rem;
     height: 11rem;
     padding: $padding-s;
+  }
+  &__small {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
   &__gameHover {
     display: flex;
@@ -59,5 +70,73 @@
     z-index: 1;
     border-radius: $border-radius-l;
     padding: $padding-s;
+  }
+
+  @include responsive(tab-port) {
+    &__grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      align-items: center;
+      padding: 0 2rem;
+      row-gap: $gap-l;
+      column-gap: $gap-l;
+    }
+    &__small {
+      visibility: visible;
+      opacity: 1;
+      width: 100%;
+      height: auto;
+      line-height: 1.5;
+      padding-bottom: $padding-s;
+      font-size: $font-size-l;
+    }
+
+    &__gameImg {
+      transition: all 1s ease;
+      width: 13rem;
+      height: 11rem;
+      padding: $padding-s;
+    }
+    &__gameHover {
+      @include flexColumn;
+      background-color: $color-primary-light;
+      position: relative;
+      width: 80%;
+      height: 25rem;
+      box-shadow: $box-shadow-m;
+      border-radius: $border-radius-l;
+      padding: $padding-m;
+      align-content: center;
+      justify-content: center;
+    }
+  }
+  @include responsive(phone) {
+    &__gameHover {
+      @include flexColumn;
+      background-color: $color-primary-light;
+      width: 60%;
+      height: 22rem;
+      box-shadow: $box-shadow-m;
+      border-radius: $border-radius-l;
+      padding: $padding-m;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+    &__grid {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+      align-items: center;
+      padding: 0 2rem;
+      row-gap: $gap-l;
+      margin: 0 auto;
+    }
+    &__small {
+      font-size: $default-font-size;
+    }
   }
 }

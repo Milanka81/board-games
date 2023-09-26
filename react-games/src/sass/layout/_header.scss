@@ -1,6 +1,6 @@
 .header {
   background-color: $color-grey-dark;
-  width: 64em;
+  width: 97rem;
   height: 4rem;
   color: $color-white;
   font-size: $font-size-l;
@@ -11,6 +11,10 @@
   padding: 0.5rem 1.5rem 1rem 1rem;
   border-bottom: 0.6rem solid #1a1a1a;
   border-top: 0.6rem solid $color-grey-dark;
+
+  @include responsive(tab-port) {
+    height: 5rem;
+  }
 
   &__mainNavList {
     list-style: none;

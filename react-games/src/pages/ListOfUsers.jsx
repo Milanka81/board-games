@@ -29,7 +29,6 @@ const ListOfUsers = () => {
     e.preventDefault();
     setUserId(user.user_id);
   };
-  console.log(userId);
   return (
     <>
       <div className="table__flex">
