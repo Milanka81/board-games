@@ -1,3 +1,8 @@
+.container {
+  margin: 0 auto;
+  width: 90rem;
+}
+
 .grid-2-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;

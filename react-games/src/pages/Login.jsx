@@ -21,8 +21,8 @@ const Login = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Required"),
-      password: Yup.string().required("Required"),
+      username: Yup.string().required(`${t("profile:required")}`),
+      password: Yup.string().required(`${t("profile:required")}`),
     }),
     onSubmit: (values) => {
       login(values).then((res) => {

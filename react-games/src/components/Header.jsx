@@ -69,7 +69,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <p className="title u-color-white"> 🎲 {t("apptitle")} 🎲</p>
+          <p className="title u-color-white u-mt-none">🎲 {t("apptitle")} 🎲</p>
           <Select handleLanguageChange={handleLanguageChange} />
         </>
       )}

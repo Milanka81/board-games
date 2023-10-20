@@ -41,11 +41,11 @@ const User = ({
 
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .max(20, "Must be less than 20 chars")
+        .max(20, `${t("profile:lessthan20")}`)
         .required("Required"), //react i18n next
       lastName: Yup.string()
-        .max(20, "Must be less than 20 chars")
-        .required("Required"),
+        .max(20, `${t("profile:lessthan20")}`)
+        .required(`${t("profile:required")}`),
     }),
   });
 
@@ -59,7 +59,7 @@ const User = ({
           placeholder={t("profile:firstname")}
           variant="outlined"
           type="text"
-          value={formik.values.firstName}
+          value={isEditing ? formik.values.firstName : first_name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           disabled={isViewing}

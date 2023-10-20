@@ -11,7 +11,9 @@ const ForgotPassword = () => {
       email: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email").required("Required"),
+      email: Yup.string()
+        .email(`${t("profile:invalidemail")}`)
+        .required(`${t("profile:required")}`),
     }),
     onSubmit: (values) => {
       forgotPassword(values).then((res) => {

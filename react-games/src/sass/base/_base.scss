@@ -28,10 +28,10 @@ html {
   }
 
   @include responsive(tab-port) {
-    font-size: 56.25%;
+    font-size: 80%;
   }
 
   @include responsive(phone) {
-    font-size: 50%;
+    font-size: 70%;
   }
 }

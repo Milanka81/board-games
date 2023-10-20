@@ -22,5 +22,12 @@
   "myComments": "My comments",
   "subscriptionmessage": "Subscribe to receive an email when a new game that fits your preferences is added.",
   "subscribed": "You are subscribed. Unsubscribe?",
-  "unsubscribed": "You are not subscribed. Subscribe?"
+  "unsubscribed": "You are not subscribed. Subscribe?",
+  "imagerequired": "Image is required",
+  "namerequired": "Name is required",
+  "minnumberplayersrequired": "Minimum number of players is required",
+  "maxnumberplayersrequired": "Maximum number of players is required",
+  "maxgraterthanmin": "Maximum number of players shouldn't be less than minimum number of players",
+  "yearrequired": "Year is required",
+  "gamelengthrequired": "Game length is required"
 }

@@ -35,7 +35,9 @@ const Game = () => {
       ? `${t("game:favourited")} ❤️`
       : `${t("game:addtofavourites")} 🤍`;
 
-  const { data: game, isSuccess, isLoading, refetch } = useGetGame(id);
+  const { data: game = {}, isSuccess, isLoading, refetch } = useGetGame(id);
+
+  console.log(game);
 
   const { data: gameComments, refetch: refetchComments } =
     useGetGameComments(id);

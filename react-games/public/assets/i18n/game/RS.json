@@ -22,5 +22,12 @@
   "myComments": "Moji komentari",
   "subscriptionmessage": "Prijavi se za dobijanje obaveštenja na email kada se doda nova igra koja odgovara tvojim preferencama.",
   "subscribed": "Prijavljen si. Da li želiš da se odjaviš?",
-  "unsubscribed": "Nisi prijavljen. Da li želiš da se prijaviš?"
+  "unsubscribed": "Nisi prijavljen. Da li želiš da se prijaviš?",
+  "imagerequired": "Slika je obavezna",
+  "namerequired": "Naziv je obavezan",
+  "minnumberplayersrequired": "Minimalni broj igrača je obavezan",
+  "maxnumberplayersrequired": "Maksimalni broj igrača je obavezan",
+  "maxgraterthanmin": "Maksimalni broj igrača ne može biti manji od minimalnog",
+  "yearrequired": "Godina je obavezna",
+  "gamelengthrequired": "Dužina trajanja je obavezna"
 }

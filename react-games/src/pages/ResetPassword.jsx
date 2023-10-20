@@ -14,7 +14,7 @@ const ResetPassword = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      password: Yup.string().required("Required"),
+      password: Yup.string().required(`${t("profile:required")}`),
     }),
     onSubmit: (values) => {
       resetPassword(id, token, values).then((res) => {

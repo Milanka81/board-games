@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { getRating, getAvgRating, postRating } from "../service";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "./AuthContext";
+import { handleEmpty } from "../utils";
 
 const Rating = ({ id }) => {
   const { admin } = useAuth();
@@ -73,7 +74,7 @@ const Rating = ({ id }) => {
                     type="radio"
                     name="rating"
                     id="rating"
-                    value={avgRating}
+                    value={handleEmpty(avgRating)}
                   />
                   <FaStar
                     className="rating__star"

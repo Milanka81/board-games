@@ -1,7 +1,7 @@
 .select {
   border: none;
   color: $color-primary-dark;
-  font-size: $font-size-xs;
+  // font-size: $font-size-xs;
   font-weight: 600;
   cursor: pointer;
   border-radius: $border-radius-l;
@@ -10,10 +10,18 @@
   height: 2.3rem;
   width: 9rem;
 
-  @include responsive(tab-port) {
-    width: 17rem;
-    height: 4rem;
+  @include responsive(tab-land) {
+    width: 10rem;
+    height: 2.5rem;
     align-items: center;
     margin-right: 1rem;
+  }
+  @include responsive(tab-port) {
+    width: 12rem;
+    height: 2.7rem;
+  }
+  @include responsive(phone) {
+    width: 14rem;
+    height: 3rem;
   }
 }

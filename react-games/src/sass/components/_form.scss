@@ -10,13 +10,13 @@
   justify-content: space-around;
   margin: 0 auto;
 
-  @include responsive(tab-port) {
-    width: 70%;
+  // @include responsive(tab-port) {
+  //   width: 50%;
 
-    &__responsive {
-      width: 50%;
-    }
-  }
+  //   &__responsive {
+  //     width: 70%;
+  //   }
+  // }
 
   &__fieldsContainer {
     @include flexColumn;

@@ -1,10 +1,8 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./sass/main.scss";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ListOfUsers from "./pages/ListOfUsers";
@@ -19,7 +17,7 @@ import HomePage from "./pages/HomePage";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import AdminRoutes from "./pages/AdminRoutes";
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5000,

@@ -59,19 +59,18 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
       }
     },
     validationSchema: Yup.object().shape({
-      name: Yup.string().required("Name is required"),
+      name: Yup.string().required(`${t("game:namerequired")}`),
       minPlayers: Yup.number()
         .integer()
-        .required("Minimum number of players is required"),
+        .required(`${t("game:minnumberplayersrequired")}`),
       maxPlayers: Yup.number()
         .integer()
-        .min(
-          Yup.ref("minPlayers"),
-          "Maximum number of players shouldn't be less than minimum number of players"
-        )
-        .required("Maximum number of players is required"),
-      year: Yup.number().integer().required("Year is required"),
-      gameLength: Yup.string().required("Game length is required"),
+        .min(Yup.ref("minPlayers"), `${t("game:minnumberplayersrequired")}`)
+        .required(`${t("game:maxgraterthanmin")}`),
+      year: Yup.number()
+        .integer()
+        .required(`${t("game:yearrequired")}`),
+      gameLength: Yup.string().required(`${t("game:gamelengthrequired")}`),
     }),
   });
 

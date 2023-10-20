@@ -28,15 +28,17 @@ const EditAccount = ({ user = {}, handleCancel, fetchUser }) => {
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
-        .max(20, "Must be less than 20 chars")
-        .required("Required"), //react i18n next
+        .max(20, `${t("profile:lessthan20")}`)
+        .required(`${t("profile:required")}`), //react i18n next
       lastName: Yup.string()
-        .max(20, "Must be less than 20 chars")
-        .required("Required"),
+        .max(20, `${t("profile:lessthan20")}`)
+        .required(`${t("profile:required")}`),
       username: Yup.string()
-        .max(20, "Must be less than 20 chars")
-        .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
+        .max(20, `${t("profile:lessthan20")}`)
+        .required(`${t("profile:required")}`),
+      email: Yup.string()
+        .email(`${t("profile:invalidemail")}`)
+        .required(`${t("profile:required")}`),
     }),
   });
 
