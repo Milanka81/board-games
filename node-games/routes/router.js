@@ -346,10 +346,10 @@ router.get("/games/categories", (req, res) => {
 router.get("/filteredGames", (req, res) => {
   const { page, limit, input, sortBy } = req.query;
   const offset = (page - 1) * (limit || 0);
-  let sql = `SELECT * FROM gameInfo WHERE name LIKE "${input}%" 
-               OR artist LIKE "${input}%" 
-               OR designer LIKE "${input}%" 
-               OR category LIKE "${input}%"
+  let sql = `SELECT * FROM gameInfo WHERE name LIKE "%${input}%" 
+               OR artist LIKE "%${input}%" 
+               OR designer LIKE "%${input}%" 
+               OR category LIKE "%${input}%"
                ORDER BY ${sortBy} 
                `;
   if (limit) {

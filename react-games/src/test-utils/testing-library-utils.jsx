@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "../components/AuthContext";
 import { I18nextProvider } from "react-i18next";
 import i18next from "../__mocks__/i18next";
+
 export const queryClient = new QueryClient({
   logger: {
     log: console.log,

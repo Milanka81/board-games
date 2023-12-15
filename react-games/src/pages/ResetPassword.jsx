@@ -43,6 +43,9 @@ const ResetPassword = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          {formik.touched.password && formik.errors.password ? (
+            <p className="helperText">{formik.errors.password}</p>
+          ) : null}
         </div>
         <button className="btn__submit" type="submit">
           {t("common:submit")}

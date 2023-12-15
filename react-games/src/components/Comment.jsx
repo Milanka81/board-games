@@ -101,7 +101,9 @@ const Comment = ({ comments, refetch, gameId }) => {
               </>
             ) : (
               <>
-                <div className="comment__text">{el.comm}</div>
+                <div className="comment__text" data-testid="comment-text">
+                  {el.comm}
+                </div>
 
                 {(el.user_id === loggedUser.user_id || isAdmin) && (
                   <ListBtns

@@ -37,23 +37,25 @@ const Game = () => {
 
   const { data: game = {}, isSuccess, isLoading, refetch } = useGetGame(id);
 
-  console.log(game);
-
   const { data: gameComments, refetch: refetchComments } =
     useGetGameComments(id);
 
   useEffect(() => {
-    getGameLike(id).then((res) => {
-      if (!res.data.length) return setLiked(false);
-      setLiked(true);
-    });
+    if (id) {
+      getGameLike(id).then((res) => {
+        if (!res.data.length) return setLiked(false);
+        setLiked(true);
+      });
+    }
   }, [id]);
 
   useEffect(() => {
-    getGameFavourite(id).then((res) => {
-      if (!res.data.length) return setFavourite(false);
-      setFavourite(true);
-    });
+    if (id) {
+      getGameFavourite(id).then((res) => {
+        if (!res.data.length) return setFavourite(false);
+        setFavourite(true);
+      });
+    }
   }, [id]);
 
   const like = () => {

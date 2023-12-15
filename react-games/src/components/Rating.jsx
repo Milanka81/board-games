@@ -36,7 +36,7 @@ const Rating = ({ id }) => {
 
   const rateGame = (rating) => {
     setRating(rating);
-    postRating(id, rating).then(() => {
+    postRating(id, rating).then((res) => {
       fetchAvg();
     });
   };
@@ -60,6 +60,7 @@ const Rating = ({ id }) => {
                   />
                   <FaStar
                     className="rating__star"
+                    data-testid="star"
                     size={25}
                     color={
                       ratingValue <= (hover || rating) ? "#ffc107" : "#aaa"

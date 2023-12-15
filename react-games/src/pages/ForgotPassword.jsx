@@ -35,13 +35,16 @@ const ForgotPassword = () => {
           <input
             className="form__inputField form__inputField-edit"
             id="email"
-            placeholder={t("profile:enternewpassword")}
+            placeholder={t("profile:enteremail")}
             variant="outlined"
             type="text"
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           />
+          {formik.touched.email && formik.errors.email ? (
+            <p className="helperText">{formik.errors.email}</p>
+          ) : null}
         </div>
         <button className="btn__submit" type="submit">
           {t("common:submit")}

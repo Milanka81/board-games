@@ -76,7 +76,14 @@ export default function App() {
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password/:id/:token" element={<ResetPassword />} />
           <Route path="register" element={<Register />} />
-          <Route path="*" element={<PageNotFound />} />{" "}
+          <Route
+            path="*"
+            element={
+              <ProtectedRoutes>
+                <PageNotFound />
+              </ProtectedRoutes>
+            }
+          />{" "}
         </Routes>
       </QueryClientProvider>
     </Suspense>

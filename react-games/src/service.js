@@ -1,22 +1,20 @@
 import axios from "axios";
 import { alertMessage } from "./utils";
-const token = localStorage.getItem("token");
+import setAuthToken from "./axiosConfig";
+// const token = localStorage.getItem("token");
 const BASE_URL = "http://localhost:3001";
 const GAMES = "games";
 
-axios.defaults.headers.common = { jwt: token };
-
-// const catchError = (fn, alert = alertMessage) => {
-//   return () => fn.catch((err) => alert("error", err.message));
-// };
-
+// axios.defaults.headers.common = { jwt: token };
+setAuthToken();
 const catchError = (fn) => {
   return async (...values) => {
     try {
       const data = await fn(...values);
       return data;
     } catch (err) {
-      return alertMessage("error", err.message);
+      alertMessage("error", err.message);
+      throw err;
     }
   };
 };

@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
-import axios from "axios";
+//import axios from "axios";
 import * as Yup from "yup";
 import { login } from "../service";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../components/AuthContext";
+import setAuthToken from "../axiosConfig";
 
 const Login = () => {
   const { t } = useTranslation(["profile", "common"]);
@@ -37,7 +38,8 @@ const Login = () => {
 
         const isAdmin = user.role === "admin";
         setIsAdmin(isAdmin);
-        axios.defaults.headers.common = { jwt: token };
+        setAuthToken();
+        // axios.defaults.headers.common = { jwt: token };
         navigate("/");
       });
     },
