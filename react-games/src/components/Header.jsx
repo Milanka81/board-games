@@ -34,6 +34,7 @@ const Header = () => {
                 className="btn__navBtn-small"
                 onClick={() => {
                   navigate("/");
+                  document.title = "Board Games App";
                 }}
               >
                 {t("home")}
@@ -44,6 +45,7 @@ const Header = () => {
               <button
                 className="btn__navBtn-small"
                 onClick={() => {
+                  document.title = "Board Games App | Profile";
                   navigate("/profile");
                 }}
               >

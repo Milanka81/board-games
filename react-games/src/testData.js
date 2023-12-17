@@ -28,6 +28,7 @@ export const fakeGames = [
 ];
 
 export const fakeUser = {
+  user_id: 1,
   first_name: "John",
   last_name: "Smith",
   username: "john123",
