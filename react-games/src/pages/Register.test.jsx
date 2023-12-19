@@ -50,7 +50,7 @@ describe("renders register page", () => {
     expect(register).not.toHaveBeenCalled();
   });
 
-  test("form doesn't submit when NOT all inputs filled", async () => {
+  test("form doesn't submit when all inputs are not filled", async () => {
     render(<Register />);
     const firstname = screen.getByPlaceholderText(placeholders.firstname);
     const lastname = screen.getByPlaceholderText(placeholders.lastname);

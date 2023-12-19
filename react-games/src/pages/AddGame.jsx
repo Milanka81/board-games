@@ -30,8 +30,8 @@ const AddGame = ({ className, setOpenModal }) => {
         .required(`${t("game:minnumberplayersrequired")}`),
       maxPlayers: Yup.number()
         .integer()
-        .min(Yup.ref("minPlayers"), `${t("game:minnumberplayersrequired")}`)
-        .required(`${t("game:maxgraterthanmin")}`),
+        .required(`${t("game:maxnumberplayersrequired")}`)
+        .min(Yup.ref("minPlayers"), `${t("game:maxgraterthanmin")}`),
       year: Yup.number()
         .integer()
         .required(`${t("game:yearrequired")}`),

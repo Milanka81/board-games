@@ -2,11 +2,6 @@ import { render, screen } from "../test-utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import Select from "./Select";
 
-// jest.mock("react-flags-select", () => {
-//   return () => {
-//     return "flag";
-//   };
-// });
 describe("Select Component", () => {
   const user = userEvent.setup();
   test("renders select component with default placeholder", () => {
