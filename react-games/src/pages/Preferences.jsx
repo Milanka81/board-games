@@ -39,6 +39,7 @@ const Preferences = ({
 
   const isViewing = componentState === "isViewing";
   const isAdding = componentState === "isAdding";
+  const isEditing = componentState === "isEditing";
 
   const subscribeInfo = () =>
     subscribed ? `${t("game:subscribed")}` : `${t("game:unsubscribed")}`;
@@ -231,13 +232,14 @@ const Preferences = ({
             />
           </div>
         </div>
-        {isAdding ? (
+        {!isEditing ? (
           <FormBtns
             denyBtnName={t("common:cancel")}
             denyBtnOnClick={handleCancel}
             disabled={true}
             confirmBtnName={btnSubmitName()}
             confirmBtnOnClick={formik.handleSubmit}
+            className=""
           />
         ) : (
           <FormBtns

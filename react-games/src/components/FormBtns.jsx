@@ -1,4 +1,5 @@
 const FormBtns = ({
+  className = "grid-2-cols",
   denyBtnName,
   denyBtnOnClick,
   confirmBtnName,
@@ -7,7 +8,7 @@ const FormBtns = ({
   disabled,
 }) => {
   return (
-    <div className="grid-2-cols">
+    <div className={className}>
       {!disabled && (
         <button
           className="btn__submit btn--red"
