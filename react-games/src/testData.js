@@ -35,6 +35,24 @@ export const fakeUser = {
   email: "john123@gmail.com",
   role: "user",
 };
+export const fakeUsers = [
+  {
+    user_id: 1,
+    first_name: "John",
+    last_name: "Smith",
+    username: "john123",
+    email: "john123@gmail.com",
+    role: "admin",
+  },
+  {
+    user_id: 2,
+    first_name: "Mary",
+    last_name: "Willson",
+    username: "mery123",
+    email: "mery123@gmail.com",
+    role: "user",
+  },
+];
 
 export const fakeGame = {
   game_id: 1,

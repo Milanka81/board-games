@@ -3,7 +3,7 @@ const ListBtns = ({
   denyBtnOnClick,
   confirmBtnName,
   confirmBtnOnClick,
-  type,
+  type = "button",
   containerClassName = "u-flex u-gap-xs u-column u-align-center ",
 }) => {
   return (
