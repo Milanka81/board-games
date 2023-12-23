@@ -21,7 +21,6 @@ describe("renders add game component", () => {
   ];
   test("renders game input fields and buttons", async () => {
     render(<AddGame />);
-    // screen.logTestingPlaygroundURL();
 
     const heading = screen.getByRole("heading", {
       name: /addnewgame/i,
