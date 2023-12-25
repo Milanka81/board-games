@@ -93,6 +93,7 @@ describe("renders add game component", () => {
     expect(addGame).not.toHaveBeenCalled();
   });
   test("submits game details on button click", async () => {
+    window.URL.createObjectURL = jest.fn();
     const setOpenModal = jest.fn();
 
     render(<AddGame setOpenModal={setOpenModal} />);
@@ -108,10 +109,9 @@ describe("renders add game component", () => {
     const image = screen.getByLabelText(/uploadimage/i);
     expect(image).toBeInTheDocument();
     const file = new File(["file contents"], "test.png", { type: "image/png" });
-    // await user.upload(image, file);
-    // await waitFor(async () => {
-    //   expect(test).toBeInTheDocument();
-    // });
+
+    await user.upload(image, file);
+
     const nameInput = screen.getByPlaceholderText(gamePlaceholders[0]);
     const minPlayersInput = screen.getByPlaceholderText(gamePlaceholders[1]);
     const maxPlayersInput = screen.getByPlaceholderText(gamePlaceholders[2]);
@@ -123,6 +123,17 @@ describe("renders add game component", () => {
     await user.type(yearInput, "1935");
     await user.type(playingTimeInput, "90");
     await user.click(saveBtn);
-    // expect(addGame).toHaveBeenCalledTimes(1);
+    expect(addGame).toHaveBeenCalledTimes(1);
+    expect(addGame).toHaveBeenCalledWith({
+      artist: "",
+      category: "",
+      designer: "",
+      gameLength: 90,
+      img: file,
+      maxPlayers: "8",
+      minPlayers: "2",
+      name: "Monopoly",
+      year: "1935",
+    });
   });
 });

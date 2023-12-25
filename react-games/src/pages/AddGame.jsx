@@ -38,7 +38,7 @@ const AddGame = ({ className, setOpenModal }) => {
       gameLength: Yup.string().required(`${t("game:gamelengthrequired")}`),
     }),
   });
-
+  // console.log(typeof formik.values.img);
   return (
     <>
       <form

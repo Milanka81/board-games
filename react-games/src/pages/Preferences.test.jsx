@@ -6,7 +6,7 @@ import {
   addPreferences,
   editPreferences,
 } from "../service";
-import { screen, render } from "../test-utils/testing-library-utils";
+import { screen, render, waitFor } from "../test-utils/testing-library-utils";
 import { localStorageUser } from "../testData";
 import Preferences from "./Preferences";
 import userEvent from "@testing-library/user-event";
@@ -32,6 +32,7 @@ describe("renders preferences component", () => {
   test("displays add preferences component fields", async () => {
     // getPreferences.mockResolvedValue({ data: [] });
     getSubscription.mockResolvedValue({ data: [] });
+
     getGameCategories.mockResolvedValue({
       data: [
         { category_id: 1, category_name: "Strategy" },
@@ -91,7 +92,7 @@ describe("renders preferences component", () => {
     const categoryInput = screen.getByText("Strategy");
     expect(categoryInput).toBeInTheDocument();
     await user.click(saveBtn);
-    expect(addPreferences).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(addPreferences).toHaveBeenCalledTimes(1));
   });
   test("renders user's preferences with subscribe checkbox, input fields are disabled", async () => {
     getPreferences.mockResolvedValue({
@@ -152,6 +153,7 @@ describe("renders preferences component", () => {
     expect(editBtn).toBeInTheDocument();
   });
   test("renders edit preferences component, two buttons and select manu", async () => {
+    const handleCancel = jest.fn();
     getPreferences.mockResolvedValue({
       data: [
         {
@@ -179,6 +181,7 @@ describe("renders preferences component", () => {
         componentState="isEditing"
         fieldClassName="form__inputField-edit"
         handleEdit={editPreferences}
+        handleCancel={handleCancel}
       />
     );
     const numPlayers = await screen.findByDisplayValue(7);
@@ -205,18 +208,20 @@ describe("renders preferences component", () => {
     const saveBtn = screen.getByRole("button", { name: /save/i });
     expect(saveBtn).toBeInTheDocument();
     await user.click(saveBtn);
-    expect(editPreferences).toHaveBeenCalledTimes(1);
-    expect(editPreferences).toHaveBeenCalledWith({
-      values: {
-        artist: "Michael Williams",
-        category: "Party",
-        designer: "",
-        gameLengthFrom: 60,
-        gameLengthTo: "",
-        numberOfPlayers: 2,
-      },
-      user_id: 2,
-      selectedCategories: ["Strategy"],
-    });
+    await waitFor(() => expect(editPreferences).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
+      expect(editPreferences).toHaveBeenCalledWith({
+        values: {
+          artist: "Michael Williams",
+          category: "Party",
+          designer: "",
+          gameLengthFrom: 60,
+          gameLengthTo: "",
+          numberOfPlayers: 2,
+        },
+        user_id: 2,
+        selectedCategories: ["Strategy"],
+      })
+    );
   });
 });
