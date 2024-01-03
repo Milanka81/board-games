@@ -78,30 +78,28 @@ const ListOfUsers = () => {
             </tr>
           </thead>
 
-          <tbody>
-            {isSuccess &&
-              filteredUsers.map((user, i) => (
-                <React.Fragment key={user.user_id}>
-                  {userId === user.user_id ? (
-                    <User
-                      user={user}
-                      i={serialNum(i)}
-                      handleCancel={() => setUserId(null)}
-                      fetchUsers={refetch}
-                      isEditing={true}
-                    />
-                  ) : (
-                    <User
-                      user={user}
-                      i={serialNum(i)}
-                      handleEdit={handleEdit}
-                      fetchUsers={refetch}
-                      isViewing={true}
-                    />
-                  )}
-                </React.Fragment>
-              ))}
-          </tbody>
+          {isSuccess &&
+            filteredUsers.map((user, i) => (
+              <tbody key={user.user_id}>
+                {userId === user.user_id ? (
+                  <User
+                    user={user}
+                    i={serialNum(i)}
+                    handleCancel={() => setUserId(null)}
+                    fetchUsers={refetch}
+                    isEditing={true}
+                  />
+                ) : (
+                  <User
+                    user={user}
+                    i={serialNum(i)}
+                    handleEdit={handleEdit}
+                    fetchUsers={refetch}
+                    isViewing={true}
+                  />
+                )}
+              </tbody>
+            ))}
         </table>
         <Pagination
           currentPage={currentPage}

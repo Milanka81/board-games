@@ -65,8 +65,8 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
         .required(`${t("game:minnumberplayersrequired")}`),
       maxPlayers: Yup.number()
         .integer()
-        .min(Yup.ref("minPlayers"), `${t("game:minnumberplayersrequired")}`)
-        .required(`${t("game:maxgraterthanmin")}`),
+        .min(Yup.ref("minPlayers"), `${t("game:maxgraterthanmin")}`)
+        .required(`${t("game:maxnumberplayersrequired")}`),
       year: Yup.number()
         .integer()
         .required(`${t("game:yearrequired")}`),
@@ -84,18 +84,19 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
         <div className="form u-width">
           <div className="image__flex">
             <label htmlFor="img" className="game__customFileUpload">
-              <input
-                name="img"
-                id="img"
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  setIsEditingImg(true);
-                  formik.setFieldValue("img", e.target.files[0]);
-                }}
-              />
               {t("common:editimage")}
             </label>
+            <input
+              name="img"
+              id="img"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setIsEditingImg(true);
+                formik.setFieldValue("img", e.target.files[0]);
+              }}
+            />
+
             {!isEditingImg ? (
               <div className="game__imgContainer game__imgContainer-edit">
                 <img
@@ -139,7 +140,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.name && formik.errors.name ? (
-                <p className="helperText">{formik.errors.name}</p>
+                <span className="helperText">{formik.errors.name}</span>
               ) : null}
             </p>
 
@@ -157,7 +158,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.minPlayers && formik.errors.minPlayers ? (
-                <p className="helperText">{formik.errors.minPlayers}</p>
+                <span className="helperText">{formik.errors.minPlayers}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -174,7 +175,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.maxPlayers && formik.errors.maxPlayers ? (
-                <p className="helperText">{formik.errors.maxPlayers}</p>
+                <span className="helperText">{formik.errors.maxPlayers}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -191,7 +192,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.year && formik.errors.year ? (
-                <p className="helperText">{formik.errors.year}</p>
+                <span className="helperText">{formik.errors.year}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -209,7 +210,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.gameLength && formik.errors.gameLength ? (
-                <p className="helperText">{formik.errors.gameLength}</p>
+                <span className="helperText">{formik.errors.gameLength}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -227,7 +228,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.artist && formik.errors.artist ? (
-                <p className="helperText">{formik.errors.artist}</p>
+                <span className="helperText">{formik.errors.artist}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -245,7 +246,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.designer && formik.errors.designer ? (
-                <p className="helperText">{formik.errors.designer}</p>
+                <span className="helperText">{formik.errors.designer}</span>
               ) : null}
             </p>
             <p className="form__gridField">
@@ -263,7 +264,7 @@ const EditGame = ({ game, isSuccess, refreshGame, setIsEdit }) => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.category && formik.errors.category ? (
-                <p className="helperText">{formik.errors.category}</p>
+                <span className="helperText">{formik.errors.category}</span>
               ) : null}
             </p>
             <FormBtns

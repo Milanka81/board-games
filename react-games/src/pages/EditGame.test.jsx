@@ -1,4 +1,4 @@
-import { screen, render } from "../test-utils/testing-library-utils";
+import { screen, render, waitFor } from "../test-utils/testing-library-utils";
 import EditGame from "./EditGame";
 import userEvent from "@testing-library/user-event";
 import { editGame } from "../service";
@@ -46,8 +46,38 @@ describe("renders edit game component", () => {
         setIsEdit={() => {}}
       />
     );
+    const gameName = await screen.findByDisplayValue("Monopoly");
+    await user.clear(gameName);
     const saveBtn = screen.getByRole("button", { name: /save/i });
     await user.click(saveBtn);
-    expect(editGame).toHaveBeenCalledTimes(1);
+    await waitFor(async () => {
+      const errorName = await screen.findByText(/namerequired/i);
+      expect(errorName).toBeInTheDocument();
+    });
+    expect(editGame).not.toHaveBeenCalled();
+    await user.type(gameName, "Monopoly");
+    await user.click(saveBtn);
+    expect(editGame).toHaveBeenCalled();
+  });
+  test("uploads an image", async () => {
+    window.URL.createObjectURL = jest.fn();
+    render(
+      <EditGame
+        game={fakeGame}
+        isSuccess={true}
+        refreshGame={() => {}}
+        setIsEdit={() => {}}
+      />
+    );
+    const image = await screen.findByLabelText(/editimage/i);
+    expect(image).toBeInTheDocument();
+    const dropBtn = screen.queryByRole("button", { name: /dropimage/i });
+    expect(dropBtn).not.toBeInTheDocument();
+    const file = new File(["file contents"], "test.png", { type: "image/png" });
+    await user.upload(image, file);
+    const dropImgBtn = await screen.findByRole("button", {
+      name: /dropimage/i,
+    });
+    expect(dropImgBtn).toBeInTheDocument();
   });
 });
