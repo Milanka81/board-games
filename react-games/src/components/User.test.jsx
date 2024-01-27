@@ -11,7 +11,13 @@ jest.mock("../service", () => ({
 describe("renders user component", () => {
   const user = userEvent.setup();
   test("renders details about user", async () => {
-    render(<User i={0} user={fakeUser} isViewing={true} />);
+    render(
+      <table>
+        <tbody>
+          <User i={0} user={fakeUser} isViewing={true} />
+        </tbody>
+      </table>
+    );
     const userRow = await screen.findByRole("row");
     expect(userRow).toBeInTheDocument(); // screen.debug();
     const cells = await screen.findAllByRole("cell");
@@ -37,7 +43,16 @@ describe("renders user component", () => {
   test("renders edit and delete buttons when isViewing is true", async () => {
     const handleEdit = jest.fn();
     render(
-      <User i={0} user={fakeUser} handleEdit={handleEdit} isViewing={true} />
+      <table>
+        <tbody>
+          <User
+            i={0}
+            user={fakeUser}
+            handleEdit={handleEdit}
+            isViewing={true}
+          />
+        </tbody>
+      </table>
     );
     const editBtn = await screen.findByRole("button", { name: /edit/i });
     expect(editBtn).toBeInTheDocument();
@@ -47,7 +62,13 @@ describe("renders user component", () => {
     expect(handleEdit).toHaveBeenCalledTimes(1);
   });
   test("renders save and cancel buttons when isEditing is true", async () => {
-    render(<User i={0} user={fakeUser} isEditing={true} isViewing={false} />);
+    render(
+      <table>
+        <tbody>
+          <User i={0} user={fakeUser} isEditing={true} isViewing={false} />
+        </tbody>
+      </table>
+    );
     const firstName = await screen.findByDisplayValue("John");
     const lastName = await screen.findByDisplayValue("Smith");
     const username = await screen.findByDisplayValue("john123");
