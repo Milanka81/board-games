@@ -84,7 +84,7 @@ const Profile = () => {
           )}
         </div>
         <div className="flexContainer u-relative">
-          <Comment comments={myComments} refetch={refetch} />
+          <Comment comments={myComments} refetch={refetch} gameId="" />
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ const Games = ({ header, games, id }) => {
             <div
               className="games__gameHover"
               onClick={() => {
-                navigate(`/game/${game.game_id}`);
+                navigate(`/games/game/${game.game_id}`);
                 document.title = `Board Game | ${game.name}`;
               }}
               onMouseLeave={() => setGameHovering("")}

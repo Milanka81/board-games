@@ -26,6 +26,6 @@ describe("renders games", () => {
     const image = await screen.findByAltText(/monopoly/i);
     expect(image).toBeInTheDocument();
     await user.click(image);
-    expect(window.location.pathname).toBe("/game/1");
+    expect(window.location.pathname).toBe("/games/1");
   });
 });

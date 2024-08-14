@@ -1,12 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const router = require("./routes/router");
+const gamesRouter = require("./routes/gamesRouter");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const cors = require("cors");
 const app = express();
-
-//app.set('view engine', 'ejs')
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -37,7 +37,8 @@ app.use(
   })
 );
 
-app.use("/", require("./routes/router"));
+app.use("/", router);
+app.use("/games", gamesRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running in http://localhost:${process.env.PORT}`);

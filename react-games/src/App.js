@@ -57,7 +57,7 @@ export default function App() {
             }
           />
           <Route
-            path="/game/:id"
+            path="/games/game/:id"
             element={
               <ProtectedRoutes>
                 <Game />

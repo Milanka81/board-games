@@ -41,7 +41,7 @@ export const getAllGames = catchError(() => axios.get(`${BASE_URL}/${GAMES}`));
 
 export const getFilteredGames = catchError((page, limit, input, sortBy) =>
   axios.get(
-    `${BASE_URL}/filteredGames?page=${page}&limit=${limit}&input=${input}&sortBy=${sortBy}`
+    `${BASE_URL}/${GAMES}/filteredGames?page=${page}&limit=${limit}&input=${input}&sortBy=${sortBy}`
   )
 );
 
@@ -63,7 +63,7 @@ export const getNewGames = catchError(() =>
 /* ONE GAME */
 
 export const getGame = catchError((id) =>
-  axios.get(`${BASE_URL}/${GAMES}/${id}`)
+  axios.get(`${BASE_URL}/${GAMES}/game/${id}`)
 );
 
 export const addGame = catchError((values) =>
@@ -84,11 +84,11 @@ export const deleteComment = catchError((id) =>
 );
 
 export const getGameComments = catchError((id) =>
-  axios.get(`${BASE_URL}/${GAMES}/${id}/comments`)
+  axios.get(`${BASE_URL}/${GAMES}/${id}/comment`)
 );
 
-export const getUserComments = catchError(() =>
-  axios.get(`${BASE_URL}/${GAMES}/comments`)
+export const getUserComments = catchError((id) =>
+  axios.get(`${BASE_URL}/${GAMES}/${id}/mycomments`)
 );
 
 export const getGameLike = catchError((id) =>

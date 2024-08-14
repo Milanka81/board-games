@@ -152,13 +152,13 @@ const ListOfGames = (idRow) => {
                     <td>{game.category}</td>
                     <td>
                       <ListBtns
-                        denyBtnName={t("common:cancel")}
+                        denyBtnName={t("common:delete")}
                         denyBtnOnClick={() =>
                           alertDelete(deleteGame, game.game_id, refetch)
                         }
                         confirmBtnName={t("common:view")}
                         confirmBtnOnClick={() => {
-                          navigate(`/game/${game.game_id}`);
+                          navigate(`/games/game/${game.game_id}`);
                           document.title = `Board Game | ${game.name}`;
                         }}
                       />

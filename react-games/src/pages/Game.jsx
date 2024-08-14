@@ -39,7 +39,7 @@ const Game = () => {
 
   const { data: gameComments, refetch: refetchComments } =
     useGetGameComments(id);
-
+  console.log("game comments: ", gameComments);
   useEffect(() => {
     if (id) {
       getGameLike(id).then((res) => {
