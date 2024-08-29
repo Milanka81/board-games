@@ -94,17 +94,18 @@ exports.addGame = (req, res) => {
             valuesMatched(preferenceCategory, category)
           ) {
             const transporter = nodemailer.createTransport({
-              service: "hotmail",
+              host: "sandbox.smtp.mailtrap.io",
+              port: 2525,
               auth: {
-                user: "mnarancic1910@hotmail.com",
-                pass: "Testnodemailer",
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASSWORD,
               },
             });
 
             const options = {
               from: {
                 name: "Board Games App",
-                address: "mnarancic1910@hotmail.com",
+                address: "board-games-app@gmail.com",
               },
               to: email,
               subject: "New Game added!",
@@ -257,8 +258,8 @@ exports.getGameFavourite = (req, res) => {
 
 exports.getGameRating = (req, res) => {
   const sql = `SELECT user_id, user_rate FROM rating WHERE
-                game_id = ${req.params.id};`;
-
+                game_id = ${req.params.id} AND user_id= ${req.userId};`;
+  45;
   executeQuery(res, sql);
 };
 
